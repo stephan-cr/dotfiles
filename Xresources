@@ -1,0 +1,64 @@
+! settings for aterm for historic reasons ;-)
+Aterm*transparent: true
+Aterm*transpscrollbar: true
+!Aterm*tinting: red
+!Aterm*foreground: black
+!Aterm*background: white
+Aterm*foreground: white
+Aterm*background: black
+Aterm*font: 6x13
+Aterm*utmpInhibit: true
+Aterm*borderWidth: 0
+Aterm*menu: aterm_menu
+
+URxvt*background: black
+!URxvt*borderLess: true <- dont enable this, it remains here as a warning
+URxvt*font: 6x13
+URxvt*foreground: white
+URxvt*pointerBlank: true
+URxvt*scrollBar: false
+URxvt*transparent: true
+URxvt*utmpInhibit: true
+
+*customization: -color
+XTerm*eightBitInput: false
+XTerm*metaSendsEscape: true
+XTerm*sessionMgt: false
+XTerm*termName:	xterm-256color
+XTerm*toolBar: false
+XTerm*utmpInhibit: true
+UXTerm*termName: xterm-256color
+
+! Solarized like colors
+! https://gist.github.com/845878
+XTerm*background: #101010
+XTerm*foreground: #d0d0d0
+XTerm*cursorColor: #d0d0d0
+XTerm*color0: #101010
+XTerm*color1: #960050
+XTerm*color2: #66aa11
+XTerm*color3: #c47f2c
+XTerm*color4: #30309b
+XTerm*color5: #7e40a5
+XTerm*color6: #3579a8
+XTerm*color7: #9999aa
+XTerm*color8: #303030
+XTerm*color9: #ff0090
+XTerm*color10: #80ff00
+XTerm*color11: #ffba68
+XTerm*color12: #5f5fee
+XTerm*color13: #bb88dd
+XTerm*color14: #4eb4fa
+XTerm*color15: #d0d0d0
+
+xclock*update: 1
+xclock*foreground: blue
+xclock*background: black
+xclock*analog: false
+
+xosview*net: true
+xosview*interrupts: false
+
+xpdf*psPaperSize: A4
+
+Xcursor.theme: CG

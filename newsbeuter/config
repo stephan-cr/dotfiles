@@ -1,0 +1,11 @@
+browser iceweasel
+max-items 1000
+reload-threads 2
+show-read-feeds no
+
+# solarized color scheme
+color listnormal color244 color234
+color listfocus  color166 color235
+color info       color136 color235
+color background color244 color234
+color article    color244 color234
