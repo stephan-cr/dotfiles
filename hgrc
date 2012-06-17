@@ -2,12 +2,14 @@
 hgext.color =
 hgext.hgk =
 hgext.pager =
+hgext.purge =
 hgext.record =
 
 [pager]
 pager = less -R
 
 [ui]
+ssh = ssh -C
 style = compact
 username = stephan
 verbose = True
