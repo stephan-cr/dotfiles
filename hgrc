@@ -1,0 +1,13 @@
+[extensions]
+hgext.color =
+hgext.hgk =
+hgext.pager =
+hgext.record =
+
+[pager]
+pager = less -R
+
+[ui]
+style = compact
+username = stephan
+verbose = True
