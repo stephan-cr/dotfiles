@@ -1,0 +1,10 @@
+[BASIC]
+# The default bad-functions contains "map" and "filter". I think they are not
+# bad.
+# Leave the rest as it is, because: "apply" is deprecated and "input" is really
+# dangerous.
+bad-functions=apply,input
+
+[DESIGN]
+# I do not really care. A class with no public methods is really useless.
+min-public-methods=1
