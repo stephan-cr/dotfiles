@@ -1,0 +1,10 @@
+{
+    "hgrc": ".hgrc",
+    "irbrc": ".irbrc",
+    "multitailrc": ".multitailrc",
+    "pylintrc": ".pylintrc",
+    "Renviron": ".Renviron",
+    "tmux.conf": ".tmux.conf",
+    "Xresources": ".Xresources",
+    "zshrc": ".zshrc"
+}
