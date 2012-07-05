@@ -1,2 +1,4 @@
 R_PAPERSIZE_USER=${R_PAPERSIZE-'a4'}
 R_PAPERSIZE=${R_PAPERSIZE-'a4'}
+
+R_DEFAULT_PACKAGES='utils,grDevices,graphics,stats,lattice'
