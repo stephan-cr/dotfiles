@@ -2,6 +2,7 @@
 
 This repository contains some of my dotfiles for:
 
+- [Emacs](http://www.gnu.org/software/emacs/)
 - Irb
 - [multitail](http://www.vanheusden.com/multitail/)
 - [newsbeuter](http://newsbeuter.org/)
