@@ -12,7 +12,7 @@
   (getenv "TERM"))
 
 (require 'json)
-(defvar user-config-filename "~/.emacs.d/user-config.json")
+(defvar user-config-filename (concat user-emacs-directory "user-config.json"))
 (defvar user-config nil)
 (when (file-exists-p user-config-filename)
   (setq user-config (let ((json-object-type 'hash-table))
@@ -110,7 +110,7 @@
 (add-to-list 'auto-mode-alist '("\\.\\(md\\|markdown\\)\\'" . markdown-mode))
 
 ; extend load path
-(setq load-path (cons "~/.emacs.d/" load-path))
+(setq load-path (cons user-emacs-directory load-path))
 
 ; duplicate current line or region in emacs
 ; http://blog.tuxicity.se/elisp/emacs/2010/03/11/duplicate-current-line-or-region-in-emacs.html
@@ -377,7 +377,7 @@ non-whitespace character"
    ;; (require 'color-theme-solarized)
    ;; (setq solarized-termcolors 256)
    ;; (color-theme-solarized-light)
-   (setq custom-theme-directory "~/.emacs.d/themes")
+   (setq custom-theme-directory (concat user-emacs-directory "themes"))
    (load-theme 'solarized-light)
    (set-face-background 'hl-line "gray95")
    )
@@ -492,4 +492,4 @@ The function assumes that the user set the variables `user-full-name' and
 (which-func-mode 1)
 
 ; don't place customizations directly into init.el
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (concat user-emacs-directory "custom.el"))
