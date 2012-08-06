@@ -480,9 +480,15 @@ The function assumes that the user set the variables `user-full-name' and
   (kill-sexp -1)
   (insert (format "%S" value)))
 
+(require 'eldoc)
+(setq eldoc-idle-delay 0)
+
 (require 'python)
 (define-key python-mode-map (kbd "RET") 'newline-and-indent)
 (add-hook 'python-mode-hook 'turn-on-eldoc-mode) ; check if that really works
+
+(require 'ess-eldoc)
+(add-hook 'inferior-ess-mode-hook 'ess-use-eldoc)
 
 ; compilation
 (setq compilation-auto-jump-to-first-error t)
