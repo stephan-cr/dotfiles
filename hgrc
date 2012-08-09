@@ -5,6 +5,9 @@ hgext.pager =
 hgext.purge =
 hgext.record =
 
+[hooks]
+commit = hg export tip | diffstat
+
 [pager]
 pager = less -R
 
