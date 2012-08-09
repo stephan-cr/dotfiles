@@ -483,8 +483,12 @@ The function assumes that the user set the variables `user-full-name' and
   (kill-sexp -1)
   (insert (format "%S" value)))
 
+;; eldoc
 (require 'eldoc)
 (setq eldoc-idle-delay 0)
+
+(require 'ielm)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
 (require 'python)
 (add-hook 'python-mode-hook 'turn-on-eldoc-mode) ; check if that really works
