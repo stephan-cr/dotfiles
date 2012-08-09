@@ -484,7 +484,6 @@ The function assumes that the user set the variables `user-full-name' and
 (setq eldoc-idle-delay 0)
 
 (require 'python)
-(define-key python-mode-map (kbd "RET") 'newline-and-indent)
 (add-hook 'python-mode-hook 'turn-on-eldoc-mode) ; check if that really works
 
 (require 'ess-eldoc)
@@ -499,3 +498,8 @@ The function assumes that the user set the variables `user-full-name' and
 
 ; don't place customizations directly into init.el
 (setq custom-file (concat user-emacs-directory "custom.el"))
+
+;; newline and indent for some programming modes
+(mapc 'require '(cc-mode perl-mode python))
+(dolist (x (list c-mode-map c++-mode-map perl-mode-map python-mode-map))
+  (define-key x (kbd "RET") 'newline-and-indent))
