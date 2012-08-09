@@ -167,6 +167,9 @@ non-whitespace character"
   (browse-kill-ring-default-keybindings))
 
 ; org mode
+(setq org-enforce-todo-checkbox-dependencies t)
+(setq org-enforce-todo-dependencies t)
+
 (require 'org)
 (defvar agenda-files (list "~/orgs/todo.org"))
 (when (and (featurep 'org) (or (on-host "earth3") (on-host "earth7")))
