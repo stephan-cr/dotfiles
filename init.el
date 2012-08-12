@@ -24,6 +24,9 @@
 (setq-default show-trailing-whitespace t)
 (setq-default indicate-empty-lines t)
 
+(setq frame-title-format
+      (list '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
 ; show an empty scratch buffer
 (setq initial-scratch-message nil)
 ; remove splash screen
