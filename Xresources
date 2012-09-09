@@ -27,7 +27,12 @@ XTerm*sessionMgt: false
 XTerm*termName:	xterm-256color
 XTerm*toolBar: false
 XTerm*utmpInhibit: true
+
+UXTerm*eightBitInput: false
+UXTerm*metaSendsEscape: true
+UXTerm*sessionMgt: false
 UXTerm*termName: xterm-256color
+UXTerm*utmpInhibit: true
 
 ! Solarized like colors
 ! https://gist.github.com/845878
