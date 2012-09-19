@@ -378,21 +378,14 @@ non-whitespace character"
   ('default-theme
     (set-face-background 'hl-line "gray95"))
   ('solarized-theme
-   ;; (setq load-path (cons "~/external_projects/emacs-color-theme-solarized"
-   ;;                       load-path))
-   ;; (require 'color-theme-solarized)
    ;; (setq solarized-termcolors 256)
-   ;; (color-theme-solarized-light)
    (setq custom-theme-directory (concat user-emacs-directory "themes"))
    (load-theme 'solarized-light)
-   (set-face-background 'hl-line "gray95")
-   )
+   (set-face-background 'hl-line "gray95"))
   ('naquadah-theme
    ;; naquadah theme
    (defvar naquadah-path "~/naquadah-theme")
-   (when (and naquadah-path
-              (>= (string-to-number (substring (current-time-string) 11 13)) 12))
-     (load-file (concat naquadah-path "/naquadah-theme.el")))))
+   (load-file (concat naquadah-path "/naquadah-theme.el"))))
 
 ; override `message-expand-name' from message.el to lookup aliases from mutt
 ; when composing messages
