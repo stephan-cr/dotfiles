@@ -217,7 +217,7 @@ non-whitespace character"
 ; erc
 (when (require 'erc nil t)
   (eval-when-compile (require 'erc))
-  (setq erc-server "se07")
+  (setq erc-server "irc.freenode.net")
   (setq erc-port 6667))
 
 ; jabber
