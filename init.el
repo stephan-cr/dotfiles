@@ -191,7 +191,7 @@ non-whitespace character"
 ; define "scrartcl" KOMA document class for org mode latex export
 ; we know that the initial first element of `org-export-latex-classes' is
 ; "article", we use it to define "scrartcl" in a convenient way
-(when (require 'org-latex nil t)
+(when (require 'org-latex nil 'noerror)
   (add-to-list 'org-export-latex-classes
                (concatenate 'list
                             '("scrartcl" "\\documentclass[11pt]{scrartcl}")
@@ -215,7 +215,7 @@ non-whitespace character"
   (when (>= emacs-major-version 24) (setq org-src-fontify-natively t)))
 
 ; erc
-(when (require 'erc nil t)
+(when (require 'erc nil 'noerror)
   (eval-when-compile (require 'erc))
   (setq erc-server "irc.freenode.net")
   (setq erc-port 6667))
@@ -237,7 +237,7 @@ non-whitespace character"
   (setq fsm-debug nil))
 
 ; emms
-(when (require 'emms nil t)
+(when (require 'emms nil 'noerror)
   (require 'emms-setup)
   (require 'emms-player-mpd)
   (eval-when-compile (require 'emms-player-simple))
@@ -290,7 +290,7 @@ non-whitespace character"
 
 ; http://stringofbits.net/2009/08/emacs-23-dbus-and-libnotify/
 ; with slight modifications by me
-(when (require 'dbus nil t)
+(when (require 'dbus nil 'noerror)
   (eval-when-compile (require 'dbus))
   (defvar emacs-icon-path (concat "/usr/share/emacs/"
                                   (number-to-string emacs-major-version)
