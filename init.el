@@ -489,14 +489,14 @@ The function assumes that the user set the variables `user-full-name' and
 (require 'python)
 (add-hook 'python-mode-hook 'turn-on-eldoc-mode) ; check if that really works
 
-(require 'ess)
-(setq ess-ask-for-ess-directory nil)
-;; disable ess-smart-underscore
-(substitute-key-definition 'ess-smart-underscore 'self-insert-command
-                           ess-mode-map)
+(when (require 'ess nil 'noerror)
+  (setq ess-ask-for-ess-directory nil)
+  ;; disable ess-smart-underscore
+  (substitute-key-definition 'ess-smart-underscore 'self-insert-command
+                             ess-mode-map)
 
-(require 'ess-eldoc)
-(add-hook 'inferior-ess-mode-hook 'ess-use-eldoc)
+  (require 'ess-eldoc)
+  (add-hook 'inferior-ess-mode-hook 'ess-use-eldoc))
 
 ; compilation
 (setq compilation-auto-jump-to-first-error t)
