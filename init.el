@@ -181,12 +181,16 @@ non-whitespace character"
   (global-set-key "\C-ca" 'org-agenda)
   (global-set-key "\C-cb" 'org-iswitchb)
   (global-set-key "\C-cl" 'org-store-link)
-  (setq org-default-notes-file (concat (getenv "HOME") "/orgs/notes.org"))
+  (setq org-directory "~/orgs/")
+  (setq org-default-notes-file (concat org-directory "notes.org"))
   (setq org-capture-templates
-        '(("t" "Note" entry (file+headline "~/orgs/notes.org" "Notes")
+        '(("t" "Note" entry (file+headline org-default-notes-file "Notes")
            "* TODO %?\n  %i\n  %a")))
   (define-key global-map "\C-cc" 'org-capture)
-  (global-set-key [f5] 'org-display-inline-images))
+  (global-set-key [f5] 'org-display-inline-images)
+  (setq org-mobile-directory "~/mobileorg")
+  (setq org-mobile-inbox-for-pull (concat org-directory "from-mobile.org"))
+  (setq org-mobile-files '("todo.org")))
 
 ; define "scrartcl" KOMA document class for org mode latex export
 ; we know that the initial first element of `org-export-latex-classes' is
