@@ -3,6 +3,7 @@ hgext.color =
 hgext.hgk =
 hgext.pager =
 hgext.purge =
+hgext.rebase =
 hgext.record =
 
 [hooks]
