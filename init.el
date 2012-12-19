@@ -516,3 +516,8 @@ The function assumes that the user set the variables `user-full-name' and
 (mapc 'require '(cc-mode perl-mode python))
 (dolist (x (list c-mode-map c++-mode-map perl-mode-map python-mode-map))
   (define-key x (kbd "RET") 'newline-and-indent))
+
+;; sql-mode settings
+(eval-after-load 'sql-mode
+  '(progn (message "Setting sql-product to postgres")
+          (setq sql-product 'postgres)))
