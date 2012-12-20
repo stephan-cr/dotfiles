@@ -11,6 +11,21 @@
   "get the current terminal name"
   (getenv "TERM"))
 
+; no menu bar
+(menu-bar-mode -1)
+
+; things to do when in X mode
+(when (eq window-system 'x)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (set-face-attribute 'default nil :height 80)
+  (global-hl-line-mode t))
+(when (or (eq window-system 'mac) (eq window-system 'ns))
+  (tool-bar-mode -1)
+  (global-hl-line-mode t)
+  (set-face-background 'hl-line "gray95")
+  (set-face-attribute 'default nil :height 120))
+
 (require 'json)
 (defvar user-config-filename (concat user-emacs-directory "user-config.json"))
 (defvar user-config nil)
@@ -58,9 +73,6 @@
 ; show column numbers
 (column-number-mode)
 
-; no menu bar
-(menu-bar-mode -1)
-
 ; distinguish buffers of the same filename
 ; http://tsengf.blogspot.com/2011/06/distinguish-buffers-of-same-filename-in.html
 (require 'uniquify)
@@ -70,18 +82,6 @@
 (require 'browse-url)
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium-browser")
-
-; things to do when in X mode
-(when (eq window-system 'x)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (set-face-attribute 'default nil :height 80)
-  (global-hl-line-mode t))
-(when (or (eq window-system 'mac) (eq window-system 'ns))
-  (tool-bar-mode -1)
-  (global-hl-line-mode t)
-  (set-face-background 'hl-line "gray95")
-  (set-face-attribute 'default nil :height 120))
 
 ; enable flyspell minor mode automatically for Latex (AuCTeX)
 (require 'flyspell)
