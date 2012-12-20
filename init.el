@@ -521,3 +521,9 @@ The function assumes that the user set the variables `user-full-name' and
 (eval-after-load 'sql-mode
   '(progn (message "Setting sql-product to postgres")
           (setq sql-product 'postgres)))
+
+;; Save point position between sessions
+;; http://whattheemacsd.com/init.el-03.html
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name "places" user-emacs-directory))
