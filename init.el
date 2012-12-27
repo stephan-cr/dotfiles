@@ -384,8 +384,8 @@ non-whitespace character"
   ('solarized-theme
    ;; (setq solarized-termcolors 256)
    (setq custom-theme-directory (concat user-emacs-directory "themes"))
-   (load-theme 'solarized-light)
-   (set-face-background 'hl-line "gray95"))
+   (load-theme 'solarized-dark)
+   (set-face-background 'hl-line "gray15"))
   ('naquadah-theme
    ;; naquadah theme
    (defvar naquadah-path "~/naquadah-theme")
