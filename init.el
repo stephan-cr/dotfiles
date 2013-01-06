@@ -2,7 +2,7 @@
 
 ;; Author: Stephan Creutz
 
-; functions
+;; functions
 (defun on-host (hostname)
   "get the current hostname on which this instance is running"
   (string-equal (car (split-string system-name "\\.")) hostname))
@@ -11,10 +11,10 @@
   "get the current terminal name"
   (getenv "TERM"))
 
-; no menu bar
+;; no menu bar
 (menu-bar-mode -1)
 
-; things to do when in X mode
+;; things to do when in X mode
 (when (eq window-system 'x)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
@@ -33,7 +33,7 @@
   (setq user-config (let ((json-object-type 'hash-table))
                       (json-read-file user-config-filename))))
 
-; indention style and end of line whitespace handling
+;; indention style and end of line whitespace handling
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 (setq-default show-trailing-whitespace t)
@@ -42,15 +42,15 @@
 (setq frame-title-format
       (list '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
-; show an empty scratch buffer
+;; show an empty scratch buffer
 (setq initial-scratch-message nil)
-; remove splash screen
+;; remove splash screen
 (setq inhibit-startup-message t)
 
-; case sensitiv search
+;; case sensitiv search
 (setq-default case-fold-search nil)
 
-; http://www.thekidder.com/2008/10/21/emacs-reload-file/
+;; http://www.thekidder.com/2008/10/21/emacs-reload-file/
 (defun reload-file ()
   (interactive)
   (let ((curr-scroll (window-vscroll)))
@@ -63,61 +63,61 @@
 (global-set-key [f12] 'comment-region)
 (global-set-key [shift-f12] 'uncomment-region)
 
-; smooth scrolling
+;; smooth scrolling
 (setq scroll-conservatively 1)
 
-; automatically remove end of line white space
-;(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; automatically remove end of line white space
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
-; show column numbers
+;; show column numbers
 (column-number-mode)
 
-; distinguish buffers of the same filename
-; http://tsengf.blogspot.com/2011/06/distinguish-buffers-of-same-filename-in.html
+;; distinguish buffers of the same filename
+;; http://tsengf.blogspot.com/2011/06/distinguish-buffers-of-same-filename-in.html
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-; set browser to Chromium instead of Iceweasel which is the default
+;; set browser to Chromium instead of Iceweasel which is the default
 (require 'browse-url)
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium-browser")
 
-; enable flyspell minor mode automatically for Latex (AuCTeX)
+;; enable flyspell minor mode automatically for Latex (AuCTeX)
 (eval-after-load 'flyspell
   '(progn
      (add-hook 'LaTeX-mode-hook 'flyspell-mode)
      (setq flyspell-use-meta-tab nil)))
 
-; bibtex mode settings
+;; bibtex mode settings
 (eval-when-compile (require 'bibtex))
 (setq bibtex-align-at-equal-sign t)
 
-; windmove
+;; windmove
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings)
   (setq windmove-wrap-around t))
 
-; ibuffer
+;; ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-; use aspell instead of ispell
+;; use aspell instead of ispell
 (setq ispell-program-name "aspell")
 
-; conf mode for Mercurial hgrc files
+;; conf mode for Mercurial hgrc files
 (add-to-list 'auto-mode-alist '("\\hgrc?\\'" . conf-mode))
 
-; shell mode for zsh files (as in oh-my-zsh)
+;; shell mode for zsh files (as in oh-my-zsh)
 (add-to-list 'auto-mode-alist '("\\.zsh?\\'" . sh-mode))
 
-; markdown-mode for "md|markdown" files
+;; markdown-mode for "md|markdown" files
 (add-to-list 'auto-mode-alist '("\\.\\(md\\|markdown\\)\\'" . markdown-mode))
 
-; extend load path
+;; extend load path
 (setq load-path (cons user-emacs-directory load-path))
 
-; duplicate current line or region in emacs
-; http://blog.tuxicity.se/elisp/emacs/2010/03/11/duplicate-current-line-or-region-in-emacs.html
+;; duplicate current line or region in emacs
+;; http://blog.tuxicity.se/elisp/emacs/2010/03/11/duplicate-current-line-or-region-in-emacs.html
 (defun duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
 If there's no region, the current line will be duplicated. However, if
@@ -150,7 +150,7 @@ non-whitespace character"
 
 (global-set-key (kbd "C-c w") 'kill-forward-whitespace)
 
-; highlight current line
+;; highlight current line
 (eval-and-compile (require 'cl)) ; for reduce
 (defun is-suitable-color-term ()
   (let ((suitable-color-term-list '("rxvt" "xterm-256color"))
@@ -165,12 +165,12 @@ non-whitespace character"
   (global-hl-line-mode t)
   (set-face-background 'hl-line "gray20"))
 
-; navigating in the kill-ring
-; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
+;; navigating in the kill-ring
+;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
 (when (require 'browse-kill-ring nil 'noerror)
   (browse-kill-ring-default-keybindings))
 
-; org mode
+;; org mode
 (setq org-enforce-todo-checkbox-dependencies t)
 (setq org-enforce-todo-dependencies t)
 
@@ -193,16 +193,16 @@ non-whitespace character"
   (setq org-mobile-inbox-for-pull (concat org-directory "from-mobile.org"))
   (setq org-mobile-files '("todo.org")))
 
-; define "scrartcl" KOMA document class for org mode latex export
-; we know that the initial first element of `org-export-latex-classes' is
-; "article", we use it to define "scrartcl" in a convenient way
+;; define "scrartcl" KOMA document class for org mode latex export
+;; we know that the initial first element of `org-export-latex-classes' is
+;; "article", we use it to define "scrartcl" in a convenient way
 (when (require 'org-latex nil 'noerror)
   (add-to-list 'org-export-latex-classes
                (concatenate 'list
                             '("scrartcl" "\\documentclass[11pt]{scrartcl}")
                             (cddr (car org-export-latex-classes)))))
 
-; org babel mode
+;; org babel mode
 (when (and (featurep 'org) (featurep 'ob))
   (mapc 'require '(ob-C
                    ob-R
@@ -219,13 +219,13 @@ non-whitespace character"
                 org-babel-python-wrapper-method))
   (when (>= emacs-major-version 24) (setq org-src-fontify-natively t)))
 
-; erc
+;; erc
 (when (require 'erc nil 'noerror)
   (eval-when-compile (require 'erc))
   (setq erc-server "irc.freenode.net")
   (setq erc-port 6667))
 
-; jabber
+;; jabber
 (defvar jabber-resource-name
   (when user-config (gethash "jabber-resource-name" user-config)))
 
@@ -241,7 +241,7 @@ non-whitespace character"
   (eval-when-compile (require 'fsm))
   (setq fsm-debug nil))
 
-; emms
+;; emms
 (when (require 'emms nil 'noerror)
   (require 'emms-setup)
   (require 'emms-player-mpd)
@@ -272,7 +272,7 @@ non-whitespace character"
                            emms-player-mpg321-list
                            emms-player-mpd)))
 
-; use multimedia keys
+;; use multimedia keys
 (when (eq window-system 'x)
   (global-set-key (kbd "<XF86AudioLowerVolume>") 'emms-volume-lower)
   (global-set-key (kbd "<XF86AudioRaiseVolume>") 'emms-volume-raise)
@@ -293,8 +293,8 @@ non-whitespace character"
 
 (global-set-key [f9] 'do-initial-window-split)
 
-; http://stringofbits.net/2009/08/emacs-23-dbus-and-libnotify/
-; with slight modifications by me
+;; http://stringofbits.net/2009/08/emacs-23-dbus-and-libnotify/
+;; with slight modifications by me
 (when (require 'dbus nil 'noerror)
   (eval-when-compile (require 'dbus))
   (defvar emacs-icon-path (concat "/usr/share/emacs/"
@@ -328,9 +328,9 @@ non-whitespace character"
   (add-hook 'emms-player-started-hook
             #'(lambda () (send-desktop-notification "EMMS" (emms-show) 3000))))
 
-; gnus
-; http://mah.everybody.org/docs/mail/
-; set default backend
+;; gnus
+;; http://mah.everybody.org/docs/mail/
+;; set default backend
 (eval-when-compile (require 'gnus))
 (when user-config
   (setq gnus-select-method '(nnimap
@@ -341,7 +341,7 @@ non-whitespace character"
 (eval-when-compile (require 'gnus-sum))
 (setq gnus-summary-thread-gathering-function
       'gnus-gather-threads-by-subject)
-; http://www.emacswiki.org/emacs/GnusFormatting
+;; http://www.emacswiki.org/emacs/GnusFormatting
 (setq-default
  gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f %* %B%s%)\n"
  gnus-user-date-format-alist '((t . "%d.%m.%Y %H:%M"))
@@ -355,7 +355,7 @@ non-whitespace character"
  gnus-sum-thread-tree-vertical "│"
  )
 
-; send mail via msmtp
+;; send mail via msmtp
 (eval-when-compile (require 'sendmail))
 (setq sendmail-program "/usr/bin/msmtp")
 (eval-when-compile (require 'message))
@@ -366,17 +366,17 @@ non-whitespace character"
   (setq user-full-name (gethash "user-full-name" user-config))
   (setq user-mail-address (gethash "user-mail-address" user-config)))
 
-; gnus window setup
+;; gnus window setup
 (eval-when-compile (require 'gnus-win))
 (setq gnus-use-full-window nil)
 
-; kill message buffer after it was successfully send
+;; kill message buffer after it was successfully send
 (setq message-kill-buffer-on-exit t)
 
-; tramp setup
+;; tramp setup
 (require 'tramp)
 
-; themes
+;; themes
 (defvar theme-tag 'solarized-theme)
 
 (case theme-tag
@@ -392,8 +392,8 @@ non-whitespace character"
    (defvar naquadah-path "~/naquadah-theme")
    (load-file (concat naquadah-path "/naquadah-theme.el"))))
 
-; override `message-expand-name' from message.el to lookup aliases from mutt
-; when composing messages
+;; override `message-expand-name' from message.el to lookup aliases from mutt
+;; when composing messages
 (when (or (on-host "earth3") (on-host "earth7"))
   (require 'message)
   (eval-and-compile (require 'mutt-alias))
@@ -421,12 +421,12 @@ non-whitespace character"
   ;; (add-to-list 'message-expand-name-databases 'mutt-alias)
 )
 
-; bookmark setting
+;;; bookmark setting
 ;; automatically save bookmarks
 (eval-when-compile (require 'bookmark))
 (setq bookmark-save-flag 1)
 
-; open man page in the current buffer
+;; open man page in the current buffer
 (eval-when-compile (require 'man))
 (setq Man-notify-method 'pushy)
 
@@ -456,7 +456,7 @@ The function assumes that the user set the variables `user-full-name' and
 
 (global-set-key [f11] 'insert-code-author)
 
-; auto completion
+;;; auto completion
 ;; (when (on-host "xyz")
 ;;   (require 'auto-complete)
 ;;   (require 'auto-complete-clang)
@@ -472,12 +472,12 @@ The function assumes that the user set the variables `user-full-name' and
 
 ;;   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook))
 
-; start emacs server
+;; start emacs server
 (require 'server)
 (unless (server-running-p server-name)
   (server-start))
 
-; http://irreal.org/blog/?p=297
+;; http://irreal.org/blog/?p=297
 (defun eval-and-replace (value)
   "Evaluate the sexp at point and replace it with its value"
   (interactive (list (eval-last-sexp nil)))
@@ -503,14 +503,14 @@ The function assumes that the user set the variables `user-full-name' and
   (require 'ess-eldoc)
   (add-hook 'inferior-ess-mode-hook 'ess-use-eldoc))
 
-; compilation
+;; compilation
 (setq compilation-auto-jump-to-first-error t)
 (setq compilation-scroll-output 'first-error)
 
-; shows the function name we are in most programming modes
+;; shows the function name we are in most programming modes
 (which-func-mode 1)
 
-; don't place customizations directly into init.el
+;; don't place customizations directly into init.el
 (setq custom-file (concat user-emacs-directory "custom.el"))
 
 ;; newline and indent for some programming modes
