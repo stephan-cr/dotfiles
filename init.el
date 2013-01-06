@@ -527,3 +527,8 @@ The function assumes that the user set the variables `user-full-name' and
 (require 'saveplace)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name "places" user-emacs-directory))
+
+;; http://sachachua.com/blog/2012/12/emacs-strike-through-headlines-for-done-tasks-in-org/
+(setq org-fontify-done-headline t)
+(set-face-attribute 'org-done nil :strike-through t)
+(set-face-attribute 'org-headline-done nil :strike-through t)
