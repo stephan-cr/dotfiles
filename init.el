@@ -84,9 +84,10 @@
       browse-url-generic-program "chromium-browser")
 
 ; enable flyspell minor mode automatically for Latex (AuCTeX)
-(require 'flyspell)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(setq flyspell-use-meta-tab nil)
+(eval-after-load 'flyspell
+  '(progn
+     (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+     (setq flyspell-use-meta-tab nil)))
 
 ; bibtex mode settings
 (eval-when-compile (require 'bibtex))
