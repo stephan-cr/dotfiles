@@ -320,9 +320,9 @@ non-whitespace character"
      '(:array :signature "{sv}")
      ':int32 timeout-ms))
 
-  (when (and (featurep 'dbus) (not (eq system-type 'darwin))
-             (not (null (dbus-list-names :session))))
-    (send-desktop-notification "terminal type" (terminal-type) 3000))
+  ;; (when (and (featurep 'dbus) (not (eq system-type 'darwin))
+  ;;            (not (null (dbus-list-names :session))))
+  ;;   (send-desktop-notification "terminal type" (terminal-type) 3000))
 
   ;; notification when title changed
   (add-hook 'emms-player-started-hook
