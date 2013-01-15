@@ -534,6 +534,12 @@ The function assumes that the user set the variables `user-full-name' and
 (set-face-attribute 'org-done nil :strike-through t)
 (set-face-attribute 'org-headline-done nil :strike-through t)
 
+;; encryption and decryption of org entries with the tag :encrypt:
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance (quote ("encrypt")))
+(setq org-crypt-key nil)
+
 ;; transparent encryption and decryption
 ;; the default file extension is *.gpg
 (require 'epa-file)
