@@ -533,3 +533,9 @@ The function assumes that the user set the variables `user-full-name' and
 (setq org-fontify-done-headline t)
 (set-face-attribute 'org-done nil :strike-through t)
 (set-face-attribute 'org-headline-done nil :strike-through t)
+
+;; transparent encryption and decryption
+;; the default file extension is *.gpg
+(require 'epa-file)
+(epa-file-enable)
+(setq epa-file-select-keys nil)
