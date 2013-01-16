@@ -457,20 +457,21 @@ The function assumes that the user set the variables `user-full-name' and
 (global-set-key [f11] 'insert-code-author)
 
 ;;; auto completion
-;; (when (on-host "xyz")
-;;   (require 'auto-complete)
-;;   (require 'auto-complete-clang)
-;;   (setq clang-completion-suppress-error t)
+;; auto completion mode is not enabled by default
+;; it can be enable with `auto-complete-mode`
+(when (and (on-host "earth4")
+           (require 'auto-complete nil 'noerror)
+           (require 'auto-complete-clang nil 'noerror))
+  (setq clang-completion-suppress-error t)
 
-;;   (defun my-c-mode-common-hook ()
-;;     (eval-when-compile (require 'auto-complete))
-;;     (setq ac-auto-start nil)
-;;     (setq ac-expand-on-auto-complete nil)
-;;     (setq ac-quick-help-delay 0.3)
-;;     (eval-when-compile (require 'cc-mode))
-;;     (define-key c-mode-base-map (kbd "M-/") 'ac-complete-clang))
+  (defun auto-complete-c-mode-common-hook ()
+    (setq ac-auto-start nil)
+    (setq ac-expand-on-auto-complete nil)
+    (setq ac-quick-help-delay 0.3)
+    (eval-when-compile (require 'cc-mode))
+    (define-key c-mode-base-map (kbd "M-/") 'ac-complete-clang))
 
-;;   (add-hook 'c-mode-common-hook 'my-c-mode-common-hook))
+  (add-hook 'c-mode-common-hook 'auto-comple-c-mode-common-hook))
 
 ;; start emacs server
 (require 'server)
