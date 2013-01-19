@@ -520,9 +520,11 @@ The function assumes that the user set the variables `user-full-name' and
   (define-key x (kbd "RET") 'newline-and-indent))
 
 ;; sql-mode settings
-(eval-after-load 'sql-mode
+(eval-after-load 'sql
   '(progn (message "Setting sql-product to postgres")
-          (setq sql-product 'postgres)))
+          (setq sql-product 'postgres)
+          (message "Setting sqlite program to \"sqlite3\"")
+          (setq sql-sqlite-program "sqlite3")))
 
 ;; Save point position between sessions
 ;; http://whattheemacsd.com/init.el-03.html
