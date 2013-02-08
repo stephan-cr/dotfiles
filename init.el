@@ -508,6 +508,20 @@ The function assumes that the user set the variables `user-full-name' and
 (setq compilation-auto-jump-to-first-error t)
 (setq compilation-scroll-output 'first-error)
 
+;; flymake for python with pylint
+;; http://www.emacswiki.org/emacs/?action=browse;id=PythonProgrammingInEmacs
+(when (load "flymake" t)
+  (defun flymake-pylint-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "epylint" (list local-file))))
+
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pylint-init)))
+
 ;; shows the function name we are in most programming modes
 (which-func-mode 1)
 
