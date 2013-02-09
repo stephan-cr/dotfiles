@@ -520,7 +520,8 @@ The function assumes that the user set the variables `user-full-name' and
       (list "epylint" (list local-file))))
 
   (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pylint-init)))
+               '("\\.py\\'" flymake-pylint-init))
+  (add-hook 'python-mode-hook 'flymake-mode))
 
 ;; shows the function name we are in most programming modes
 (which-func-mode 1)
