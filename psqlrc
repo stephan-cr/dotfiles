@@ -1,0 +1,6 @@
+-- http://www.craigkerstiens.com/2013/02/21/more-out-of-psql/
+\pset border 2
+\pset format wrapped
+\timing on
+-- the following commands may correctly work in PostgreSQL 9.x
+-- \pset linestyle unicode

@@ -2,6 +2,7 @@
     "hgrc": ".hgrc",
     "irbrc": ".irbrc",
     "multitailrc": ".multitailrc",
+    "psqlrc": ".psqlrc",
     "pylintrc": ".pylintrc",
     "Renviron": ".Renviron",
     "tmux.conf": ".tmux.conf",
