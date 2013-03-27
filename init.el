@@ -518,10 +518,14 @@ The function assumes that the user set the variables `user-full-name' and
                         temp-file
                         (file-name-directory buffer-file-name))))
       (list "epylint" (list local-file))))
+  (defun flymake-mode-wrapper ()
+    ;; check if buffer-file-name is nil, such we can use flymake in combination
+    ;; with org-babel
+    (when buffer-file-name (flymake-mode)))
 
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pylint-init))
-  (add-hook 'python-mode-hook 'flymake-mode))
+  (add-hook 'python-mode-hook 'flymake-mode-wrapper))
 
 ;; shows the function name we are in most programming modes
 (which-func-mode 1)
