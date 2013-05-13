@@ -493,7 +493,7 @@ The function assumes that the user set the variables `user-full-name' and
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
 (require 'python)
-(add-hook 'python-mode-hook 'turn-on-eldoc-mode) ; check if that really works
+(add-hook 'python-mode-hook 'subword-mode 'turn-on-eldoc-mode)
 
 (when (require 'ess nil 'noerror)
   (setq ess-ask-for-ess-directory nil)
