@@ -7,10 +7,6 @@
   "get the current hostname on which this instance is running"
   (string-equal (car (split-string system-name "\\.")) hostname))
 
-(defun terminal-type ()
-  "get the current terminal name"
-  (getenv "TERM"))
-
 ;; no menu bar
 (menu-bar-mode -1)
 
@@ -155,11 +151,7 @@ non-whitespace character"
 (defun is-suitable-color-term ()
   (let ((suitable-color-term-list '("rxvt" "xterm-256color"))
         (current-term-name (getenv "TERM")))
-    (if current-term-name
-        (reduce
-         #'(lambda (a b) (or a (not (null (string-match b current-term-name)))))
-         suitable-color-term-list
-         :initial-value nil))) nil)
+    (consp (member current-term-name suitable-color-term-list))))
 
 (when (is-suitable-color-term)
   (global-hl-line-mode t)
@@ -319,10 +311,6 @@ non-whitespace character"
      '(:array)
      '(:array :signature "{sv}")
      ':int32 timeout-ms))
-
-  ;; (when (and (featurep 'dbus) (not (eq system-type 'darwin))
-  ;;            (not (null (dbus-list-names :session))))
-  ;;   (send-desktop-notification "terminal type" (terminal-type) 3000))
 
   ;; notification when title changed
   (add-hook 'emms-player-started-hook
