@@ -485,6 +485,7 @@ The function assumes that the user set the variables `user-full-name' and
 
 (when (require 'ess nil 'noerror)
   (setq ess-ask-for-ess-directory nil)
+  (setq inferior-R-args "--no-save --quiet")
   ;; disable ess-smart-underscore
   (substitute-key-definition 'ess-smart-underscore 'self-insert-command
                              ess-mode-map)
