@@ -480,6 +480,8 @@ The function assumes that the user set the variables `user-full-name' and
 (require 'ielm)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+
 (require 'python)
 (add-hook 'python-mode-hook 'subword-mode 'turn-on-eldoc-mode)
 
@@ -557,17 +559,6 @@ The function assumes that the user set the variables `user-full-name' and
 (epa-file-enable)
 (setq epa-file-select-keys nil)
 
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
-
-(el-get 'sync)
-
 ;; http://emacsredux.com/blog/2013/05/04/rename-file-and-buffer/
 (defun rename-file-and-buffer ()
   "Rename the current buffer and file it is visiting."
@@ -581,3 +572,35 @@ The function assumes that the user set the variables `user-full-name' and
          (t
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
+
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(defun stc:el-get-cleanup (packages)
+  "Removes packages absent from the argument list
+'packages. Useful, for example, when we
+want to remove all packages not explicitly declared
+in the user-init-file (.emacs)."
+  (let* ((packages-to-keep (el-get-dependencies
+                            (mapcar 'el-get-as-symbol packages)))
+         (packages-to-remove (set-difference
+                              (mapcar 'el-get-as-symbol
+                                      (el-get-list-package-names-with-status
+                                       "installed")) packages-to-keep)))
+    (mapc 'el-get-remove packages-to-remove)))
+
+(add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
+(defvar el-get-packages (append
+                         '(el-get
+                           flymake-fringe-icons
+                           go-mode
+                           rainbow-delimiters)
+                         (mapcar 'el-get-source-name el-get-sources)))
+(stc:el-get-cleanup el-get-packages) ; local copy from master branch
+(el-get 'sync el-get-packages)
