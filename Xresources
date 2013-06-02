@@ -1,16 +1,3 @@
-! settings for aterm for historic reasons ;-)
-Aterm*transparent: true
-Aterm*transpscrollbar: true
-!Aterm*tinting: red
-!Aterm*foreground: black
-!Aterm*background: white
-Aterm*foreground: white
-Aterm*background: black
-Aterm*font: 6x13
-Aterm*utmpInhibit: true
-Aterm*borderWidth: 0
-Aterm*menu: aterm_menu
-
 URxvt*background: black
 !URxvt*borderLess: true <- dont enable this, it remains here as a warning
 URxvt*font: 6x13
