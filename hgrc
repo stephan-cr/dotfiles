@@ -1,6 +1,7 @@
 [extensions]
 hgext.color =
 hgext.hgk =
+hgext.mq =
 hgext.pager =
 hgext.purge =
 hgext.rebase =
