@@ -600,7 +600,8 @@ in the user-init-file (.emacs)."
                          '(el-get
                            flymake-fringe-icons
                            go-mode
-                           rainbow-delimiters)
+                           rainbow-delimiters
+                           rfringe)
                          (mapcar 'el-get-source-name el-get-sources)))
 (stc:el-get-cleanup el-get-packages) ; local copy from master branch
 (el-get 'sync el-get-packages)
