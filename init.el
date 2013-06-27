@@ -600,6 +600,7 @@ in the user-init-file (.emacs)."
                          '(el-get
                            flymake-fringe-icons
                            go-mode
+                           qmake-mode
                            rainbow-delimiters
                            rfringe)
                          (mapcar 'el-get-source-name el-get-sources)))
