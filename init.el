@@ -600,9 +600,17 @@ in the user-init-file (.emacs)."
                          '(el-get
                            flymake-fringe-icons
                            go-mode
+                           powerline
                            qmake-mode
                            rainbow-delimiters
                            rfringe)
                          (mapcar 'el-get-source-name el-get-sources)))
 (stc:el-get-cleanup el-get-packages) ; local copy from master branch
 (el-get 'sync el-get-packages)
+
+(when (featurep 'powerline)
+  (custom-set-faces
+   '(mode-line
+     ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
+   '(mode-line-inactive
+     ((t (:foreground "#f9f9f9" :background "#666666" :box nil))))))
