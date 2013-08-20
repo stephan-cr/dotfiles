@@ -428,23 +428,6 @@ The function assumes that the user set the variables `user-full-name' and
 
 (global-set-key [f11] 'insert-code-author)
 
-;;; auto completion
-;; auto completion mode is not enabled by default
-;; it can be enable with `auto-complete-mode`
-(when (and (on-host "earth4")
-           (require 'auto-complete nil 'noerror)
-           (require 'auto-complete-clang nil 'noerror))
-  (setq clang-completion-suppress-error t)
-
-  (defun auto-complete-c-mode-common-hook ()
-    (setq ac-auto-start nil)
-    (setq ac-expand-on-auto-complete nil)
-    (setq ac-quick-help-delay 0.3)
-    (eval-when-compile (require 'cc-mode))
-    (define-key c-mode-base-map (kbd "M-/") 'ac-complete-clang))
-
-  (add-hook 'c-mode-common-hook 'auto-comple-c-mode-common-hook))
-
 ;; start emacs server
 (require 'server)
 (unless (server-running-p server-name)
@@ -585,7 +568,8 @@ in the user-init-file (.emacs)."
 
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
-                         '(el-get
+                         '(auto-complete-clang
+                           el-get
                            flymake-fringe-icons
                            go-mode
                            naquadah-theme
@@ -618,3 +602,19 @@ in the user-init-file (.emacs)."
   ('naquadah-theme
    ;; naquadah theme
    (load-theme 'naquadah)))
+
+;;; auto completion
+;; auto completion mode is not enabled by default
+;; it can be enable with `auto-complete-mode`
+(when (and (require 'auto-complete nil 'noerror)
+           (require 'auto-complete-clang nil 'noerror))
+  (setq clang-completion-suppress-error t)
+
+  (defun auto-complete-c-mode-common-hook ()
+    (setq ac-auto-start nil)
+    (setq ac-expand-on-auto-complete nil)
+    (setq ac-quick-help-delay 0.3)
+    (eval-when-compile (require 'cc-mode))
+    (define-key c-mode-base-map (kbd "M-/") 'ac-complete-clang))
+
+  (add-hook 'c-mode-common-hook 'auto-comple-c-mode-common-hook))
