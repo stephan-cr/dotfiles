@@ -592,7 +592,8 @@ in the user-init-file (.emacs)."
                            powerline
                            qmake-mode
                            rainbow-delimiters
-                           rfringe)
+                           rfringe
+                           solarized-bbatsov-theme)
                          (mapcar 'el-get-source-name el-get-sources)))
 (stc:el-get-cleanup el-get-packages) ; local copy from master branch
 (el-get 'sync el-get-packages)
@@ -612,7 +613,6 @@ in the user-init-file (.emacs)."
     (set-face-background 'hl-line "gray95"))
   ('solarized-theme
    ;; (setq solarized-termcolors 256)
-   (setq custom-theme-directory (concat user-emacs-directory "themes"))
    (load-theme 'solarized-dark)
    (set-face-background 'hl-line "gray15"))
   ('naquadah-theme
