@@ -364,22 +364,6 @@ non-whitespace character"
 ;; tramp setup
 (require 'tramp)
 
-;; themes
-(defvar theme-tag 'solarized-theme)
-
-(case theme-tag
-  ('default-theme
-    (set-face-background 'hl-line "gray95"))
-  ('solarized-theme
-   ;; (setq solarized-termcolors 256)
-   (setq custom-theme-directory (concat user-emacs-directory "themes"))
-   (load-theme 'solarized-dark)
-   (set-face-background 'hl-line "gray15"))
-  ('naquadah-theme
-   ;; naquadah theme
-   (defvar naquadah-path "~/naquadah-theme")
-   (load-file (concat naquadah-path "/naquadah-theme.el"))))
-
 ;; override `message-expand-name' from message.el to lookup aliases from mutt
 ;; when composing messages
 (when (or (on-host "earth3") (on-host "earth7"))
@@ -575,6 +559,10 @@ The function assumes that the user set the variables `user-full-name' and
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
+(when (< emacs-major-version 24)
+  ;; fake variable which is introduced in Emacs 24
+  (defvar custom-theme-load-path nil))
+
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
@@ -600,6 +588,7 @@ in the user-init-file (.emacs)."
                          '(el-get
                            flymake-fringe-icons
                            go-mode
+                           naquadah-theme
                            powerline
                            qmake-mode
                            rainbow-delimiters
@@ -614,3 +603,18 @@ in the user-init-file (.emacs)."
      ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
    '(mode-line-inactive
      ((t (:foreground "#f9f9f9" :background "#666666" :box nil))))))
+
+;; themes
+(defvar theme-tag 'naquadah-theme)
+
+(case theme-tag
+  ('default-theme
+    (set-face-background 'hl-line "gray95"))
+  ('solarized-theme
+   ;; (setq solarized-termcolors 256)
+   (setq custom-theme-directory (concat user-emacs-directory "themes"))
+   (load-theme 'solarized-dark)
+   (set-face-background 'hl-line "gray15"))
+  ('naquadah-theme
+   ;; naquadah theme
+   (load-theme 'naquadah)))
