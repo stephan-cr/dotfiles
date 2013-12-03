@@ -500,6 +500,7 @@ The function assumes that the user set the variables `user-full-name' and
 (eval-after-load 'sql
   '(progn (message "Setting sql-product to postgres")
           (setq sql-product 'postgres)
+          (add-to-list 'sql-postgres-options "--no-psqlrc")
           (message "Setting sqlite program to \"sqlite3\"")
           (setq sql-sqlite-program "sqlite3")))
 
