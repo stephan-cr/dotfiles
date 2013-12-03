@@ -1,6 +1,14 @@
+\set QUIET 1
 -- http://www.craigkerstiens.com/2013/02/21/more-out-of-psql/
 \pset border 2
 \pset format wrapped
 \timing on
 -- the following commands may correctly work in PostgreSQL 9.x
 -- \pset linestyle unicode
+-- http://robots.thoughtbot.com/improving-the-command-line-postgres-experience/
+\set PROMPT1 '%[%033[32m%]%M %n@%/%R%[%033[0m%]%# '
+-- does the following line really works
+\set COMP_KEYWORD_CASE lower
+\set HISTCONTROL ignoredups
+\pset null '[NULL]'
+\unset QUIET
