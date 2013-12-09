@@ -46,6 +46,10 @@
 ;; case sensitiv search
 (setq-default case-fold-search nil)
 
+;; show matching parenthesis
+(show-paren-mode 1)
+(setq show-paren-delay 0.8)
+
 ;; http://www.thekidder.com/2008/10/21/emacs-reload-file/
 (defun reload-file ()
   (interactive)
