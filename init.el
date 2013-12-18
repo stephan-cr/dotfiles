@@ -323,29 +323,32 @@ non-whitespace character"
 ;; gnus
 ;; http://mah.everybody.org/docs/mail/
 ;; set default backend
-(eval-when-compile (require 'gnus))
-(when user-config
-  (setq gnus-select-method '(nnimap
-                             "SE"
-                             (nnimap-address
-                              (gethash "mail-host-address" user-config))
-                             (nnimap-stream tls))))
-(eval-when-compile (require 'gnus-sum))
-(setq gnus-summary-thread-gathering-function
-      'gnus-gather-threads-by-subject)
-;; http://www.emacswiki.org/emacs/GnusFormatting
-(setq-default
- gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f %* %B%s%)\n"
- gnus-user-date-format-alist '((t . "%d.%m.%Y %H:%M"))
- gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
- gnus-thread-sort-functions '(gnus-thread-sort-by-date)
- gnus-sum-thread-tree-false-root ""
- gnus-sum-thread-tree-indent " "
- gnus-sum-thread-tree-leaf-with-other "├► "
- gnus-sum-thread-tree-root ""
- gnus-sum-thread-tree-single-leaf "╰► "
- gnus-sum-thread-tree-vertical "│"
- )
+(eval-after-load 'gnus
+  '(progn
+     (when user-config
+       (setq gnus-select-method '(nnimap
+                                  "SE"
+                                  (nnimap-address
+                                   (gethash "mail-host-address" user-config))
+                                  (nnimap-stream tls))))
+     (eval-when-compile (require 'gnus-sum))
+     (setq gnus-summary-thread-gathering-function
+           'gnus-gather-threads-by-subject)
+     ;; http://www.emacswiki.org/emacs/GnusFormatting
+     (setq-default
+      gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f %* %B%s%)\n"
+      gnus-user-date-format-alist '((t . "%d.%m.%Y %H:%M"))
+      gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
+      gnus-thread-sort-functions '(gnus-thread-sort-by-date)
+      gnus-sum-thread-tree-false-root ""
+      gnus-sum-thread-tree-indent " "
+      gnus-sum-thread-tree-leaf-with-other "├► "
+      gnus-sum-thread-tree-root ""
+      gnus-sum-thread-tree-single-leaf "╰► "
+      gnus-sum-thread-tree-vertical "│")
+     ;; gnus window setup
+     (eval-when-compile (require 'gnus-win))
+     (setq gnus-use-full-window nil)))
 
 ;; send mail via msmtp
 (eval-when-compile (require 'sendmail))
@@ -357,10 +360,6 @@ non-whitespace character"
   (setq mail-host-address (gethash "mail-host-address" user-config))
   (setq user-full-name (gethash "user-full-name" user-config))
   (setq user-mail-address (gethash "user-mail-address" user-config)))
-
-;; gnus window setup
-(eval-when-compile (require 'gnus-win))
-(setq gnus-use-full-window nil)
 
 ;; kill message buffer after it was successfully send
 (setq message-kill-buffer-on-exit t)
