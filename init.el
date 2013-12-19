@@ -170,50 +170,62 @@ non-whitespace character"
 (setq org-enforce-todo-checkbox-dependencies t)
 (setq org-enforce-todo-dependencies t)
 
-(require 'org)
-(defvar agenda-files (list "~/orgs/todo.org"))
-(when (and (featurep 'org) (or (on-host "earth3") (on-host "earth7")))
-  (when agenda-files
-    (setq org-agenda-files agenda-files))
-  (global-set-key "\C-ca" 'org-agenda)
-  (global-set-key "\C-cb" 'org-iswitchb)
-  (global-set-key "\C-cl" 'org-store-link)
-  (setq org-directory "~/orgs/")
-  (setq org-default-notes-file (concat org-directory "notes.org"))
-  (setq org-capture-templates
-        '(("t" "Note" entry (file+headline org-default-notes-file "Notes")
-           "* TODO %?\n  %i\n  %a")))
-  (define-key global-map "\C-cc" 'org-capture)
-  (global-set-key [f5] 'org-display-inline-images)
-  (setq org-mobile-directory "~/mobileorg")
-  (setq org-mobile-inbox-for-pull (concat org-directory "from-mobile.org"))
-  (setq org-mobile-files '("todo.org")))
+(eval-after-load 'org
+  '(progn
+     (defvar agenda-files (list "~/orgs/todo.org"))
+     (when (and (featurep 'org) (or (on-host "earth3") (on-host "earth7")))
+       (when agenda-files
+         (setq org-agenda-files agenda-files))
+       (global-set-key "\C-ca" 'org-agenda)
+       (global-set-key "\C-cb" 'org-iswitchb)
+       (global-set-key "\C-cl" 'org-store-link)
+       (setq org-directory "~/orgs/")
+       (setq org-default-notes-file (concat org-directory "notes.org"))
+       (setq org-capture-templates
+             '(("t" "Note" entry (file+headline org-default-notes-file "Notes")
+                "* TODO %?\n  %i\n  %a")))
+       (define-key global-map "\C-cc" 'org-capture)
+       (global-set-key [f5] 'org-display-inline-images)
+       (setq org-mobile-directory "~/mobileorg")
+       (setq org-mobile-inbox-for-pull (concat org-directory "from-mobile.org"))
+       (setq org-mobile-files '("todo.org")))
 
-;; define "scrartcl" KOMA document class for org mode latex export
-;; we know that the initial first element of `org-export-latex-classes' is
-;; "article", we use it to define "scrartcl" in a convenient way
-(when (require 'org-latex nil 'noerror)
-  (add-to-list 'org-export-latex-classes
-               (concatenate 'list
-                            '("scrartcl" "\\documentclass[11pt]{scrartcl}")
-                            (cddr (car org-export-latex-classes)))))
+     ;; define "scrartcl" KOMA document class for org mode latex export
+     ;; we know that the initial first element of `org-export-latex-classes' is
+     ;; "article", we use it to define "scrartcl" in a convenient way
+     (when (require 'org-latex nil 'noerror)
+       (add-to-list 'org-export-latex-classes
+                    (concatenate 'list
+                                 '("scrartcl" "\\documentclass[11pt]{scrartcl}")
+                                 (cddr (car org-export-latex-classes)))))
 
-;; org babel mode
-(when (and (featurep 'org) (featurep 'ob))
-  (mapc 'require '(ob-C
-                   ob-R
-                   ob-dot
-                   ob-emacs-lisp
-                   ob-gnuplot
-                   ob-perl
-                   ob-python
-                   ob-ruby
-                   ob-sh))
-  ;; set python coding to utf-8
-  (setq org-babel-python-wrapper-method
-        (concat "# -*- coding: utf-8 -*-\n"
-                org-babel-python-wrapper-method))
-  (when (>= emacs-major-version 24) (setq org-src-fontify-natively t)))
+     ;; org babel mode
+     (when (and (featurep 'org) (featurep 'ob))
+       (mapc 'require '(ob-C
+                        ob-R
+                        ob-dot
+                        ob-emacs-lisp
+                        ob-gnuplot
+                        ob-perl
+                        ob-python
+                        ob-ruby
+                        ob-sh))
+       ;; set python coding to utf-8
+       (setq org-babel-python-wrapper-method
+             (concat "# -*- coding: utf-8 -*-\n"
+                     org-babel-python-wrapper-method))
+       (when (>= emacs-major-version 24) (setq org-src-fontify-natively t)))
+
+     ;; http://sachachua.com/blog/2012/12/emacs-strike-through-headlines-for-done-tasks-in-org/
+     (setq org-fontify-done-headline t)
+     (set-face-attribute 'org-done nil :strike-through t)
+     (set-face-attribute 'org-headline-done nil :strike-through t)
+
+     ;; encryption and decryption of org entries with the tag :encrypt:
+     (require 'org-crypt)
+     (org-crypt-use-before-save-magic)
+     (setq org-tags-exclude-from-inheritance (quote ("encrypt")))
+     (setq org-crypt-key nil)))
 
 ;; erc
 (when (require 'erc nil 'noerror)
@@ -512,17 +524,6 @@ The function assumes that the user set the variables `user-full-name' and
 (require 'saveplace)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name "places" user-emacs-directory))
-
-;; http://sachachua.com/blog/2012/12/emacs-strike-through-headlines-for-done-tasks-in-org/
-(setq org-fontify-done-headline t)
-(set-face-attribute 'org-done nil :strike-through t)
-(set-face-attribute 'org-headline-done nil :strike-through t)
-
-;; encryption and decryption of org entries with the tag :encrypt:
-(require 'org-crypt)
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance (quote ("encrypt")))
-(setq org-crypt-key nil)
 
 ;; transparent encryption and decryption
 ;; the default file extension is *.gpg
