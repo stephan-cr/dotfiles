@@ -176,7 +176,7 @@ non-whitespace character"
 (eval-after-load 'org
   '(progn
      (defvar agenda-files (list "~/orgs/todo.org"))
-     (when (and (featurep 'org) (or (on-host "earth3") (on-host "earth7")))
+     (when (or (on-host "earth3") (on-host "earth7"))
        (when agenda-files
          (setq org-agenda-files agenda-files))
        (global-set-key "\C-ca" 'org-agenda)
@@ -202,7 +202,7 @@ non-whitespace character"
                             (cddr (car org-export-latex-classes)))))
 
      ;; org babel mode
-     (when (and (featurep 'org) (featurep 'ob))
+     (when (featurep 'ob)
        (mapc 'require '(ob-C
                         ob-R
                         ob-dot
