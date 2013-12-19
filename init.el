@@ -198,9 +198,8 @@ non-whitespace character"
      ;; "article", we use it to define "scrartcl" in a convenient way
      (when (require 'org-latex nil 'noerror)
        (add-to-list 'org-export-latex-classes
-                    (concatenate 'list
-                                 '("scrartcl" "\\documentclass[11pt]{scrartcl}")
-                                 (cddr (car org-export-latex-classes)))))
+                    (append '("scrartcl" "\\documentclass[11pt]{scrartcl}")
+                            (cddr (car org-export-latex-classes)))))
 
      ;; org babel mode
      (when (and (featurep 'org) (featurep 'ob))
