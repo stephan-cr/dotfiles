@@ -50,6 +50,9 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0.8)
 
+;; don't blink
+(blink-cursor-mode -1)
+
 ;; http://www.thekidder.com/2008/10/21/emacs-reload-file/
 (defun reload-file ()
   (interactive)
