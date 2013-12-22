@@ -383,9 +383,6 @@ non-whitespace character"
   (setq user-full-name (gethash "user-full-name" user-config))
   (setq user-mail-address (gethash "user-mail-address" user-config)))
 
-;; tramp setup
-(require 'tramp)
-
 ;; override `message-expand-name' from message.el to lookup aliases from mutt
 ;; when composing messages
 (when (or (on-host "earth3") (on-host "earth7"))
