@@ -239,48 +239,50 @@ non-whitespace character"
 (defvar jabber-resource-name
   (when user-config (gethash "jabber-resource-name" user-config)))
 
-(when jabber-resource-name
-  (require 'jabber)
-  (setq jabber-account-list
-        (add-to-list 'jabber-account-list jabber-resource-name))
-  (eval-when-compile (require 'jabber-roster))
-  (setq jabber-roster-show-title nil)
-  (setq jabber-roster-show-bindings nil)
-  (setq jabber-show-offline-contacts nil)
-  ;; turn off fsm debug buffer used by jabber mode
-  (eval-when-compile (require 'fsm))
-  (setq fsm-debug nil))
+(eval-after-load 'jabber
+  '(progn
+     (when jabber-resource-name
+       (setq jabber-account-list
+             (add-to-list 'jabber-account-list jabber-resource-name)))
+     (eval-when-compile (require 'jabber-roster))
+     (setq jabber-roster-show-title nil)
+     (setq jabber-roster-show-bindings nil)
+     (setq jabber-show-offline-contacts nil)
+     ;; turn off fsm debug buffer used by jabber mode
+     (eval-when-compile (require 'fsm))
+     (setq fsm-debug nil)))
 
 ;; emms
-(when (require 'emms nil 'noerror)
-  (require 'emms-setup)
-  (require 'emms-player-mpd)
-  (eval-when-compile (require 'emms-player-simple))
-  (require 'emms-streams)
-  (setq emms-player-mpg321-parameters '("-o" "alsa"))
-  (emms-standard)
-  (emms-default-players)
+(eval-after-load 'emms
+  '(progn
+     (require 'emms-setup)
+     (require 'emms-player-mpd)
+     (eval-when-compile (require 'emms-player-simple))
+     (require 'emms-streams)
+     (setq emms-player-mpg321-parameters '("-o" "alsa"))
+     (emms-standard)
+     (emms-default-players)
 
-  ;; for debugging
-  ;; (emms-player-for
-  ;;  '(*track*
-  ;;    (type . url)
-  ;;    (name . "http://streamer-dtc-aa04.somafm.com:80/stream/1073")))
+     ;; for debugging
+     ;; (emms-player-for
+     ;;  '(*track*
+     ;;    (type . url)
+     ;;    (name . "http://streamer-dtc-aa04.somafm.com:80/stream/1073")))
 
-  ;; for help to configure emms see
-  ;; http://www.mail-archive.com/emms-help@gnu.org/msg00482.html
+     ;; for help to configure emms see
+     ;; http://www.mail-archive.com/emms-help@gnu.org/msg00482.html
 
-  ;; emms player to play urls
-  (define-emms-simple-player mpg321-list '(file url)
-    (regexp-opt '(".m3u" ".pls")) "mpg321" "-o" "alsa" "--list")
-  (define-emms-simple-player mpg321-url '(url)
-    "http://" "mpg321" "-o" "alsa")
-  (define-emms-simple-player mpg321-file '(file)
-    (regexp-opt '(".mp3")) "mpg321" "-o" "alsa")
-  (setq emms-player-list '(emms-player-mpg321-file
-                           emms-player-mpg321-url
-                           emms-player-mpg321-list
-                           emms-player-mpd)))
+     ;; emms player to play urls
+     (define-emms-simple-player mpg321-list '(file url)
+       (regexp-opt '(".m3u" ".pls")) "mpg321" "-o" "alsa" "--list")
+     (define-emms-simple-player mpg321-url '(url)
+       "http://" "mpg321" "-o" "alsa")
+     (define-emms-simple-player mpg321-file '(file)
+       (regexp-opt '(".mp3")) "mpg321" "-o" "alsa")
+     (setq emms-player-list '(emms-player-mpg321-file
+                              emms-player-mpg321-url
+                              emms-player-mpg321-list
+                              emms-player-mpd))))
 
 ;; use multimedia keys
 (when (eq window-system 'x)
@@ -367,16 +369,19 @@ non-whitespace character"
 ;; send mail via msmtp
 (eval-when-compile (require 'sendmail))
 (setq sendmail-program "/usr/bin/msmtp")
-(eval-when-compile (require 'message))
-(setq message-send-mail-function 'message-send-mail-with-sendmail)
-(setq message-sendmail-extra-arguments '("-a" "se"))
+
+(eval-after-load 'message
+  '(progn
+     (setq message-send-mail-function 'message-send-mail-with-sendmail)
+     (setq message-sendmail-extra-arguments '("-a" "se"))
+
+     ;; kill message buffer after it was successfully send
+     (setq message-kill-buffer-on-exit t)))
+
 (when user-config
   (setq mail-host-address (gethash "mail-host-address" user-config))
   (setq user-full-name (gethash "user-full-name" user-config))
   (setq user-mail-address (gethash "user-mail-address" user-config)))
-
-;; kill message buffer after it was successfully send
-(setq message-kill-buffer-on-exit t)
 
 ;; tramp setup
 (require 'tramp)
