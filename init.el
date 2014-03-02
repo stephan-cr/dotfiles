@@ -626,4 +626,4 @@ in the user-init-file (.emacs)."
     (eval-when-compile (require 'cc-mode))
     (define-key c-mode-base-map (kbd "M-/") 'ac-complete-clang))
 
-  (add-hook 'c-mode-common-hook 'auto-comple-c-mode-common-hook))
+  (add-hook 'c-mode-common-hook 'auto-complete-c-mode-common-hook))
