@@ -63,6 +63,7 @@
 
 (global-set-key (kbd "<XF86Reload>") 'reload-file)
 
+(global-set-key [f8] 'find-file-at-point)
 (global-set-key [f12] 'comment-region)
 (global-set-key [shift-f12] 'uncomment-region)
 
