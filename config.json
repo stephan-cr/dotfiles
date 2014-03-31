@@ -1,4 +1,5 @@
 {
+    "gdbinit": ".gdbinit",
     "hgrc": ".hgrc",
     "irbrc": ".irbrc",
     "multitailrc": ".multitailrc",
