@@ -556,6 +556,7 @@ The function assumes that the user set the variables `user-full-name' and
   ;; fake variable which is introduced in Emacs 24
   (defvar custom-theme-load-path nil))
 
+(setq el-get-github-default-url-type 'https) ; for some reason http does not work anymore (as of 07-01-2014)
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
