@@ -85,7 +85,7 @@
 ;; set browser to Chromium instead of Iceweasel which is the default
 (require 'browse-url)
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "chromium-browser")
+      browse-url-generic-program "iceweasel")
 
 ;; enable flyspell minor mode automatically for Latex (AuCTeX)
 (eval-after-load 'flyspell
