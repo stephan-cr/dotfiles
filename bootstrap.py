@@ -5,8 +5,9 @@ import sys
 CWD = os.getcwd()
 HOME = os.getenv('HOME')
 
+config_dir = os.path.dirname(sys.argv[0])
 links = {}
-with open('config.json', 'r') as f:
+with open(os.path.join(config_dir, 'config.json'), 'r') as f:
     try:
         links = json.load(f)
     except ValueError as json_exception:
