@@ -77,6 +77,9 @@
 ;; show column numbers
 (column-number-mode)
 
+;; paste at point, instead of mouse position
+(setq mouse-yank-at-point t)
+
 ;; distinguish buffers of the same filename
 ;; http://tsengf.blogspot.com/2011/06/distinguish-buffers-of-same-filename-in.html
 (require 'uniquify)
