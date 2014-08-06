@@ -53,6 +53,9 @@
 ;; don't blink
 (blink-cursor-mode -1)
 
+;; set initial major mode for *scratch* buffer
+(setq initial-major-mode 'python-mode)
+
 ;; http://www.thekidder.com/2008/10/21/emacs-reload-file/
 (defun reload-file ()
   (interactive)
