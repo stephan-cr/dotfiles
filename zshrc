@@ -29,7 +29,9 @@ source $ZSH/oh-my-zsh.sh
 
 zstyle ':vcs_info:*' enable git hg svn
 
-export PATH=$PATH:$HOME/bin
+export GOPATH=$HOME/gocode
+export GOROOT=$HOME/external_projects/go
+export PATH=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin
 export PYTHONPATH=$HOME/lib/python
 
 alias R='R --no-save --quiet'
