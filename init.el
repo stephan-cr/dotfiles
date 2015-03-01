@@ -636,3 +636,7 @@ in the user-init-file (.emacs)."
     (define-key c-mode-base-map (kbd "M-/") 'ac-complete-clang))
 
   (add-hook 'c-mode-common-hook 'auto-complete-c-mode-common-hook))
+
+;; go path, such that go-mode finds godef
+(add-to-list 'exec-path (concat (getenv "HOME") "/gocode/bin"))
+(add-to-list 'exec-path (concat (getenv "HOME") "/external_projects/go/bin"))
