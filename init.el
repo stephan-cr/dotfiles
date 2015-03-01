@@ -124,9 +124,6 @@
 ;; markdown-mode for "md|markdown" files
 (add-to-list 'auto-mode-alist '("\\.\\(md\\|markdown\\)\\'" . markdown-mode))
 
-;; extend load path
-(setq load-path (cons user-emacs-directory load-path))
-
 ;; duplicate current line or region in emacs
 ;; http://blog.tuxicity.se/elisp/emacs/2010/03/11/duplicate-current-line-or-region-in-emacs.html
 (defun duplicate-current-line-or-region (arg)
