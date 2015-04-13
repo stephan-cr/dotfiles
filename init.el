@@ -636,4 +636,4 @@ in the user-init-file (.emacs)."
 
 ;; go path, such that go-mode finds godef
 (add-to-list 'exec-path (concat (getenv "HOME") "/gocode/bin"))
-(add-to-list 'exec-path (concat (getenv "HOME") "/external_projects/go/bin"))
+(add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
