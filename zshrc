@@ -32,7 +32,7 @@ source $ZSH/oh-my-zsh.sh
 zstyle ':vcs_info:*' enable git hg svn
 
 export GOPATH=$HOME/gocode
-export GOROOT=$HOME/external_projects/go
+export GOROOT=$HOME/go
 export PATH=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin
 export PYTHONPATH=$HOME/lib/python
 
