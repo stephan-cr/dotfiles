@@ -37,3 +37,7 @@ export PATH=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin
 export PYTHONPATH=$HOME/lib/python
 
 alias R='R --no-save --quiet'
+
+if [[ -z "$EDITOR" && -x "$(which zile)" ]] ; then
+    export EDITOR=zile
+fi
