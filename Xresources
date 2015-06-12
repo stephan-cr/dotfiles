@@ -1,12 +1,3 @@
-URxvt*background: black
-!URxvt*borderLess: true <- dont enable this, it remains here as a warning
-URxvt*font: 6x13
-URxvt*foreground: white
-URxvt*pointerBlank: true
-URxvt*scrollBar: false
-URxvt*transparent: true
-URxvt*utmpInhibit: true
-
 *customization: -color
 XTerm*eightBitInput: false
 XTerm*metaSendsEscape: true
@@ -14,12 +5,8 @@ XTerm*sessionMgt: false
 XTerm*termName:	xterm-256color
 XTerm*toolBar: false
 XTerm*utmpInhibit: true
-
-UXTerm*eightBitInput: false
-UXTerm*metaSendsEscape: true
-UXTerm*sessionMgt: false
-UXTerm*termName: xterm-256color
-UXTerm*utmpInhibit: true
+!XTerm*faceName: Bitstream Vera Sans Mono
+!XTerm*faceSize: 8
 
 ! Solarized like colors
 ! https://gist.github.com/845878
