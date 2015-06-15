@@ -607,16 +607,19 @@ in the user-init-file (.emacs)."
 ;; themes
 (defvar theme-tag 'naquadah-theme)
 
+(defun stc:load-theme (theme)
+  (if (>= emacs-major-version 24) (load-theme theme t) (load-theme theme)))
+
 (case theme-tag
   ('default-theme
     (set-face-background 'hl-line "gray95"))
   ('solarized-theme
    ;; (setq solarized-termcolors 256)
-   (load-theme 'solarized-dark)
+   (stc:load-theme 'solarized-dark)
    (set-face-background 'hl-line "gray15"))
   ('naquadah-theme
    ;; naquadah theme
-   (load-theme 'naquadah)))
+   (stc:load-theme 'naquadah)))
 
 ;;; auto completion
 ;; auto completion mode is not enabled by default
