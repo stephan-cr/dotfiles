@@ -584,9 +584,11 @@ in the user-init-file (.emacs)."
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
                          '(auto-complete-clang
+                           d-mode
                            el-get
                            flymake-fringe-icons
                            go-mode
+                           json-mode
                            naquadah-theme
                            powerline
                            qmake-mode
