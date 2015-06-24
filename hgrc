@@ -1,3 +1,6 @@
+[defaults]
+addremove = --similarity 100
+
 [extensions]
 hgext.color =
 hgext.hgk =
