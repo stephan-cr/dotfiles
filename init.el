@@ -180,6 +180,8 @@ non-whitespace character"
 
 (eval-after-load 'org
   '(progn
+     (define-key org-mode-map (kbd "RET") 'org-return-indent)
+
      (defvar agenda-files (list "~/orgs/todo.org"))
      (when (or (on-host "earth3") (on-host "earth7"))
        (when agenda-files
