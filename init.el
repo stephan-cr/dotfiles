@@ -609,7 +609,8 @@ in the user-init-file (.emacs)."
      ((t (:foreground "#f9f9f9" :background "#666666" :box nil))))))
 
 ;; themes
-(defvar theme-tag 'naquadah-theme)
+(defvar theme-tag (if (>= emacs-major-version 24)
+                      'deeper-blue-theme 'naquadah-theme))
 
 (defun stc:load-theme (theme)
   (if (>= emacs-major-version 24) (load-theme theme t) (load-theme theme)))
@@ -623,7 +624,9 @@ in the user-init-file (.emacs)."
    (set-face-background 'hl-line "gray15"))
   ('naquadah-theme
    ;; naquadah theme
-   (stc:load-theme 'naquadah)))
+   (stc:load-theme 'naquadah))
+  ('deeper-blue-theme
+   (stc:load-theme 'deeper-blue)))
 
 ;;; auto completion
 ;; auto completion mode is not enabled by default
