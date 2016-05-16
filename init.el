@@ -86,8 +86,11 @@
 
 ;; distinguish buffers of the same filename
 ;; http://tsengf.blogspot.com/2011/06/distinguish-buffers-of-same-filename-in.html
+;; http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
 
 ;; set browser to Chromium instead of Iceweasel which is the default
 (require 'browse-url)
