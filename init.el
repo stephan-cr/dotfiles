@@ -596,6 +596,7 @@ in the user-init-file (.emacs)."
                            qmake-mode
                            rainbow-delimiters
                            rfringe
+                           rust-mode
                            solarized-bbatsov-theme)
                          (mapcar 'el-get-source-name el-get-sources)))
 (stc:el-get-cleanup el-get-packages) ; local copy from master branch
