@@ -591,6 +591,7 @@ in the user-init-file (.emacs)."
                          '(auto-complete-clang
                            d-mode
                            el-get
+                           flycheck
                            flymake-fringe-icons
                            go-mode
                            json-mode
@@ -651,3 +652,6 @@ in the user-init-file (.emacs)."
 ;; go path, such that go-mode finds godef
 (add-to-list 'exec-path (concat (getenv "HOME") "/gocode/bin"))
 (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
+
+;; bash lint - http://skybert.net/emacs/bash-linting-in-emacs/
+(add-hook 'sh-mode-hook 'flycheck-mode)
