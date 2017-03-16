@@ -1,0 +1,8 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "dotfiles config",
+    "description": "Defines a mapping from repo to real filenames.",
+    "type": "object",
+    "properties": {},
+    "additionalProperties": { "type": "string" }
+}
