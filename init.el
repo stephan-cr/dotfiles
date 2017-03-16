@@ -601,7 +601,8 @@ in the user-init-file (.emacs)."
                            rainbow-delimiters
                            rfringe
                            rust-mode
-                           solarized-bbatsov-theme)
+                           solarized-bbatsov-theme
+                           yaml-mode)
                          (mapcar 'el-get-source-name el-get-sources)))
 (stc:el-get-cleanup el-get-packages) ; local copy from master branch
 (el-get 'sync el-get-packages)
