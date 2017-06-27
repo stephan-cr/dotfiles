@@ -590,6 +590,7 @@ in the user-init-file (.emacs)."
 (defvar el-get-packages (append
                          '(auto-complete-clang
                            d-mode
+                           dockerfile-mode
                            el-get
                            flycheck
                            flymake-fringe-icons
