@@ -596,6 +596,7 @@ in the user-init-file (.emacs)."
                            flymake-fringe-icons
                            go-mode
                            json-mode
+                           markdown-mode
                            naquadah-theme
                            powerline
                            qmake-mode
