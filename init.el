@@ -594,6 +594,7 @@ in the user-init-file (.emacs)."
                            el-get
                            flycheck
                            flymake-fringe-icons
+                           geiser
                            go-mode
                            json-mode
                            markdown-mode
