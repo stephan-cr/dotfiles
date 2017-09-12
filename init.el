@@ -659,3 +659,9 @@ in the user-init-file (.emacs)."
 
 ;; bash lint - http://skybert.net/emacs/bash-linting-in-emacs/
 (add-hook 'sh-mode-hook 'flycheck-mode)
+
+(setq prettify-symbols-alist
+      `(("lambda" . ?λ)
+        ("->" . ?→)
+        ("<=" . ?≤)
+        (">=" . ?≥)))
