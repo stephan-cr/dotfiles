@@ -596,15 +596,19 @@ in the user-init-file (.emacs)."
                            flymake-fringe-icons
                            geiser
                            go-mode
+                           js2-mode
                            json-mode
                            markdown-mode
                            naquadah-theme
                            powerline
+                           pretty-lambdada
                            qmake-mode
                            rainbow-delimiters
                            rfringe
                            rust-mode
                            solarized-bbatsov-theme
+                           sx
+                           toml-mode
                            yaml-mode)
                          (mapcar 'el-get-source-name el-get-sources)))
 (stc:el-get-cleanup el-get-packages) ; local copy from master branch
