@@ -352,10 +352,11 @@ non-whitespace character"
 (eval-after-load 'gnus
   '(progn
      (when user-config
-       (setq gnus-select-method '(nnimap
-                                  "SE"
+       (setq gnus-select-method `(nnimap
+                                  "default"
                                   (nnimap-address
-                                   (gethash "mail-host-address" user-config))
+                                   ,(gethash "imap-host-address" user-config))
+                                  (nnimap-server-port "imaps")
                                   (nnimap-stream tls))))
      (eval-when-compile (require 'gnus-sum))
      (setq gnus-summary-thread-gathering-function
