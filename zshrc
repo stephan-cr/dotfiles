@@ -23,7 +23,7 @@ ZSH_THEME="steeef"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(debian git perl python ruby svn)
+plugins=(debian git perl python ruby svn cargo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,6 +35,10 @@ export GOPATH=$HOME/gocode
 export GOROOT=$HOME/go
 export PATH=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin
 export PYTHONPATH=$HOME/lib/python
+
+if [[ -d "$HOME/.cargo" ]] ; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
 
 alias R='R --no-save --quiet'
 
