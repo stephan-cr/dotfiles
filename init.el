@@ -677,3 +677,10 @@ in the user-init-file (.emacs)."
 (eval-after-load "enriched"
   '(defun enriched-decode-display-prop (start end &optional param)
      (list start end)))
+
+;; http://joy.pm/post/2017-09-17-a_graphviz_primer/
+(defun fix-inline-images ()
+  (when org-inline-image-overlays
+    (org-redisplay-inline-images)))
+
+(add-hook 'org-babel-after-execute-hook 'fix-inline-images)
