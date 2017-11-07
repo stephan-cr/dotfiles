@@ -384,7 +384,8 @@ non-whitespace character"
 (eval-after-load 'message
   '(progn
      (setq message-send-mail-function 'message-send-mail-with-sendmail)
-     (setq message-sendmail-extra-arguments '("-a" "se"))
+     (setq message-sendmail-extra-arguments
+           `("-a" ,(gethash "mail-msmtp-account" user-config)))
 
      ;; kill message buffer after it was successfully send
      (setq message-kill-buffer-on-exit t)))
