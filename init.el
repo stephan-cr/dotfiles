@@ -607,6 +607,7 @@ in the user-init-file (.emacs)."
                            qmake-mode
                            rainbow-delimiters
                            rfringe
+                           rst-mode
                            rust-mode
                            solarized-bbatsov-theme
                            sx
