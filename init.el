@@ -608,6 +608,7 @@ in the user-init-file (.emacs)."
                            naquadah-theme
                            powerline
                            pretty-lambdada
+                           projectile
                            qmake-mode
                            rainbow-delimiters
                            rfringe
