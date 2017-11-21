@@ -542,6 +542,8 @@ The function assumes that the user set the variables `user-full-name' and
 (require 'saveplace)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name "places" user-emacs-directory))
+(when (>= emacs-major-version 25)
+  (save-place-mode t))
 
 ;; transparent encryption and decryption
 ;; the default file extension is *.gpg
