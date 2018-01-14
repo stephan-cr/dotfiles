@@ -595,6 +595,7 @@ in the user-init-file (.emacs)."
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
                          '(auto-complete-clang
+                           cider
                            d-mode
                            dockerfile-mode
                            el-get
