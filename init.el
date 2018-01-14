@@ -603,6 +603,7 @@ in the user-init-file (.emacs)."
                            flymake-fringe-icons
                            geiser
                            go-mode
+                           groovy-emacs-mode ; for Jenkins pipelines
                            js2-mode
                            json-mode
                            markdown-mode
