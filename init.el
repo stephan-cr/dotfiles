@@ -596,7 +596,6 @@ in the user-init-file (.emacs)."
 (defvar el-get-packages (append
                          '(auto-complete-clang
                            cider
-                           d-mode
                            dockerfile-mode
                            el-get
                            flycheck
