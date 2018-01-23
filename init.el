@@ -616,6 +616,7 @@ in the user-init-file (.emacs)."
                            rfringe
                            rst-mode
                            rust-mode
+                           slime
                            solarized-bbatsov-theme
                            sx
                            toml-mode
