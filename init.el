@@ -691,3 +691,7 @@ in the user-init-file (.emacs)."
     (org-redisplay-inline-images)))
 
 (add-hook 'org-babel-after-execute-hook 'fix-inline-images)
+
+(when (featurep 'slime)
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (setq slime-contribs '(slime-banner slime-fancy)))
