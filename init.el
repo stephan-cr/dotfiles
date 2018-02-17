@@ -598,6 +598,7 @@ in the user-init-file (.emacs)."
                            cider
                            dockerfile-mode
                            el-get
+                           eval-sexp-fu
                            flycheck
                            flymake-fringe-icons
                            geiser
@@ -607,6 +608,7 @@ in the user-init-file (.emacs)."
                            json-mode
                            markdown-mode
                            naquadah-theme
+                           paredit
                            powerline
                            pretty-lambdada
                            projectile
@@ -693,5 +695,19 @@ in the user-init-file (.emacs)."
 (add-hook 'org-babel-after-execute-hook 'fix-inline-images)
 
 (when (featurep 'slime)
-  (setq inferior-lisp-program "/usr/bin/sbcl")
-  (setq slime-contribs '(slime-banner slime-fancy)))
+  (setq inferior-lisp-program "/usr/bin/sbcl"
+        slime-contribs '(slime-banner slime-fancy))
+  (dolist (mode '(eval-sexp-fu-flash-mode paredit-mode rainbow-delimiters-mode))
+    (add-hook 'slime-mode-hook mode)))
+
+(when (and (require 'geiser-chicken nil 'noerror) (featurep 'geiser))
+  (add-to-list 'geiser-chicken-load-path
+               (concat (getenv "HOME") "/lib/chicken/8"))
+  (dolist ((mode '(eval-sexp-fu-flash-mode paredit-mode)))
+    (add-hook 'scheme-mode-hook mode)))
+
+(setq python-shell-interpreter "python3")
+
+(add-hook 'eval-expression-minibuffer-setup-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'eval-sexp-fu-flash-mode)
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
