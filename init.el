@@ -680,7 +680,7 @@ in the user-init-file (.emacs)."
 (add-hook 'sh-mode-hook 'flycheck-mode)
 
 (setq prettify-symbols-alist
-      `(("lambda" . ?λ)
+      '(("lambda" . ?λ)
         ("->" . ?→)
         ("<=" . ?≤)
         (">=" . ?≥)))
