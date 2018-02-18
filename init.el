@@ -485,6 +485,9 @@ The function assumes that the user set the variables `user-full-name' and
 (require 'python)
 (add-hook 'python-mode-hook 'subword-mode 'turn-on-eldoc-mode)
 
+(setq python-shell-interpreter "python3"
+      python-shell-completion-native-disabled-interpreters '("python3")) ; workaround
+
 (when (require 'ess nil 'noerror)
   (setq ess-ask-for-ess-directory nil)
   (setq inferior-R-args "--no-save --quiet")
@@ -705,8 +708,6 @@ in the user-init-file (.emacs)."
                (concat (getenv "HOME") "/lib/chicken/8"))
   (dolist ((mode '(eval-sexp-fu-flash-mode paredit-mode)))
     (add-hook 'scheme-mode-hook mode)))
-
-(setq python-shell-interpreter "python3")
 
 (add-hook 'eval-expression-minibuffer-setup-hook 'paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'eval-sexp-fu-flash-mode)
