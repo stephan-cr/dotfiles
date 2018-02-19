@@ -374,7 +374,8 @@ non-whitespace character"
       gnus-sum-thread-tree-single-leaf "╰► "
       gnus-sum-thread-tree-vertical "│")
      ;; reduce verbose messages
-     (setq gnus-novice-user nil)
+     (setq gnus-novice-user nil
+           gnus-inhibit-startup-message t)
      ;; gnus window setup
      (eval-when-compile (require 'gnus-win))
      (setq gnus-use-full-window nil)))
