@@ -484,7 +484,8 @@ The function assumes that the user set the variables `user-full-name' and
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 
 (require 'python)
-(add-hook 'python-mode-hook 'subword-mode 'turn-on-eldoc-mode)
+(add-hook 'python-mode-hook 'subword-mode)
+(add-hook 'python-mode-hook 'turn-on-eldoc-mode)
 
 (setq python-shell-interpreter "python3"
       python-shell-completion-native-disabled-interpreters '("python3")) ; workaround
