@@ -702,6 +702,7 @@ in the user-init-file (.emacs)."
 (when (featurep 'slime)
   (setq inferior-lisp-program "/usr/bin/sbcl"
         slime-contribs '(slime-banner slime-fancy))
+  (add-hook 'slime-repl-mode-hook 'paredit-mode)
   (dolist (mode '(eval-sexp-fu-flash-mode paredit-mode rainbow-delimiters-mode))
     (add-hook 'slime-mode-hook mode)))
 
