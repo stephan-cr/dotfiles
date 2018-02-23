@@ -423,9 +423,7 @@ non-whitespace character"
                (insert expansion))))
           (t
            (expand-abbrev))))
-  (setq message-expand-name-databases '(mutt-alias))
-  ;; (add-to-list 'message-expand-name-databases 'mutt-alias)
-)
+  (setq message-expand-name-databases '(mutt-alias)))
 
 ;;; bookmark setting
 ;; automatically save bookmarks
