@@ -679,11 +679,12 @@ in the user-init-file (.emacs)."
 ;; bash lint - http://skybert.net/emacs/bash-linting-in-emacs/
 (add-hook 'sh-mode-hook 'flycheck-mode)
 
-(setq prettify-symbols-alist
-      '(("lambda" . ?λ)
-        ("->" . ?→)
-        ("<=" . ?≤)
-        (">=" . ?≥)))
+(defun define-prettify-symbols ()
+  (setq prettify-symbols-alist
+        '(("lambda" . ?λ)
+          ("->" . ?→)
+          ("<=" . ?≤)
+          (">=" . ?≥))))
 
 ;; http://seclists.org/oss-sec/2017/q3/422
 (eval-after-load "enriched"
@@ -697,19 +698,25 @@ in the user-init-file (.emacs)."
 
 (add-hook 'org-babel-after-execute-hook 'fix-inline-images)
 
+(require 'eval-sexp-fu)
+
 (when (featurep 'slime)
   (setq inferior-lisp-program "/usr/bin/sbcl"
         slime-contribs '(slime-banner slime-fancy))
-  (add-hook 'slime-repl-mode-hook 'paredit-mode)
-  (dolist (mode '(eval-sexp-fu-flash-mode paredit-mode rainbow-delimiters-mode))
+  (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+  (dolist (mode '(turn-on-eval-sexp-fu-flash-mode
+                  enable-paredit-mode rainbow-delimiters-mode-enable))
     (add-hook 'slime-mode-hook mode)))
 
 (when (and (require 'geiser-chicken nil 'noerror) (featurep 'geiser))
   (add-to-list 'geiser-chicken-load-path
                (concat (getenv "HOME") "/lib/chicken/8"))
-  (dolist ((mode '(eval-sexp-fu-flash-mode paredit-mode)))
+  (dolist (mode '(turn-on-eval-sexp-fu-flash-mode
+                  enable-paredit-mode
+                  define-prettify-symbols
+                  turn-on-prettify-symbols-mode))
     (add-hook 'scheme-mode-hook mode)))
 
-(add-hook 'eval-expression-minibuffer-setup-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'eval-sexp-fu-flash-mode)
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eval-sexp-fu-flash-mode)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
