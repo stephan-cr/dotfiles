@@ -12,7 +12,7 @@
 
 (defun on-host (hostname)
   "get the current hostname on which this instance is running"
-  (string-equal (car (split-string system-name "\\.")) hostname))
+  (string-equal (car (split-string (system-name) "\\.")) hostname))
 
 ;; no menu bar
 (menu-bar-mode -1)
