@@ -698,6 +698,11 @@ in the user-init-file (.emacs)."
 
 (add-hook 'org-babel-after-execute-hook 'fix-inline-images)
 
+(when (>= emacs-major-version 25)
+  (eval-after-load 'bytecomp
+    '(add-to-list 'byte-compile-not-obsolete-funcs
+                  'preceding-sexp)))
+
 (require 'eval-sexp-fu)
 
 (when (featurep 'slime)
@@ -705,17 +710,21 @@ in the user-init-file (.emacs)."
         slime-contribs '(slime-banner slime-fancy))
   (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
   (dolist (mode '(turn-on-eval-sexp-fu-flash-mode
-                  enable-paredit-mode rainbow-delimiters-mode-enable))
-    (add-hook 'slime-mode-hook mode)))
+                  enable-paredit-mode
+                  rainbow-delimiters-mode-enable))
+    (add-hook 'slime-mode-hook mode t)))
 
 (when (and (require 'geiser-chicken nil 'noerror) (featurep 'geiser))
   (add-to-list 'geiser-chicken-load-path
                (concat (getenv "HOME") "/lib/chicken/8"))
-  (dolist (mode '(turn-on-eval-sexp-fu-flash-mode
-                  enable-paredit-mode
+  (setq geiser-active-implementations '(chicken guile mit)
+        geiser-repl-skip-version-check-p t)
+  (dolist (mode '(enable-paredit-mode
                   define-prettify-symbols
+                  rainbow-delimiters-mode-enable
+                  turn-on-geiser-mode
                   turn-on-prettify-symbols-mode))
-    (add-hook 'scheme-mode-hook mode)))
+    (add-hook 'scheme-mode-hook mode t)))
 
 (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eval-sexp-fu-flash-mode)
