@@ -11,7 +11,7 @@
 (package-initialize)
 
 (defun on-host (hostname)
-  "get the current hostname on which this instance is running"
+  "Get the current HOSTNAME on which this instance is running."
   (string-equal (car (split-string (system-name) "\\.")) hostname))
 
 ;; no menu bar
@@ -311,7 +311,7 @@ non-whitespace character"
   (global-set-key (kbd "<XF86AudioStop>") 'emms-stop))
 
 (defun do-initial-window-split ()
-  "do a initial split of windows"
+  "Do a initial split of windows."
   (interactive)
   (split-window-horizontally)
   (next-multiframe-window)
@@ -442,16 +442,16 @@ non-whitespace character"
 (setq Man-notify-method 'pushy)
 
 (defun untabify-buffer ()
-  "untabifies the whole buffer"
+  "Untabifies the whole buffer."
   (interactive)
   (untabify (point-min) (point-max)))
 
 (defun insert-code-author ()
-  "Inserts the code author and its email address into the source code. The
-inserted line is automatically put in comments.
+  "Insert the code author and its email address into buffer.
+The inserted line is automatically put in comments.
 
-The function assumes that the user set the variables `user-full-name' and
-`user-mail-address'."
+The function assumes that the user set the variables
+`user-full-name' and `user-mail-address'."
   (interactive)
   (let* ((peek-string (lambda (str n)
                         (if (< n 0)
@@ -474,7 +474,7 @@ The function assumes that the user set the variables `user-full-name' and
 
 ;; http://irreal.org/blog/?p=297
 (defun eval-and-replace (value)
-  "Evaluate the sexp at point and replace it with its value"
+  "Evaluate the sexp at point and replace it with its value."
   (interactive (list (eval-last-sexp nil)))
   (kill-sexp -1)
   (insert (format "%S" value)))
@@ -590,10 +590,9 @@ The function assumes that the user set the variables `user-full-name' and
     (eval-print-last-sexp)))
 
 (defun stc:el-get-cleanup (packages)
-  "Removes packages absent from the argument list
-'packages. Useful, for example, when we
-want to remove all packages not explicitly declared
-in the user-init-file (.emacs)."
+  "Remove packages absent from the argument list 'packages.
+Useful, for example, when we want to remove all packages not
+explicitly declared in the `user-init-file' (.emacs)."
   (let* ((packages-to-keep (el-get-dependencies
                             (mapcar 'el-get-as-symbol packages)))
          (packages-to-remove (set-difference
@@ -648,6 +647,7 @@ in the user-init-file (.emacs)."
                       'deeper-blue-theme 'naquadah-theme))
 
 (defun stc:load-theme (theme)
+  "Load THEME with proper function."
   (if (>= emacs-major-version 24) (load-theme theme t) (load-theme theme)))
 
 (case theme-tag
@@ -700,6 +700,7 @@ in the user-init-file (.emacs)."
 
 ;; http://joy.pm/post/2017-09-17-a_graphviz_primer/
 (defun fix-inline-images ()
+  "Redisplay all inline images automatically."
   (when org-inline-image-overlays
     (org-redisplay-inline-images)))
 
