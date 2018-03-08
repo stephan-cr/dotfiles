@@ -683,8 +683,9 @@ explicitly declared in the `user-init-file' (.emacs)."
   (add-hook 'c-mode-common-hook 'auto-complete-c-mode-common-hook))
 
 ;; go path, such that go-mode finds godef
-(add-to-list 'exec-path (concat (getenv "HOME") "/gocode/bin"))
-(add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
+(let ((home (getenv "HOME")))
+  (dolist (path '("/gocode/bin" "/go/bin"))
+    (add-to-list 'exec-path (concat home path))))
 
 ;; bash lint - http://skybert.net/emacs/bash-linting-in-emacs/
 (add-hook 'sh-mode-hook 'flycheck-mode)
