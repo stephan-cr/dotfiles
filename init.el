@@ -737,3 +737,6 @@ explicitly declared in the `user-init-file' (.emacs)."
 (add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eval-sexp-fu-flash-mode)
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+
+(global-set-key (kbd "<XF86Favorites>") 'ielm)
