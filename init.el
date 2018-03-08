@@ -387,6 +387,9 @@ non-whitespace character"
      (eval-when-compile (require 'gnus-win))
      (setq gnus-use-full-window nil)))
 
+(when (eq window-system 'x)
+  (global-set-key (kbd "<XF86Mail>") 'gnus))
+
 ;; send mail via msmtp
 (eval-when-compile (require 'sendmail))
 (setq sendmail-program "/usr/bin/msmtp")
