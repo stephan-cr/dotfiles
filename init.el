@@ -317,7 +317,7 @@ non-whitespace character"
 
 ;; http://stringofbits.net/2009/08/emacs-23-dbus-and-libnotify/
 ;; with slight modifications by me
-(when (require 'dbus nil 'noerror)
+(when (and (require 'dbus nil 'noerror) (eq window-system 'x))
   (eval-when-compile (require 'dbus))
   (defvar emacs-icon-path (concat "/usr/share/emacs/"
                                   (number-to-string emacs-major-version)
