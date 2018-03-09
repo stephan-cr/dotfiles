@@ -619,6 +619,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            js2-mode
                            json-mode
                            markdown-mode
+                           monky
                            naquadah-theme
                            paredit
                            powerline
