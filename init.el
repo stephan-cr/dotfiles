@@ -616,6 +616,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            geiser
                            go-mode
                            groovy-emacs-mode ; for Jenkins pipelines
+                           indicators
                            js2-mode
                            json-mode
                            markdown-mode
@@ -625,7 +626,6 @@ explicitly declared in the `user-init-file' (.emacs)."
                            pretty-lambdada
                            projectile
                            rainbow-delimiters
-                           rfringe
                            rst-mode
                            rust-mode
                            slime
