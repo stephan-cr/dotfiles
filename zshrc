@@ -45,3 +45,6 @@ alias R='R --no-save --quiet'
 if [[ -z "$EDITOR" && -x "$(which zile)" ]] ; then
     export EDITOR=zile
 fi
+
+# http://wiki.call-cc.org/man/4/Extensions#changing-repository-location
+export CHICKEN_REPOSITORY=~/lib/chicken/8
