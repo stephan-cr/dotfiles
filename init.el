@@ -624,7 +624,6 @@ explicitly declared in the `user-init-file' (.emacs)."
                            powerline
                            pretty-lambdada
                            projectile
-                           qmake-mode
                            rainbow-delimiters
                            rfringe
                            rst-mode
