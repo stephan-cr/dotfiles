@@ -82,8 +82,8 @@
 (setq scroll-conservatively 1)
 
 ;; automatically remove end of line white space
-;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; show column numbers
 (column-number-mode)
@@ -620,6 +620,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            js2-mode
                            json-mode
                            markdown-mode
+                           monky
                            naquadah-theme
                            paredit
                            powerline
