@@ -3,9 +3,16 @@
 ;; Author: Stephan Creutz
 
 ;; functions
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (defun on-host (hostname)
-  "get the current hostname on which this instance is running"
-  (string-equal (car (split-string system-name "\\.")) hostname))
+  "Get the current HOSTNAME on which this instance is running."
+  (string-equal (car (split-string (system-name) "\\.")) hostname))
 
 ;; no menu bar
 (menu-bar-mode -1)
@@ -304,7 +311,7 @@ non-whitespace character"
   (global-set-key (kbd "<XF86AudioStop>") 'emms-stop))
 
 (defun do-initial-window-split ()
-  "do a initial split of windows"
+  "Do a initial split of windows."
   (interactive)
   (split-window-horizontally)
   (next-multiframe-window)
@@ -374,10 +381,14 @@ non-whitespace character"
       gnus-sum-thread-tree-single-leaf "╰► "
       gnus-sum-thread-tree-vertical "│")
      ;; reduce verbose messages
-     (setq gnus-novice-user nil)
+     (setq gnus-novice-user nil
+           gnus-inhibit-startup-message t)
      ;; gnus window setup
      (eval-when-compile (require 'gnus-win))
      (setq gnus-use-full-window nil)))
+
+(when (eq window-system 'x)
+  (global-set-key (kbd "<XF86Mail>") 'gnus))
 
 ;; send mail via msmtp
 (eval-when-compile (require 'sendmail))
@@ -422,9 +433,7 @@ non-whitespace character"
                (insert expansion))))
           (t
            (expand-abbrev))))
-  (setq message-expand-name-databases '(mutt-alias))
-  ;; (add-to-list 'message-expand-name-databases 'mutt-alias)
-)
+  (setq message-expand-name-databases '(mutt-alias)))
 
 ;;; bookmark setting
 ;; automatically save bookmarks
@@ -436,16 +445,16 @@ non-whitespace character"
 (setq Man-notify-method 'pushy)
 
 (defun untabify-buffer ()
-  "untabifies the whole buffer"
+  "Untabifies the whole buffer."
   (interactive)
   (untabify (point-min) (point-max)))
 
 (defun insert-code-author ()
-  "Inserts the code author and its email address into the source code. The
-inserted line is automatically put in comments.
+  "Insert the code author and its email address into buffer.
+The inserted line is automatically put in comments.
 
-The function assumes that the user set the variables `user-full-name' and
-`user-mail-address'."
+The function assumes that the user set the variables
+`user-full-name' and `user-mail-address'."
   (interactive)
   (let* ((peek-string (lambda (str n)
                         (if (< n 0)
@@ -468,7 +477,7 @@ The function assumes that the user set the variables `user-full-name' and
 
 ;; http://irreal.org/blog/?p=297
 (defun eval-and-replace (value)
-  "Evaluate the sexp at point and replace it with its value"
+  "Evaluate the sexp at point and replace it with its value."
   (interactive (list (eval-last-sexp nil)))
   (kill-sexp -1)
   (insert (format "%S" value)))
@@ -483,7 +492,11 @@ The function assumes that the user set the variables `user-full-name' and
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 
 (require 'python)
-(add-hook 'python-mode-hook 'subword-mode 'turn-on-eldoc-mode)
+(add-hook 'python-mode-hook 'subword-mode)
+(add-hook 'python-mode-hook 'turn-on-eldoc-mode)
+
+(setq python-shell-interpreter "python3"
+      python-shell-completion-native-disabled-interpreters '("python3")) ; workaround
 
 (when (require 'ess nil 'noerror)
   (setq ess-ask-for-ess-directory nil)
@@ -580,10 +593,9 @@ The function assumes that the user set the variables `user-full-name' and
     (eval-print-last-sexp)))
 
 (defun stc:el-get-cleanup (packages)
-  "Removes packages absent from the argument list
-'packages. Useful, for example, when we
-want to remove all packages not explicitly declared
-in the user-init-file (.emacs)."
+  "Remove packages absent from the argument list 'packages.
+Useful, for example, when we want to remove all packages not
+explicitly declared in the `user-init-file' (.emacs)."
   (let* ((packages-to-keep (el-get-dependencies
                             (mapcar 'el-get-as-symbol packages)))
          (packages-to-remove (set-difference
@@ -596,9 +608,9 @@ in the user-init-file (.emacs)."
 (defvar el-get-packages (append
                          '(auto-complete-clang
                            cider
-                           d-mode
                            dockerfile-mode
                            el-get
+                           eval-sexp-fu
                            flycheck
                            flymake-fringe-icons
                            geiser
@@ -608,6 +620,7 @@ in the user-init-file (.emacs)."
                            json-mode
                            markdown-mode
                            naquadah-theme
+                           paredit
                            powerline
                            pretty-lambdada
                            projectile
@@ -616,6 +629,7 @@ in the user-init-file (.emacs)."
                            rfringe
                            rst-mode
                            rust-mode
+                           slime
                            solarized-bbatsov-theme
                            sx
                            toml-mode
@@ -636,6 +650,7 @@ in the user-init-file (.emacs)."
                       'deeper-blue-theme 'naquadah-theme))
 
 (defun stc:load-theme (theme)
+  "Load THEME with proper function."
   (if (>= emacs-major-version 24) (load-theme theme t) (load-theme theme)))
 
 (case theme-tag
@@ -668,17 +683,19 @@ in the user-init-file (.emacs)."
   (add-hook 'c-mode-common-hook 'auto-complete-c-mode-common-hook))
 
 ;; go path, such that go-mode finds godef
-(add-to-list 'exec-path (concat (getenv "HOME") "/gocode/bin"))
-(add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
+(let ((home (getenv "HOME")))
+  (dolist (path '("/gocode/bin" "/go/bin"))
+    (add-to-list 'exec-path (concat home path))))
 
 ;; bash lint - http://skybert.net/emacs/bash-linting-in-emacs/
 (add-hook 'sh-mode-hook 'flycheck-mode)
 
-(setq prettify-symbols-alist
-      `(("lambda" . ?λ)
-        ("->" . ?→)
-        ("<=" . ?≤)
-        (">=" . ?≥)))
+(defun define-prettify-symbols ()
+  (setq prettify-symbols-alist
+        '(("lambda" . ?λ)
+          ("->" . ?→)
+          ("<=" . ?≤)
+          (">=" . ?≥))))
 
 ;; http://seclists.org/oss-sec/2017/q3/422
 (eval-after-load "enriched"
@@ -687,7 +704,43 @@ in the user-init-file (.emacs)."
 
 ;; http://joy.pm/post/2017-09-17-a_graphviz_primer/
 (defun fix-inline-images ()
+  "Redisplay all inline images automatically."
   (when org-inline-image-overlays
     (org-redisplay-inline-images)))
 
 (add-hook 'org-babel-after-execute-hook 'fix-inline-images)
+
+(when (>= emacs-major-version 25)
+  (eval-after-load 'bytecomp
+    '(add-to-list 'byte-compile-not-obsolete-funcs
+                  'preceding-sexp)))
+
+(require 'eval-sexp-fu)
+
+(when (featurep 'slime)
+  (setq inferior-lisp-program "/usr/bin/sbcl"
+        slime-contribs '(slime-banner slime-fancy))
+  (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+  (dolist (mode '(turn-on-eval-sexp-fu-flash-mode
+                  enable-paredit-mode
+                  rainbow-delimiters-mode-enable))
+    (add-hook 'slime-mode-hook mode t)))
+
+(when (and (require 'geiser-chicken nil 'noerror) (featurep 'geiser))
+  (add-to-list 'geiser-chicken-load-path
+               (concat (getenv "HOME") "/lib/chicken/8"))
+  (setq geiser-active-implementations '(chicken guile mit)
+        geiser-repl-skip-version-check-p t)
+  (dolist (mode '(enable-paredit-mode
+                  define-prettify-symbols
+                  rainbow-delimiters-mode-enable
+                  turn-on-geiser-mode
+                  turn-on-prettify-symbols-mode))
+    (add-hook 'scheme-mode-hook mode t)))
+
+(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eval-sexp-fu-flash-mode)
+(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+
+(global-set-key (kbd "<XF86Favorites>") 'ielm)
