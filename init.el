@@ -447,7 +447,8 @@ non-whitespace character"
 (defun untabify-buffer ()
   "Untabifies the whole buffer."
   (interactive)
-  (untabify (point-min) (point-max)))
+  (save-excursion
+    (untabify (point-min) (point-max))))
 
 (defun insert-code-author ()
   "Insert the code author and its email address into buffer.
