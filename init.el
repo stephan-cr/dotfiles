@@ -722,12 +722,18 @@ explicitly declared in the `user-init-file' (.emacs)."
 (require 'eval-sexp-fu)
 
 (when (featurep 'slime)
+  (require 'slime-highlight-edits)
+  (require 'slime-quicklisp)
   (setq inferior-lisp-program "/usr/bin/sbcl"
-        slime-contribs '(slime-banner slime-fancy))
+        slime-contribs '(slime-banner
+                         slime-fancy
+                         slime-highlight-edits
+                         slime-quicklisp))
   (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
   (dolist (mode '(turn-on-eval-sexp-fu-flash-mode
                   enable-paredit-mode
-                  rainbow-delimiters-mode-enable))
+                  rainbow-delimiters-mode-enable
+                  slime-highlight-edits-mode))
     (add-hook 'slime-mode-hook mode t)))
 
 (when (and (require 'geiser-chicken nil 'noerror) (featurep 'geiser))
