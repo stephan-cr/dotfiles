@@ -14,6 +14,9 @@
   "Get the current HOSTNAME on which this instance is running."
   (string-equal (car (split-string (system-name) "\\.")) hostname))
 
+;; reduce the frequency of garbage collection
+(setq gc-cons-threshold (* 4 1024 1024))
+
 ;; no menu bar
 (menu-bar-mode -1)
 
