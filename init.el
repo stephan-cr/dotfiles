@@ -399,17 +399,17 @@ non-whitespace character"
 
 (eval-after-load 'message
   '(progn
-     (setq message-send-mail-function 'message-send-mail-with-sendmail)
-     (setq message-sendmail-extra-arguments
+     (setq message-send-mail-function 'message-send-mail-with-sendmail
+           message-sendmail-extra-arguments
            `("-a" ,(gethash "mail-msmtp-account" user-config)))
 
      ;; kill message buffer after it was successfully send
      (setq message-kill-buffer-on-exit t)))
 
 (when user-config
-  (setq mail-host-address (gethash "mail-host-address" user-config))
-  (setq user-full-name (gethash "user-full-name" user-config))
-  (setq user-mail-address (gethash "user-mail-address" user-config)))
+  (setq mail-host-address (gethash "mail-host-address" user-config)
+        user-full-name (gethash "user-full-name" user-config)
+        user-mail-address (gethash "user-mail-address" user-config)))
 
 ;; override `message-expand-name' from message.el to lookup aliases from mutt
 ;; when composing messages
@@ -503,8 +503,8 @@ The function assumes that the user set the variables
       python-shell-completion-native-disabled-interpreters '("python3")) ; workaround
 
 (when (require 'ess nil 'noerror)
-  (setq ess-ask-for-ess-directory nil)
-  (setq inferior-R-args "--no-save --quiet")
+  (setq ess-ask-for-ess-directory nil
+        inferior-R-args "--no-save --quiet")
   ;; disable ess-smart-underscore
   (substitute-key-definition 'ess-smart-underscore 'self-insert-command
                              ess-mode-map)
@@ -513,8 +513,8 @@ The function assumes that the user set the variables
   (add-hook 'inferior-ess-mode-hook 'ess-use-eldoc))
 
 ;; compilation
-(setq compilation-auto-jump-to-first-error t)
-(setq compilation-scroll-output 'first-error)
+(setq compilation-auto-jump-to-first-error t
+      compilation-scroll-output 'first-error)
 
 ;; flymake for python with pylint
 ;; http://www.emacswiki.org/emacs/?action=browse;id=PythonProgrammingInEmacs
@@ -678,9 +678,9 @@ explicitly declared in the `user-init-file' (.emacs)."
   (setq clang-completion-suppress-error t)
 
   (defun auto-complete-c-mode-common-hook ()
-    (setq ac-auto-start nil)
-    (setq ac-expand-on-auto-complete nil)
-    (setq ac-quick-help-delay 0.3)
+    (setq ac-auto-start nil
+          ac-expand-on-auto-complete nil
+          ac-quick-help-delay 0.3)
     (eval-when-compile (require 'cc-mode))
     (define-key c-mode-base-map (kbd "M-/") 'ac-complete-clang))
 
