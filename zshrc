@@ -22,8 +22,7 @@ ZSH_THEME="nebirhos"
 # DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(debian git perl python ruby svn cargo)
+plugins=(debian git python cargo rust)
 
 source $ZSH/oh-my-zsh.sh
 
