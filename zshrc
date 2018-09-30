@@ -39,6 +39,10 @@ if [[ -d "$HOME/.cargo" ]] ; then
     export PATH="$PATH:$HOME/.cargo/bin"
 fi
 
+if [[ -d "$HOME/.local/bin" ]] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 alias R='R --no-save --quiet'
 
 if [[ -z "$EDITOR" && -x "$(which zile)" ]] ; then
