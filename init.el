@@ -637,6 +637,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            solarized-bbatsov-theme
                            sx
                            toml-mode
+                           which-key
                            yaml-mode)
                          (mapcar 'el-get-source-name el-get-sources)))
 (stc:el-get-cleanup el-get-packages) ; local copy from master branch
