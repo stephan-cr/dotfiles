@@ -624,6 +624,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            js2-mode
                            json-mode
                            markdown-mode
+                           modern-cpp-font-lock
                            monky
                            naquadah-theme
                            paredit
@@ -753,5 +754,10 @@ explicitly declared in the `user-init-file' (.emacs)."
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eval-sexp-fu-flash-mode)
 (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
 (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+
+(require 'modern-cpp-font-lock)
+(add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
+
+(which-key-mode 1)
 
 (global-set-key (kbd "<XF86Favorites>") 'ielm)
