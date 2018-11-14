@@ -761,3 +761,9 @@ explicitly declared in the `user-init-file' (.emacs)."
 (which-key-mode 1)
 
 (global-set-key (kbd "<XF86Favorites>") 'ielm)
+
+(progn
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8))
