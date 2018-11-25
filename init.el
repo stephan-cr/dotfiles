@@ -758,6 +758,7 @@ explicitly declared in the `user-init-file' (.emacs)."
 (require 'modern-cpp-font-lock)
 (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
 
+(projectile-mode 1)
 (which-key-mode 1)
 
 (global-set-key (kbd "<XF86Favorites>") 'ielm)
