@@ -623,6 +623,8 @@ explicitly declared in the `user-init-file' (.emacs)."
                            indicators
                            js2-mode
                            json-mode
+                           lsp-mode
+                           lsp-ui
                            markdown-mode
                            modern-cpp-font-lock
                            monky
