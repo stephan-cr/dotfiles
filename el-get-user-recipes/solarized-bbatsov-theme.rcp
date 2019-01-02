@@ -1,4 +1,0 @@
-(:name solarized-bbatsov-theme
-       :description "Solarized theme for Emacs"
-       :type git
-       :url "https://github.com/bbatsov/solarized-emacs/")
