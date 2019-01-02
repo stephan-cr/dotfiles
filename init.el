@@ -637,7 +637,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            rst-mode
                            rust-mode
                            slime
-                           solarized-bbatsov-theme
+                           solarized-emacs
                            sx
                            toml-mode
                            which-key
