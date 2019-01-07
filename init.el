@@ -611,9 +611,11 @@ explicitly declared in the `user-init-file' (.emacs)."
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
                          '(auto-complete-clang
+                           cc-mode
                            cider
                            dockerfile-mode
                            el-get
+                           elfeed
                            eval-sexp-fu
                            flycheck
                            flymake-fringe-icons
@@ -632,6 +634,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            paredit
                            powerline
                            pretty-lambdada
+                           project-explorer
                            projectile
                            rainbow-delimiters
                            rst-mode
@@ -640,6 +643,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            solarized-emacs
                            sx
                            toml-mode
+                           volatile-highlights
                            which-key
                            yaml-mode)
                          (mapcar 'el-get-source-name el-get-sources)))
