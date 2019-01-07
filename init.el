@@ -747,7 +747,7 @@ explicitly declared in the `user-init-file' (.emacs)."
 (when (and (require 'geiser-chicken nil 'noerror) (featurep 'geiser))
   (add-to-list 'geiser-chicken-load-path
                (concat (getenv "HOME") "/lib/chicken/8"))
-  (setq geiser-active-implementations '(chicken guile mit)
+  (setq geiser-active-implementations '(chez chicken guile mit)
         geiser-repl-skip-version-check-p t)
   (dolist (mode '(enable-paredit-mode
                   define-prettify-symbols
