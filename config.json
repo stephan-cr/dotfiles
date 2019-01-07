@@ -3,9 +3,11 @@
     "hgrc": ".hgrc",
     "irbrc": ".irbrc",
     "multitailrc": ".multitailrc",
+    "nanorc": ".nanorc",
     "psqlrc": ".psqlrc",
     "pylintrc": ".pylintrc",
     "Renviron": ".Renviron",
+    "sbclrc": ".sbclrc",
     "tmux.conf": ".tmux.conf",
     "Xresources": ".Xresources",
     "zshrc": ".zshrc"
