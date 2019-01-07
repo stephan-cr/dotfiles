@@ -89,7 +89,9 @@
 ;; (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; show column numbers
-(column-number-mode)
+(column-number-mode t)
+
+(size-indication-mode 1)
 
 ;; paste at point, instead of mouse position
 (setq mouse-yank-at-point t)
