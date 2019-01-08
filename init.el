@@ -104,10 +104,10 @@
 (setq uniquify-after-kill-buffer-p t)
 (setq uniquify-ignore-buffers-re "^\\*")
 
-;; set browser to Chromium instead of Iceweasel which is the default
+;; set browser to Firefox
 (require 'browse-url)
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "iceweasel")
+      browse-url-generic-program "firefox")
 
 ;; enable flyspell minor mode automatically for Latex (AuCTeX)
 (eval-after-load 'flyspell
