@@ -74,18 +74,18 @@
     (set-window-vscroll nil curr-scroll)
     (message "Reloaded file")))
 
-(global-set-key (kbd "<XF86Reload>") 'reload-file)
+(global-set-key (kbd "<XF86Reload>") #'reload-file)
 
-(global-set-key [f7] 'vc-resolve-conflicts)
-(global-set-key [f8] 'find-file-at-point)
-(global-set-key [f12] 'comment-region)
-(global-set-key [shift-f12] 'uncomment-region)
+(global-set-key [f7] #'vc-resolve-conflicts)
+(global-set-key [f8] #'find-file-at-point)
+(global-set-key [f12] #'comment-region)
+(global-set-key [shift-f12] #'uncomment-region)
 
 ;; smooth scrolling
 (setq scroll-conservatively 1)
 
 ;; automatically remove end of line white space
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
 ;; (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; show column numbers
@@ -112,7 +112,7 @@
 ;; enable flyspell minor mode automatically for Latex (AuCTeX)
 (eval-after-load 'flyspell
   '(progn
-     (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+     (add-hook 'LaTeX-mode-hook #'flyspell-mode)
      (setq flyspell-use-meta-tab nil)))
 
 ;; bibtex mode settings
@@ -125,7 +125,7 @@
   (setq windmove-wrap-around t))
 
 ;; ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") #'ibuffer)
 
 ;; use aspell instead of ispell
 (setq ispell-program-name "aspell")
@@ -161,7 +161,7 @@ there's a region, all lines that region covers will be duplicated."
         (setq end (point)))
       (goto-char (+ origin (* (length region) arg) arg)))))
 
-(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
+(global-set-key (kbd "C-c d") #'duplicate-current-line-or-region)
 
 (defun kill-forward-whitespace ()
   "Kill the whitespace from the current position until the next
@@ -171,7 +171,7 @@ non-whitespace character"
         (end (skip-chars-forward " \t\n\r")))
     (kill-region start-point (+ end start-point))))
 
-(global-set-key (kbd "C-c w") 'kill-forward-whitespace)
+(global-set-key (kbd "C-c w") #'kill-forward-whitespace)
 
 ;; highlight current line
 (eval-and-compile (require 'cl)) ; for reduce
@@ -201,16 +201,16 @@ non-whitespace character"
      (when (or (on-host "earth3") (on-host "earth7"))
        (when agenda-files
          (setq org-agenda-files agenda-files))
-       (global-set-key "\C-ca" 'org-agenda)
-       (global-set-key "\C-cb" 'org-iswitchb)
-       (global-set-key "\C-cl" 'org-store-link)
+       (global-set-key "\C-ca" #'org-agenda)
+       (global-set-key "\C-cb" #'org-iswitchb)
+       (global-set-key "\C-cl" #'org-store-link)
        (setq org-directory "~/orgs/")
        (setq org-default-notes-file (concat org-directory "notes.org"))
        (setq org-capture-templates
              '(("t" "Note" entry (file+headline org-default-notes-file "Notes")
                 "* TODO %?\n  %i\n  %a")))
        (define-key global-map "\C-cc" 'org-capture)
-       (global-set-key [f5] 'org-display-inline-images)
+       (global-set-key [f5] #'org-display-inline-images)
        (setq org-mobile-directory "~/mobileorg")
        (setq org-mobile-inbox-for-pull (concat org-directory "from-mobile.org"))
        (setq org-mobile-files '("todo.org")))
@@ -308,12 +308,12 @@ non-whitespace character"
 
 ;; use multimedia keys
 (when (eq window-system 'x)
-  (global-set-key (kbd "<XF86AudioLowerVolume>") 'emms-volume-lower)
-  (global-set-key (kbd "<XF86AudioRaiseVolume>") 'emms-volume-raise)
-  (global-set-key (kbd "<XF86AudioPrev>") 'emms-previous)
-  (global-set-key (kbd "<XF86AudioNext>") 'emms-next)
-  (global-set-key (kbd "<XF86AudioPlay>") 'emms-start)
-  (global-set-key (kbd "<XF86AudioStop>") 'emms-stop))
+  (global-set-key (kbd "<XF86AudioLowerVolume>") #'emms-volume-lower)
+  (global-set-key (kbd "<XF86AudioRaiseVolume>") #'emms-volume-raise)
+  (global-set-key (kbd "<XF86AudioPrev>") #'emms-previous)
+  (global-set-key (kbd "<XF86AudioNext>") #'emms-next)
+  (global-set-key (kbd "<XF86AudioPlay>") #'emms-start)
+  (global-set-key (kbd "<XF86AudioStop>") #'emms-stop))
 
 (defun do-initial-window-split ()
   "Do a initial split of windows."
@@ -325,7 +325,7 @@ non-whitespace character"
   (split-window-horizontally)
   (previous-multiframe-window))
 
-(global-set-key [f9] 'do-initial-window-split)
+(global-set-key [f9] #'do-initial-window-split)
 
 ;; http://stringofbits.net/2009/08/emacs-23-dbus-and-libnotify/
 ;; with slight modifications by me
@@ -393,7 +393,7 @@ non-whitespace character"
      (setq gnus-use-full-window nil)))
 
 (when (eq window-system 'x)
-  (global-set-key (kbd "<XF86Mail>") 'gnus))
+  (global-set-key (kbd "<XF86Mail>") #'gnus))
 
 ;; send mail via msmtp
 (eval-when-compile (require 'sendmail))
@@ -474,7 +474,7 @@ The function assumes that the user set the variables
                     "Author: " user-full-name " <" user-mail-address ">"
                     comment-end (funcall insert-space? comment-end 0) "\n"))))
 
-(global-set-key [f11] 'insert-code-author)
+(global-set-key [f11] #'insert-code-author)
 
 ;; start emacs server
 (require 'server)
@@ -493,13 +493,13 @@ The function assumes that the user set the variables
 (setq eldoc-idle-delay 0)
 
 (require 'ielm)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook #'turn-on-eldoc-mode)
 
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'emacs-lisp-mode-hook #'turn-on-eldoc-mode)
 
 (require 'python)
-(add-hook 'python-mode-hook 'subword-mode)
-(add-hook 'python-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'python-mode-hook #'subword-mode)
+(add-hook 'python-mode-hook #'turn-on-eldoc-mode)
 
 (setq python-shell-interpreter "python3"
       python-shell-completion-native-disabled-interpreters '("python3")) ; workaround
@@ -512,7 +512,7 @@ The function assumes that the user set the variables
                              ess-mode-map)
 
   (require 'ess-eldoc)
-  (add-hook 'inferior-ess-mode-hook 'ess-use-eldoc))
+  (add-hook 'inferior-ess-mode-hook #'ess-use-eldoc))
 
 ;; compilation
 (setq compilation-auto-jump-to-first-error t
@@ -535,7 +535,7 @@ The function assumes that the user set the variables
 
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pylint-init))
-  (add-hook 'python-mode-hook 'flymake-mode-wrapper))
+  (add-hook 'python-mode-hook #'flymake-mode-wrapper))
 
 ;; shows the function name we are in most programming modes
 (which-func-mode 1)
@@ -546,7 +546,7 @@ The function assumes that the user set the variables
 ;; newline and indent for some programming modes
 (mapc 'require '(cc-mode perl-mode python))
 (dolist (x (list c-mode-map c++-mode-map perl-mode-map python-mode-map))
-  (define-key x (kbd "RET") 'newline-and-indent))
+  (define-key x (kbd "RET") #'newline-and-indent))
 
 ;; sql-mode settings
 (eval-after-load 'sql
@@ -692,9 +692,9 @@ explicitly declared in the `user-init-file' (.emacs)."
           ac-expand-on-auto-complete nil
           ac-quick-help-delay 0.3)
     (eval-when-compile (require 'cc-mode))
-    (define-key c-mode-base-map (kbd "M-/") 'ac-complete-clang))
+    (define-key c-mode-base-map (kbd "M-/") #'ac-complete-clang))
 
-  (add-hook 'c-mode-common-hook 'auto-complete-c-mode-common-hook))
+  (add-hook 'c-mode-common-hook #'auto-complete-c-mode-common-hook))
 
 ;; go path, such that go-mode finds godef
 (let ((home (getenv "HOME")))
@@ -702,7 +702,7 @@ explicitly declared in the `user-init-file' (.emacs)."
     (add-to-list 'exec-path (concat home path))))
 
 ;; bash lint - http://skybert.net/emacs/bash-linting-in-emacs/
-(add-hook 'sh-mode-hook 'flycheck-mode)
+(add-hook 'sh-mode-hook #'flycheck-mode)
 
 (defun define-prettify-symbols ()
   (setq prettify-symbols-alist
@@ -722,12 +722,12 @@ explicitly declared in the `user-init-file' (.emacs)."
   (when org-inline-image-overlays
     (org-redisplay-inline-images)))
 
-(add-hook 'org-babel-after-execute-hook 'fix-inline-images)
+(add-hook 'org-babel-after-execute-hook #'fix-inline-images)
 
 (when (>= emacs-major-version 25)
   (eval-after-load 'bytecomp
     '(add-to-list 'byte-compile-not-obsolete-funcs
-                  'preceding-sexp)))
+                  #'preceding-sexp)))
 
 (require 'eval-sexp-fu)
 
@@ -739,7 +739,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                          slime-fancy
                          slime-highlight-edits
                          slime-quicklisp))
-  (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+  (add-hook 'slime-repl-mode-hook #'enable-paredit-mode)
   (dolist (mode '(turn-on-eval-sexp-fu-flash-mode
                   enable-paredit-mode
                   rainbow-delimiters-mode-enable
@@ -758,10 +758,10 @@ explicitly declared in the `user-init-file' (.emacs)."
                   turn-on-prettify-symbols-mode))
     (add-hook 'scheme-mode-hook mode t)))
 
-(add-hook 'eval-expression-minibuffer-setup-hook 'enable-paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eval-sexp-fu-flash-mode)
-(add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-(add-hook 'ielm-mode-hook 'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook #'turn-on-eval-sexp-fu-flash-mode)
+(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook #'enable-paredit-mode)
 
 (require 'modern-cpp-font-lock)
 (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
@@ -769,7 +769,7 @@ explicitly declared in the `user-init-file' (.emacs)."
 (projectile-mode 1)
 (which-key-mode 1)
 
-(global-set-key (kbd "<XF86Favorites>") 'ielm)
+(global-set-key (kbd "<XF86Favorites>") #'ielm)
 
 (progn
   (prefer-coding-system 'utf-8)
