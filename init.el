@@ -634,7 +634,6 @@ explicitly declared in the `user-init-file' (.emacs)."
                            markdown-mode
                            modern-cpp-font-lock
                            monky
-                           naquadah-theme
                            paredit
                            pretty-lambdada
                            project-explorer
@@ -643,7 +642,6 @@ explicitly declared in the `user-init-file' (.emacs)."
                            rst-mode
                            rust-mode
                            slime
-                           solarized-emacs
                            sx
                            toml-mode
                            volatile-highlights
@@ -655,7 +653,7 @@ explicitly declared in the `user-init-file' (.emacs)."
 
 ;; themes
 (defvar theme-tag (if (>= emacs-major-version 24)
-                      'doom-sourcerer-theme 'naquadah-theme))
+                      'doom-sourcerer-theme 'default-theme))
 
 (defun stc:load-theme (theme)
   "Load THEME with proper function."
@@ -664,13 +662,6 @@ explicitly declared in the `user-init-file' (.emacs)."
 (case theme-tag
   ('default-theme
     (set-face-background 'hl-line "gray95"))
-  ('solarized-theme
-   ;; (setq solarized-termcolors 256)
-   (stc:load-theme 'solarized-dark)
-   (set-face-background 'hl-line "gray15"))
-  ('naquadah-theme
-   ;; naquadah theme
-   (stc:load-theme 'naquadah))
   ('doom-sourcerer-theme
    (stc:load-theme 'doom-sourcerer))
   ('deeper-blue-theme
