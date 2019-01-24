@@ -584,7 +584,7 @@ The function assumes that the user set the variables
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
 
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
 (when (< emacs-major-version 24)
   ;; fake variable which is introduced in Emacs 24
@@ -616,6 +616,8 @@ explicitly declared in the `user-init-file' (.emacs)."
                            cc-mode
                            cider
                            dockerfile-mode
+                           doom-modeline
+                           doom-themes
                            el-get
                            elfeed
                            eval-sexp-fu
@@ -634,7 +636,6 @@ explicitly declared in the `user-init-file' (.emacs)."
                            monky
                            naquadah-theme
                            paredit
-                           powerline
                            pretty-lambdada
                            project-explorer
                            projectile
@@ -652,16 +653,9 @@ explicitly declared in the `user-init-file' (.emacs)."
 (stc:el-get-cleanup el-get-packages) ; local copy from master branch
 (el-get 'sync el-get-packages)
 
-(when (featurep 'powerline)
-  (custom-set-faces
-   '(mode-line
-     ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
-   '(mode-line-inactive
-     ((t (:foreground "#f9f9f9" :background "#666666" :box nil))))))
-
 ;; themes
 (defvar theme-tag (if (>= emacs-major-version 24)
-                      'deeper-blue-theme 'naquadah-theme))
+                      'doom-sourcerer-theme 'naquadah-theme))
 
 (defun stc:load-theme (theme)
   "Load THEME with proper function."
@@ -677,6 +671,8 @@ explicitly declared in the `user-init-file' (.emacs)."
   ('naquadah-theme
    ;; naquadah theme
    (stc:load-theme 'naquadah))
+  ('doom-sourcerer-theme
+   (stc:load-theme 'doom-sourcerer))
   ('deeper-blue-theme
    (stc:load-theme 'deeper-blue)))
 
