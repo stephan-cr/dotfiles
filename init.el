@@ -598,18 +598,6 @@ The function assumes that the user set the variables
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-(defun stc:el-get-cleanup (packages)
-  "Remove packages absent from the argument list 'packages.
-Useful, for example, when we want to remove all packages not
-explicitly declared in the `user-init-file' (.emacs)."
-  (let* ((packages-to-keep (el-get-dependencies
-                            (mapcar 'el-get-as-symbol packages)))
-         (packages-to-remove (set-difference
-                              (mapcar 'el-get-as-symbol
-                                      (el-get-list-package-names-with-status
-                                       "installed")) packages-to-keep)))
-    (mapc 'el-get-remove packages-to-remove)))
-
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
                          '(auto-complete-clang
@@ -648,7 +636,7 @@ explicitly declared in the `user-init-file' (.emacs)."
                            which-key
                            yaml-mode)
                          (mapcar 'el-get-source-name el-get-sources)))
-(stc:el-get-cleanup el-get-packages) ; local copy from master branch
+(el-get-cleanup el-get-packages)
 (el-get 'sync el-get-packages)
 
 ;; themes
