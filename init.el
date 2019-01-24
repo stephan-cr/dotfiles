@@ -663,7 +663,9 @@ explicitly declared in the `user-init-file' (.emacs)."
   ('default-theme
     (set-face-background 'hl-line "gray95"))
   ('doom-sourcerer-theme
-   (stc:load-theme 'doom-sourcerer))
+   (require 'doom-themes)
+   (stc:load-theme 'doom-sourcerer)
+   (doom-modeline-mode 1))
   ('deeper-blue-theme
    (stc:load-theme 'deeper-blue)))
 
