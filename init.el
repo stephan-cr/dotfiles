@@ -190,30 +190,30 @@ non-whitespace character"
   (browse-kill-ring-default-keybindings))
 
 ;; org mode
-(setq org-enforce-todo-checkbox-dependencies t)
-(setq org-enforce-todo-dependencies t)
+(setq org-enforce-todo-checkbox-dependencies t
+      org-enforce-todo-dependencies t)
 
 (eval-after-load 'org
   '(progn
-     (define-key org-mode-map (kbd "RET") 'org-return-indent)
+     (define-key org-mode-map (kbd "RET") #'org-return-indent)
 
      (defvar agenda-files (list "~/orgs/todo.org"))
-     (when (or (on-host "earth3") (on-host "earth7"))
+     (when (or (on-host "earth3") (on-host "earth4") (on-host "earth7"))
        (when agenda-files
          (setq org-agenda-files agenda-files))
        (global-set-key "\C-ca" #'org-agenda)
        (global-set-key "\C-cb" #'org-iswitchb)
        (global-set-key "\C-cl" #'org-store-link)
-       (setq org-directory "~/orgs/")
-       (setq org-default-notes-file (concat org-directory "notes.org"))
-       (setq org-capture-templates
+       (setq org-directory "~/orgs/"
+             org-default-notes-file (concat org-directory "notes.org")
+             org-capture-templates
              '(("t" "Note" entry (file+headline org-default-notes-file "Notes")
                 "* TODO %?\n  %i\n  %a")))
-       (define-key global-map "\C-cc" 'org-capture)
+       (define-key global-map "\C-cc" #'org-capture)
        (global-set-key [f5] #'org-display-inline-images)
-       (setq org-mobile-directory "~/mobileorg")
-       (setq org-mobile-inbox-for-pull (concat org-directory "from-mobile.org"))
-       (setq org-mobile-files '("todo.org")))
+       (setq org-mobile-directory "~/mobileorg"
+             org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")
+             org-mobile-files '("todo.org")))
 
      ;; define "scrartcl" KOMA document class for org mode latex export
      ;; we know that the initial first element of `org-export-latex-classes' is
@@ -225,15 +225,16 @@ non-whitespace character"
 
      ;; org babel mode
      (when (featurep 'ob)
-       (mapc 'require '(ob-C
-                        ob-R
-                        ob-dot
-                        ob-emacs-lisp
-                        ob-gnuplot
-                        ob-perl
-                        ob-python
-                        ob-ruby
-                        ob-sh))
+       (mapc #'require '(ob-C
+                         ob-R
+                         ob-dot
+                         ob-emacs-lisp
+                         ob-gnuplot
+                         ob-lisp
+                         ob-plantuml
+                         ob-python
+                         ob-scheme
+                         ob-sh))
        ;; set python coding to utf-8
        (setq org-babel-python-wrapper-method
              (concat "# -*- coding: utf-8 -*-\n"
@@ -248,8 +249,8 @@ non-whitespace character"
      ;; encryption and decryption of org entries with the tag :encrypt:
      (require 'org-crypt)
      (org-crypt-use-before-save-magic)
-     (setq org-tags-exclude-from-inheritance (quote ("encrypt")))
-     (setq org-crypt-key nil)))
+     (setq org-tags-exclude-from-inheritance (quote ("encrypt"))
+           org-crypt-key nil)))
 
 ;; erc
 (when (require 'erc nil 'noerror)
