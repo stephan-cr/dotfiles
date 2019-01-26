@@ -651,7 +651,6 @@ The function assumes that the user set the variables
   ('default-theme
     (set-face-background 'hl-line "gray95"))
   ('doom-sourcerer-theme
-   (require 'doom-themes)
    (stc:load-theme 'doom-sourcerer)
    (doom-modeline-mode 1))
   ('deeper-blue-theme
