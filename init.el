@@ -620,6 +620,7 @@ The function assumes that the user set the variables
                            json-mode
                            lsp-mode
                            lsp-ui
+                           magit
                            markdown-mode
                            modern-cpp-font-lock
                            monky
