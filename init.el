@@ -725,8 +725,11 @@ The function assumes that the user set the variables
 
 (when (and (require 'geiser-chicken nil 'noerror) (featurep 'geiser))
   (add-to-list 'geiser-chicken-load-path
-               (concat (getenv "HOME") "/lib/chicken/8"))
+               (concat (getenv "HOME") "/lib/chicken/8")))
+
+(when (featurep 'geiser)
   (setq geiser-active-implementations '(chez chicken guile mit)
+        geiser-default-implementation 'guile
         geiser-repl-skip-version-check-p t)
   (dolist (mode '(enable-paredit-mode
                   define-prettify-symbols
