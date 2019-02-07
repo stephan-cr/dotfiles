@@ -757,3 +757,5 @@ The function assumes that the user set the variables
   (set-default-coding-systems 'utf-8)
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8))
+
+(global-set-key (kbd "C-x g") #'magit-status)
