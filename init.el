@@ -737,7 +737,9 @@ The function assumes that the user set the variables
                   rainbow-delimiters-mode-enable
                   turn-on-geiser-mode
                   turn-on-prettify-symbols-mode))
-    (add-hook 'scheme-mode-hook mode t)))
+    (add-hook 'scheme-mode-hook mode t))
+  (add-hook 'geiser-repl-mode-hook #'enable-paredit-mode)
+  (add-hook 'geiser-repl-mode-hook #'rainbow-delimiters-mode-enable))
 
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook #'turn-on-eval-sexp-fu-flash-mode)
