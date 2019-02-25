@@ -759,3 +759,6 @@ The function assumes that the user set the variables
   (set-keyboard-coding-system 'utf-8))
 
 (global-set-key (kbd "C-x g") #'magit-status)
+
+(require 'monky)
+(setq monky-process-type 'cmdserver)
