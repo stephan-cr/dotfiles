@@ -743,6 +743,8 @@ The function assumes that the user set the variables
     '(add-to-list 'byte-compile-not-obsolete-funcs
                   #'preceding-sexp)))
 
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode-enable)
+
 (require 'eval-sexp-fu)
 
 (when (featurep 'slime)
@@ -754,6 +756,7 @@ The function assumes that the user set the variables
                          slime-highlight-edits
                          slime-quicklisp))
   (add-hook 'slime-repl-mode-hook #'enable-paredit-mode)
+  (add-hook 'slime-repl-mode-hook #'rainbow-delimiters-mode-enable)
   (dolist (mode '(turn-on-eval-sexp-fu-flash-mode
                   enable-paredit-mode
                   rainbow-delimiters-mode-enable
@@ -770,7 +773,6 @@ The function assumes that the user set the variables
         geiser-repl-skip-version-check-p t)
   (dolist (mode '(enable-paredit-mode
                   define-prettify-symbols
-                  rainbow-delimiters-mode-enable
                   turn-on-geiser-mode
                   turn-on-prettify-symbols-mode))
     (add-hook 'scheme-mode-hook mode t))
