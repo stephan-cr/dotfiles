@@ -32,12 +32,47 @@
   (set-face-background 'hl-line "gray95")
   (set-face-attribute 'default nil :height 120))
 
+(require 'cl-generic)
+(require 'cl-macs)
+
+(cl-defgeneric configuration-lookup (self sym))
+
+;; old method to load configuration data
+(cl-defstruct (hash-table-configuration
+               (:constructor hash-table-configuration-create)
+               (:copier nil)) ()
+               ht)
+(cl-defmethod configuration-lookup ((self hash-table-configuration)
+                                    (sym symbol))
+  (gethash
+   (string-remove-prefix ":" (symbol-name sym))
+   (hash-table-configuration-ht self)))
+
 (require 'json)
 (defvar user-config-filename (concat user-emacs-directory "user-config.json"))
-(defvar user-config nil)
+(defvar user-config)
 (when (file-exists-p user-config-filename)
-  (setq user-config (let ((json-object-type 'hash-table))
-                      (json-read-file user-config-filename))))
+  (setq user-config
+        (hash-table-configuration-create
+         :ht (let ((json-object-type 'hash-table))
+               (json-read-file user-config-filename)))))
+
+;; new method to load configuration data
+(cl-defstruct (plist-configuration
+               (:constructor plist-configuration-create)
+               (:copier nil)) ()
+              plist)
+(cl-defmethod configuration-lookup ((self plist-configuration)
+                                    (sym symbol))
+  (plist-get (plist-configuration-plist self) sym))
+
+(let ((filename (concat user-emacs-directory "user-config.elconf"))
+      config-plist)
+  (setq config-plist
+        (with-temp-buffer
+          (insert-file-contents filename)
+          (read (current-buffer))))
+  (setq user-config (plist-configuration-create :plist config-plist)))
 
 ;; indention style and end of line whitespace handling
 (setq-default tab-width 2)
@@ -260,7 +295,7 @@ non-whitespace character"
 
 ;; jabber
 (defvar jabber-resource-name
-  (when user-config (gethash "jabber-resource-name" user-config)))
+  (when user-config (configuration-lookup user-config :jabber-resource-name)))
 
 (eval-after-load 'jabber
   '(progn
@@ -368,7 +403,8 @@ non-whitespace character"
        (setq gnus-select-method `(nnimap
                                   "default"
                                   (nnimap-address
-                                   ,(gethash "imap-host-address" user-config))
+                                   ,(configuration-lookup user-config
+                                                          :imap-host-address))
                                   (nnimap-server-port "imaps")
                                   (nnimap-stream tls))))
      (eval-when-compile (require 'gnus-sum))
@@ -404,15 +440,15 @@ non-whitespace character"
   '(progn
      (setq message-send-mail-function 'message-send-mail-with-sendmail
            message-sendmail-extra-arguments
-           `("-a" ,(gethash "mail-msmtp-account" user-config)))
+           `("-a" ,(configuration-lookup user-config :mail-msmtp-account)))
 
      ;; kill message buffer after it was successfully send
      (setq message-kill-buffer-on-exit t)))
 
 (when user-config
-  (setq mail-host-address (gethash "mail-host-address" user-config)
-        user-full-name (gethash "user-full-name" user-config)
-        user-mail-address (gethash "user-mail-address" user-config)))
+  (setq mail-host-address (configuration-lookup user-config :mail-host-address)
+        user-full-name (configuration-lookup user-config :user-full-name)
+        user-mail-address (configuration-lookup user-config :user-mail-address)))
 
 ;; override `message-expand-name' from message.el to lookup aliases from mutt
 ;; when composing messages
