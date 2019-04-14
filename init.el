@@ -638,6 +638,7 @@ The function assumes that the user set the variables
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
                          '(auto-complete-clang
+                           bnf-mode
                            cc-mode
                            cider
                            dockerfile-mode
