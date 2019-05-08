@@ -37,27 +37,7 @@
 
 (cl-defgeneric configuration-lookup (self sym))
 
-;; old method to load configuration data
-(cl-defstruct (hash-table-configuration
-               (:constructor hash-table-configuration-create)
-               (:copier nil)) ()
-               ht)
-(cl-defmethod configuration-lookup ((self hash-table-configuration)
-                                    (sym symbol))
-  (gethash
-   (string-remove-prefix ":" (symbol-name sym))
-   (hash-table-configuration-ht self)))
-
-(require 'json)
-(defvar user-config-filename (concat user-emacs-directory "user-config.json"))
-(defvar user-config)
-(when (file-exists-p user-config-filename)
-  (setq user-config
-        (hash-table-configuration-create
-         :ht (let ((json-object-type 'hash-table))
-               (json-read-file user-config-filename)))))
-
-;; new method to load configuration data
+;; load configuration
 (cl-defstruct (plist-configuration
                (:constructor plist-configuration-create)
                (:copier nil)) ()
