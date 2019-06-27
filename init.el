@@ -653,6 +653,7 @@ The function assumes that the user set the variables
                            toml-mode
                            volatile-highlights
                            which-key
+                           wilmersdorf-theme
                            yaml-mode)
                          (mapcar 'el-get-source-name el-get-sources)))
 (el-get-cleanup el-get-packages)
