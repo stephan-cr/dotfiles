@@ -142,6 +142,13 @@
 ;; ibuffer
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
+;; ido mode
+(require 'ido)
+(ido-mode t)
+(setq ido-use-filename-at-point t
+      ido-case-fold nil)
+(define-key ido-file-completion-map "\C-k" nil)
+
 ;; use aspell instead of ispell
 (setq ispell-program-name "aspell")
 
