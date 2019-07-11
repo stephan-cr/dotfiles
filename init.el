@@ -712,7 +712,12 @@ The function assumes that the user set the variables
         '(("lambda" . ?λ)
           ("->" . ?→)
           ("<=" . ?≤)
-          (">=" . ?≥))))
+          (">=" . ?≥)
+          ("and" . ?∧)
+          ("or" . ?∨)
+          ("'()" . ?∅)
+          ("sqrt" . ?√)
+          ("inf" . ?∞))))
 
 ;; http://seclists.org/oss-sec/2017/q3/422
 (eval-after-load "enriched"
