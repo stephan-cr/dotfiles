@@ -145,8 +145,7 @@
 ;; ido mode
 (require 'ido)
 (ido-mode t)
-(setq ido-use-filename-at-point t
-      ido-case-fold nil)
+(setq ido-case-fold nil)
 (define-key ido-file-completion-map "\C-k" nil)
 
 ;; use aspell instead of ispell
