@@ -247,7 +247,7 @@ non-whitespace character"
 
      ;; org babel mode
      (when (featurep 'ob)
-       (mapc #'require '(ob-C
+       (mapc #'require `(ob-C
                          ob-R
                          ob-dot
                          ob-emacs-lisp
@@ -256,7 +256,7 @@ non-whitespace character"
                          ob-plantuml
                          ob-python
                          ob-scheme
-                         ob-sh))
+                         ,(if (>= emacs-major-version 26) 'ob-shell 'ob-sh)))
        ;; set python coding to utf-8
        (setq org-babel-python-wrapper-method
              (concat "# -*- coding: utf-8 -*-\n"
@@ -535,8 +535,9 @@ The function assumes that the user set the variables
   (substitute-key-definition 'ess-smart-underscore 'self-insert-command
                              ess-mode-map)
 
-  (require 'ess-eldoc)
-  (add-hook 'inferior-ess-mode-hook #'ess-use-eldoc))
+  (if (require 'ess-eldoc nil 'noerror)
+      (add-hook 'inferior-ess-mode-hook #'ess-use-eldoc)
+    (setq ess-use-eldoc t)))
 
 ;; compilation
 (setq compilation-auto-jump-to-first-error t
