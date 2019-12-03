@@ -661,7 +661,9 @@ The function assumes that the user set the variables
                            volatile-highlights
                            which-key
                            wilmersdorf-theme
-                           yaml-mode)
+                           yaml-mode
+                           yasnippet
+                           yasnippet-snippets)
                          (mapcar 'el-get-source-name el-get-sources)))
 (el-get-cleanup el-get-packages)
 (el-get 'sync el-get-packages)
