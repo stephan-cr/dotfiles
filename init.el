@@ -646,6 +646,7 @@ The function assumes that the user set the variables
                            lsp-ui
                            magit
                            markdown-mode
+                           meson-mode
                            modern-cpp-font-lock
                            monky
                            paredit
