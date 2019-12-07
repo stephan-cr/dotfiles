@@ -799,3 +799,5 @@ The function assumes that the user set the variables
 
 (require 'monky)
 (setq monky-process-type 'cmdserver)
+
+(volatile-highlights-mode 1)
