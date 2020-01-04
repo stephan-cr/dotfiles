@@ -1,1 +1,6 @@
 set constantshow
+set historylog
+set morespace
+set nohelp
+set positionlog
+set smooth
