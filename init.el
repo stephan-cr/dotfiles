@@ -524,8 +524,13 @@ The function assumes that the user set the variables
 (add-hook 'python-mode-hook #'subword-mode)
 (add-hook 'python-mode-hook #'turn-on-eldoc-mode)
 
-(setq python-shell-interpreter "python3"
-      python-shell-completion-native-disabled-interpreters '("python3")) ; workaround
+(setq python-shell-interpreter "python3")
+(when (= emacs-major-version 25)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters
+                                        ; doesn't exist before Emacs
+                                        ; 25 and workaround is not
+                                        ; required after 25
+               "python3")) ; workaround
 
 (when (require 'ess nil 'noerror)
   (setq ess-ask-for-ess-directory nil
