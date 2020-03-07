@@ -22,7 +22,7 @@ ZSH_THEME="nebirhos"
 # DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(debian git python cargo rust)
+plugins=(colored-man-pages debian git mercurial python cargo rust)
 
 source $ZSH/oh-my-zsh.sh
 
