@@ -817,3 +817,5 @@ The function assumes that the user set the variables
 
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x C-b") #'helm-buffers-list)
+
+(setq doom-modeline-python-executable "python3")
