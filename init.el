@@ -636,6 +636,7 @@ The function assumes that the user set the variables
                            dockerfile-mode
                            doom-modeline
                            doom-themes
+                           eglot
                            el-get
                            elfeed
                            eval-sexp-fu
