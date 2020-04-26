@@ -17,6 +17,9 @@
 ;; reduce the frequency of garbage collection
 (setq gc-cons-threshold (* 4 1024 1024))
 
+;; increase the amount of data which Emacs reads from the process
+(setq read-process-output-max (* 1024 1024))
+
 ;; no menu bar
 (menu-bar-mode -1)
 
@@ -806,5 +809,9 @@ The function assumes that the user set the variables
 
 (setq doom-modeline-python-executable "python3")
 
+;;; lsp setup
 (require 'lsp-clients)
-(setq lsp-clients-clangd-executable "clangd-7")
+
+;; clangd setup
+(let ((clangd-major 7))
+  (setq lsp-clients-clangd-executable (format "clangd-%d" clangd-major)))
