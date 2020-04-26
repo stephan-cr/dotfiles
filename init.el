@@ -574,10 +574,10 @@ The function assumes that the user set the variables
 ;; don't place customizations directly into init.el
 (setq custom-file (concat user-emacs-directory "custom.el"))
 
-;; newline and indent for some programming modes
-(mapc 'require '(cc-mode perl-mode python))
-(dolist (x (list c-mode-map c++-mode-map perl-mode-map python-mode-map))
-  (define-key x (kbd "RET") #'newline-and-indent))
+;; newline and indent for all prog modes, but don't interfere with
+;; electric-mode
+(unless (featurep 'electric)
+  (define-key prog-mode-map (kbd "RET") #'newline-and-indent))
 
 ;; sql-mode settings
 (eval-after-load 'sql
@@ -633,7 +633,6 @@ The function assumes that the user set the variables
 (defvar el-get-packages (append
                          '(auto-complete-clang
                            bnf-mode
-                           cc-mode
                            cider
                            dockerfile-mode
                            doom-modeline
