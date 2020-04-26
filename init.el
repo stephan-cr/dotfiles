@@ -631,9 +631,9 @@ The function assumes that the user set the variables
 
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
-                         '(auto-complete-clang
-                           bnf-mode
+                         '(bnf-mode
                            cider
+                           company-mode
                            dockerfile-mode
                            doom-modeline
                            doom-themes
@@ -700,22 +700,6 @@ The function assumes that the user set the variables
    (doom-modeline-mode 1))
   ('deeper-blue-theme
    (stc:load-theme 'deeper-blue)))
-
-;;; auto completion
-;; auto completion mode is not enabled by default
-;; it can be enable with `auto-complete-mode`
-(when (and (require 'auto-complete nil 'noerror)
-           (require 'auto-complete-clang nil 'noerror))
-  (setq clang-completion-suppress-error t)
-
-  (defun auto-complete-c-mode-common-hook ()
-    (setq ac-auto-start nil
-          ac-expand-on-auto-complete nil
-          ac-quick-help-delay 0.3)
-    (eval-when-compile (require 'cc-mode))
-    (define-key c-mode-base-map (kbd "M-/") #'ac-complete-clang))
-
-  (add-hook 'c-mode-common-hook #'auto-complete-c-mode-common-hook))
 
 ;; go path, such that go-mode finds godef
 (let ((home (getenv "HOME")))
@@ -821,3 +805,6 @@ The function assumes that the user set the variables
 (global-set-key (kbd "C-x C-b") #'helm-buffers-list)
 
 (setq doom-modeline-python-executable "python3")
+
+(require 'lsp-clients)
+(setq lsp-clients-clangd-executable "clangd-7")
