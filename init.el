@@ -683,7 +683,7 @@ The function assumes that the user set the variables
 
 ;; themes
 (defvar theme-tag (if (>= emacs-major-version 24)
-                      'doom-molokai-theme 'default-theme))
+                      'doom-opera-theme 'default-theme))
 
 (defun stc:load-theme (theme)
   "Load THEME with proper function."
@@ -692,14 +692,8 @@ The function assumes that the user set the variables
 (case theme-tag
   ('default-theme
     (set-face-background 'hl-line "gray95"))
-  ('doom-sourcerer-theme
-   (stc:load-theme 'doom-sourcerer)
-   (doom-modeline-mode 1))
-  ('doom-wilmersdorf-theme
-   (stc:load-theme 'doom-wilmersdorf)
-   (doom-modeline-mode 1))
-  ('doom-molokai-theme
-   (stc:load-theme 'doom-molokai)
+  ('doom-opera-theme
+   (stc:load-theme 'doom-opera)
    (doom-modeline-mode 1))
   ('deeper-blue-theme
    (stc:load-theme 'deeper-blue)))
