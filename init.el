@@ -635,7 +635,6 @@ The function assumes that the user set the variables
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
                          '(bnf-mode
-                           cider
                            company-mode
                            dockerfile-mode
                            doom-modeline
@@ -647,6 +646,7 @@ The function assumes that the user set the variables
                            flycheck
                            flymake-fringe-icons
                            geiser
+                           ghub
                            go-mode
                            groovy-emacs-mode ; for Jenkins pipelines
                            helm
@@ -673,7 +673,6 @@ The function assumes that the user set the variables
                            toml-mode
                            volatile-highlights
                            which-key
-                           wilmersdorf-theme
                            yaml-mode
                            yasnippet
                            yasnippet-snippets)
