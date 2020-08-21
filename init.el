@@ -656,6 +656,7 @@ The function assumes that the user set the variables
                            json-mode
                            lsp-mode
                            lsp-ui
+                           lua-mode
                            magit
                            markdown-mode
                            meson-mode
