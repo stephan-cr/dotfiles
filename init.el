@@ -684,7 +684,7 @@ The function assumes that the user set the variables
 
 ;; themes
 (defvar theme-tag (if (>= emacs-major-version 24)
-                      'doom-opera-theme 'default-theme))
+                      'doom-acario-light-theme 'default-theme))
 
 (defun stc:load-theme (theme)
   "Load THEME with proper function."
@@ -695,6 +695,9 @@ The function assumes that the user set the variables
     (set-face-background 'hl-line "gray95"))
   ('doom-opera-theme
    (stc:load-theme 'doom-opera)
+   (doom-modeline-mode 1))
+  ('doom-acario-light-theme
+   (stc:load-theme 'doom-acario-light)
    (doom-modeline-mode 1))
   ('deeper-blue-theme
    (stc:load-theme 'deeper-blue)))
