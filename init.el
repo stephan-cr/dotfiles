@@ -285,23 +285,6 @@ non-whitespace character"
   (setq erc-server "irc.freenode.net")
   (setq erc-port 6667))
 
-;; jabber
-(defvar jabber-resource-name
-  (when user-config (configuration-lookup user-config :jabber-resource-name)))
-
-(eval-after-load 'jabber
-  '(progn
-     (when jabber-resource-name
-       (setq jabber-account-list
-             (add-to-list 'jabber-account-list jabber-resource-name)))
-     (eval-when-compile (require 'jabber-roster))
-     (setq jabber-roster-show-title nil)
-     (setq jabber-roster-show-bindings nil)
-     (setq jabber-show-offline-contacts nil)
-     ;; turn off fsm debug buffer used by jabber mode
-     (eval-when-compile (require 'fsm))
-     (setq fsm-debug nil)))
-
 ;; emms
 (eval-after-load 'emms
   '(progn
