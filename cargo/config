@@ -1,0 +1,14 @@
+[cargo-new]
+vcs = "git"
+
+[target.arm-unknown-linux-gnueabihf]
+linker = "arm-linux-gnueabihf-gcc"
+
+[target.armv7-unknown-linux-gnueabihf]
+linker = "arm-linux-gnueabihf-gcc"
+
+[http]
+#ssl-version = "tlsv1.3"     # TLS version to use
+ssl-version.max = "tlsv1.3" # maximum TLS version
+ssl-version.min = "tlsv1.2" # minimum TLS version
+multiplexing = true         # HTTP/2 multiplexing
