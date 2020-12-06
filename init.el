@@ -654,7 +654,6 @@ The function assumes that the user set the variables
                            rst-mode
                            rust-mode
                            slime
-                           sx
                            toml-mode
                            volatile-highlights
                            which-key
