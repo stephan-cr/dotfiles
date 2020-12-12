@@ -1,0 +1,4 @@
+(:name jsonrcp
+       :description "JSON-RPC library"
+       :type elpa
+       :website "https://elpa.gnu.org/packages/jsonrpc.html")
