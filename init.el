@@ -11,6 +11,10 @@
 (when (< emacs-major-version 27)
   (package-initialize))
 
+;; fix https issues
+;; https://emacs.stackexchange.com/questions/51721/failed-to-download-gnu-archive
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 (defun on-host (hostname)
   "Get the current HOSTNAME on which this instance is running."
   (string-equal (car (split-string (system-name) "\\.")) hostname))
