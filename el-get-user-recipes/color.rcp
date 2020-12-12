@@ -1,5 +1,0 @@
-(:name color
-       :description "functions for manipulating colors"
-       :builtin "24.3"
-       :type http
-       :url "http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/color.el")

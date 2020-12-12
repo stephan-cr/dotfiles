@@ -1,6 +1,0 @@
-(:name wilmersdorf-theme
-       :description "Emacs theme with dark subtle syntax highlighting"
-       :type github
-       :pkgname "ianpan870102/Emacs-Wilmersdorf-Theme"
-       :prepare (add-to-list 'custom-theme-load-path
-                             default-directory))
