@@ -795,7 +795,7 @@ The function assumes that the user set the variables
 (setq doom-modeline-python-executable "python3")
 
 ;;; lsp setup
-(require 'lsp-clients)
+(require 'lsp-clangd)
 
 ;; clangd setup
 (let ((clangd-major 7))
