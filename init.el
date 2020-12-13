@@ -635,6 +635,7 @@ The function assumes that the user set the variables
                            flymake-fringe-icons
                            geiser
                            ghub
+                           glsl-mode
                            go-mode
                            groovy-emacs-mode ; for Jenkins pipelines
                            helm
