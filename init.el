@@ -632,7 +632,6 @@ The function assumes that the user set the variables
                            elfeed
                            eval-sexp-fu
                            flycheck
-                           flymake-fringe-icons
                            geiser
                            ghub
                            glsl-mode
