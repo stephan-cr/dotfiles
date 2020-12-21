@@ -9,6 +9,7 @@ This repository contains some of my dotfiles for:
 - [newsbeuter](http://newsbeuter.org/)
 - [pylint](http://www.logilab.org/857)
 - [R](http://www.r-project.org/)
+- [sway](https://swaywm.org/)
 - [tmux](http://tmux.sourceforge.net/)
 - X
 - [zsh](http://www.zsh.org/)
