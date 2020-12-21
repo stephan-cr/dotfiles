@@ -12,3 +12,6 @@ linker = "arm-linux-gnueabihf-gcc"
 ssl-version.max = "tlsv1.3" # maximum TLS version
 ssl-version.min = "tlsv1.2" # minimum TLS version
 multiplexing = true         # HTTP/2 multiplexing
+
+[build]
+rustc-wrapper = "sccache"
