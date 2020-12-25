@@ -559,7 +559,7 @@ The function assumes that the user set the variables
   (add-hook 'python-mode-hook #'flymake-mode-wrapper))
 
 ;; shows the function name we are in most programming modes
-(which-func-mode 1)
+(which-function-mode 1)
 
 ;; don't place customizations directly into init.el
 (setq custom-file (concat user-emacs-directory "custom.el"))
