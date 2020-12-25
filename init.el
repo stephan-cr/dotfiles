@@ -205,7 +205,6 @@ non-whitespace character"
 (global-set-key (kbd "C-c w") #'kill-forward-whitespace)
 
 ;; highlight current line
-(eval-and-compile (require 'cl)) ; for reduce
 (defun is-suitable-color-term ()
   (let ((suitable-color-term-list '("rxvt" "xterm-256color"))
         (current-term-name (getenv "TERM")))
