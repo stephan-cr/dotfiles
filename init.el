@@ -675,7 +675,7 @@ The function assumes that the user set the variables
   "Load THEME with proper function."
   (if (>= emacs-major-version 24) (load-theme theme t) (load-theme theme)))
 
-(case theme-tag
+(cl-case theme-tag
   ('default-theme
     (set-face-background 'hl-line "gray95"))
   ('doom-opera-theme
