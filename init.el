@@ -772,6 +772,8 @@ The function assumes that the user set the variables
 (projectile-mode 1)
 (which-key-mode 1)
 
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 (global-set-key (kbd "<XF86Favorites>") #'ielm)
 
 (progn
