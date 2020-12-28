@@ -623,6 +623,7 @@ The function assumes that the user set the variables
 (defvar el-get-packages (append
                          '(bnf-mode
                            company-mode
+                           diff-hl
                            dockerfile-mode
                            doom-modeline
                            doom-themes
@@ -800,3 +801,5 @@ The function assumes that the user set the variables
 ;; clangd setup
 (let ((clangd-major 7))
   (setq lsp-clients-clangd-executable (format "clangd-%d" clangd-major)))
+
+(global-diff-hl-mode)
