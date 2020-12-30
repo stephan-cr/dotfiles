@@ -1,5 +1,0 @@
-(:name eglot
-       :description "Emacs Polyglot: an Emacs LSP client that stays out of your way"
-       :depends (flymake jsonrpc)
-       :type github
-       :pkgname "joaotavora/eglot")
