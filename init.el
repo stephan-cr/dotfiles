@@ -796,7 +796,18 @@ The function assumes that the user set the variables
 (setq doom-modeline-python-executable "python3")
 
 ;;; lsp setup
+(require 'lsp)
 (require 'lsp-clangd)
+
+(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+;; according to https://github.com/emacs-lsp/lsp-mode/issues/1532 the
+;; following merely for which-key integration and doesn't define any
+;; key map
+(setq lsp-keymap-prefix "C-c l") ; according to
+(setq lsp-enable-which-key-integration t)
+(setq lsp-auto-guess-root t)
+
+(add-hook 'rust-mode-hook #'lsp-deferred)
 
 ;; clangd setup
 (let ((clangd-major 7))
