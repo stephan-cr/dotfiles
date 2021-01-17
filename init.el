@@ -214,11 +214,6 @@ non-whitespace character"
   (global-hl-line-mode t)
   (set-face-background 'hl-line "gray20"))
 
-;; navigating in the kill-ring
-;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
-(when (require 'browse-kill-ring nil 'noerror)
-  (browse-kill-ring-default-keybindings))
-
 ;; org mode
 (setq org-enforce-todo-checkbox-dependencies t
       org-enforce-todo-dependencies t)
@@ -245,13 +240,14 @@ non-whitespace character"
              org-mobile-inbox-for-pull (concat org-directory "from-mobile.org")
              org-mobile-files '("todo.org")))
 
-     ;; define "scrartcl" KOMA document class for org mode latex export
-     ;; we know that the initial first element of `org-export-latex-classes' is
-     ;; "article", we use it to define "scrartcl" in a convenient way
-     (when (require 'org-latex nil 'noerror)
-       (add-to-list 'org-export-latex-classes
+     ;; define "scrartcl" KOMA document class for org mode latex
+     ;; export we know that the initial first element of
+     ;; `org-latex-classes' is "article", we use it to define
+     ;; "scrartcl" in a convenient way
+     (when (require 'ox-latex nil 'noerror)
+       (add-to-list 'org-latex-classes
                     (append '("scrartcl" "\\documentclass[11pt]{scrartcl}")
-                            (cddr (car org-export-latex-classes)))))
+                            (cddr (car org-latex-classes)))))
 
      ;; org babel mode
      (when (featurep 'ob)
@@ -622,6 +618,8 @@ The function assumes that the user set the variables
 (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
 (defvar el-get-packages (append
                          '(bnf-mode
+                           browse-kill-ring
+                           cmake-mode
                            company-mode
                            diff-hl
                            dockerfile-mode
@@ -668,6 +666,11 @@ The function assumes that the user set the variables
                          (mapcar 'el-get-source-name el-get-sources)))
 (el-get-cleanup el-get-packages)
 (el-get 'sync el-get-packages)
+
+;; navigating in the kill-ring
+;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
+(when (require 'browse-kill-ring) ;; browse-kill-ring seems to be gone
+  (browse-kill-ring-default-keybindings))
 
 ;; themes
 (defvar theme-tag (if (>= emacs-major-version 24)
