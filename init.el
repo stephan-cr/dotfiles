@@ -789,10 +789,11 @@ The function assumes that the user set the variables
 (require 'modern-cpp-font-lock)
 (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
 
+;;; projectile setup
 (projectile-mode 1)
-(which-key-mode 1)
-
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(which-key-mode 1)
 
 (global-set-key (kbd "<XF86Favorites>") #'ielm)
 
@@ -802,7 +803,10 @@ The function assumes that the user set the variables
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8))
 
+;;; magit setup
 (global-set-key (kbd "C-x g") #'magit-status)
+(add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
+(add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 
 (require 'monky)
 (setq monky-process-type 'cmdserver)
@@ -822,7 +826,7 @@ The function assumes that the user set the variables
 ;; according to https://github.com/emacs-lsp/lsp-mode/issues/1532 the
 ;; following merely for which-key integration and doesn't define any
 ;; key map
-(setq lsp-keymap-prefix "C-c l") ; according to
+(setq lsp-keymap-prefix "C-c l")
 (setq lsp-enable-which-key-integration t)
 (setq lsp-auto-guess-root t)
 
