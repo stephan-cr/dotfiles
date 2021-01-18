@@ -607,6 +607,7 @@ The function assumes that the user set the variables
   ;; fake variable which is introduced in Emacs 24
   (defvar custom-theme-load-path nil))
 
+;;; el-get setup
 (setq el-get-github-default-url-type 'https) ; for some reason http does not work anymore (as of 07-01-2014)
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -748,6 +749,7 @@ The function assumes that the user set the variables
 
 (require 'eval-sexp-fu)
 
+;;; slime setup
 (when (featurep 'slime)
   (require 'slime-highlight-edits)
   (require 'slime-quicklisp)
@@ -764,6 +766,7 @@ The function assumes that the user set the variables
                   slime-highlight-edits-mode))
     (add-hook 'slime-mode-hook mode t)))
 
+;;; geiser setup
 (when (and (require 'geiser-chicken nil 'noerror) (featurep 'geiser))
   (add-to-list 'geiser-chicken-load-path
                (concat (getenv "HOME") "/lib/chicken/8")))
@@ -792,6 +795,7 @@ The function assumes that the user set the variables
 (projectile-mode 1)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
+;;; which-key setup
 (which-key-mode 1)
 
 (global-set-key (kbd "<XF86Favorites>") #'ielm)
@@ -807,11 +811,14 @@ The function assumes that the user set the variables
 (add-hook 'magit-pre-refresh-hook #'diff-hl-magit-pre-refresh)
 (add-hook 'magit-post-refresh-hook #'diff-hl-magit-post-refresh)
 
+;;; monky setup
 (require 'monky)
 (setq monky-process-type 'cmdserver)
 
+;;; volatile highlights setup
 (volatile-highlights-mode 1)
 
+;;; helm setup
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x C-b") #'helm-buffers-list)
 
@@ -823,8 +830,8 @@ The function assumes that the user set the variables
 
 (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
 ;; according to https://github.com/emacs-lsp/lsp-mode/issues/1532 the
-;; following merely for which-key integration and doesn't define any
-;; key map
+;; following is merely for which-key integration and doesn't define
+;; any key map
 (setq lsp-keymap-prefix "C-c l")
 (setq lsp-enable-which-key-integration t)
 (setq lsp-auto-guess-root t)
@@ -835,4 +842,5 @@ The function assumes that the user set the variables
 (let ((clangd-major 7))
   (setq lsp-clients-clangd-executable (format "clangd-%d" clangd-major)))
 
+;;; diff-hl setup
 (global-diff-hl-mode)
