@@ -325,18 +325,6 @@ non-whitespace character"
   (global-set-key (kbd "<XF86AudioPlay>") #'emms-start)
   (global-set-key (kbd "<XF86AudioStop>") #'emms-stop))
 
-(defun do-initial-window-split ()
-  "Do a initial split of windows."
-  (interactive)
-  (split-window-horizontally)
-  (next-multiframe-window)
-  (split-window-vertically)
-  (split-window-vertically)
-  (split-window-horizontally)
-  (previous-multiframe-window))
-
-(global-set-key [f9] #'do-initial-window-split)
-
 ;; http://stringofbits.net/2009/08/emacs-23-dbus-and-libnotify/
 ;; with slight modifications by me
 (when (and (require 'dbus nil 'noerror) (eq window-system 'x))
