@@ -264,8 +264,8 @@ non-whitespace character"
        ;; set python coding to utf-8
        (setq org-babel-python-wrapper-method
              (concat "# -*- coding: utf-8 -*-\n"
-                     org-babel-python-wrapper-method))
-       (when (>= emacs-major-version 24) (setq org-src-fontify-natively t)))
+                     org-babel-python-wrapper-method)
+             org-src-fontify-natively t))
 
      ;; http://sachachua.com/blog/2012/12/emacs-strike-through-headlines-for-done-tasks-in-org/
      (setq org-fontify-done-headline t)
