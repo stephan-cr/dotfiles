@@ -603,10 +603,6 @@ The function assumes that the user set the variables
 
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
-(when (< emacs-major-version 24)
-  ;; fake variable which is introduced in Emacs 24
-  (defvar custom-theme-load-path nil))
-
 ;;; el-get setup
 (setq el-get-github-default-url-type 'https) ; for some reason http does not work anymore (as of 07-01-2014)
 (unless (require 'el-get nil 'noerror)
@@ -673,24 +669,8 @@ The function assumes that the user set the variables
   (browse-kill-ring-default-keybindings))
 
 ;; themes
-(defvar theme-tag (if (>= emacs-major-version 24)
-                      'doom-acario-light-theme 'default-theme))
-
-(defun stc:load-theme (theme)
-  "Load THEME with proper function."
-  (if (>= emacs-major-version 24) (load-theme theme t) (load-theme theme)))
-
-(cl-case theme-tag
-  ('default-theme
-    (set-face-background 'hl-line "gray95"))
-  ('doom-opera-theme
-   (stc:load-theme 'doom-opera)
-   (doom-modeline-mode 1))
-  ('doom-acario-light-theme
-   (stc:load-theme 'doom-acario-light)
-   (doom-modeline-mode 1))
-  ('deeper-blue-theme
-   (stc:load-theme 'deeper-blue)))
+(load-theme 'doom-palenight t)
+(doom-modeline-mode 1)
 
 ;; go path, such that go-mode finds godef
 (let ((home (getenv "HOME")))
