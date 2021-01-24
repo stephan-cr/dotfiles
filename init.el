@@ -695,7 +695,9 @@ The function assumes that the user set the variables
 ;; go path, such that go-mode finds godef
 (let ((home (getenv "HOME")))
   (dolist (path '("/gocode/bin" "/go/bin"))
-    (add-to-list 'exec-path (concat home path))))
+    (let ((full-path (concat home path)))
+      (when (and (file-directory-p full-path) (not (member full-path exec-path)))
+        (add-to-list 'exec-path full-path)))))
 
 ;; bash lint - http://skybert.net/emacs/bash-linting-in-emacs/
 (add-hook 'sh-mode-hook #'flycheck-mode)
