@@ -65,10 +65,10 @@
   (setq user-config (plist-configuration-create :plist config-plist)))
 
 ;; indention style and end of line whitespace handling
-(setq-default tab-width 2)
-(setq-default indent-tabs-mode nil)
-(setq-default show-trailing-whitespace t)
-(setq-default indicate-empty-lines t)
+(setq-default tab-width 2
+              indent-tabs-mode nil
+              show-trailing-whitespace t
+              indicate-empty-lines t)
 
 (setq frame-title-format
       (list '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
@@ -125,9 +125,9 @@
 ;; http://tsengf.blogspot.com/2011/06/distinguish-buffers-of-same-filename-in.html
 ;; http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-(setq uniquify-after-kill-buffer-p t)
-(setq uniquify-ignore-buffers-re "^\\*")
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets
+      uniquify-after-kill-buffer-p t
+      uniquify-ignore-buffers-re "^\\*")
 
 ;; set browser to Firefox
 (require 'browse-url)
@@ -281,8 +281,8 @@ non-whitespace character"
 ;; erc
 (when (require 'erc nil 'noerror)
   (eval-when-compile (require 'erc))
-  (setq erc-server "irc.freenode.net")
-  (setq erc-port 6667))
+  (setq erc-server "irc.freenode.net"
+        erc-port 6667))
 
 ;; emms
 (eval-after-load 'emms
@@ -801,9 +801,9 @@ The function assumes that the user set the variables
 ;; according to https://github.com/emacs-lsp/lsp-mode/issues/1532 the
 ;; following is merely for which-key integration and doesn't define
 ;; any key map
-(setq lsp-keymap-prefix "C-c l")
-(setq lsp-enable-which-key-integration t)
-(setq lsp-auto-guess-root t)
+(setq lsp-keymap-prefix "C-c l"
+      lsp-enable-which-key-integration t
+      lsp-auto-guess-root t)
 
 (add-hook 'rust-mode-hook #'lsp-deferred)
 
