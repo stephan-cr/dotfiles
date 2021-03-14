@@ -51,3 +51,9 @@ fi
 
 # http://wiki.call-cc.org/man/4/Extensions#changing-repository-location
 export CHICKEN_REPOSITORY=~/lib/chicken/8
+
+if [[ "$HOST" == "earth5" ]] ; then
+    export ALSA_CARD=Generic
+    export MOZ_ENABLE_WAYLAND=1
+    export VDPAU_DRIVER=radeonsi
+fi
