@@ -21,7 +21,7 @@ def link(source_path, link_path):
     elif not file_exists:
         os.symlink(source_path, link_path)
 
-    elif file_exists and not (os.readlink(link_path) == source_path):
+    elif file_exists and not os.readlink(link_path) == source_path:
         os.symlink(source_path, link_path)
 
 

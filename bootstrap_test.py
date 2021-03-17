@@ -1,3 +1,5 @@
+"""Unittests for bootstrap"""
+
 import bootstrap
 
 
