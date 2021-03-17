@@ -1,3 +1,8 @@
+"""This script creates the initial symlinks to the configuration
+files.
+
+"""
+
 import json
 import os
 import os.path
@@ -27,7 +32,7 @@ def main():
         try:
             links = json.load(f)
         except ValueError as json_exception:
-            print >> sys.stderr, json_exception
+            print(json_exception, file=sys.stderr)
             sys.exit(1)
 
     for source, link_name in links.iteritems():
