@@ -2,6 +2,7 @@
 
 This repository contains some of my dotfiles for:
 
+- [Alacritty](https://github.com/alacritty/alacritty)
 - [Emacs](http://www.gnu.org/software/emacs/)
 - Irb
 - [mercurial](http://mercurial.selenic.com/)
