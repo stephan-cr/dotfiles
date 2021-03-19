@@ -10,7 +10,8 @@ This repository contains some of my dotfiles for:
 - [mercurial](https://www.mercurial-scm.org/)
 - [multitail](https://www.vanheusden.com/multitail/)
 - [nano](https://www.nano-editor.org/)
-- [newsbeuter](https://newsbeuter.org/)
+- [newsbeuter](https://github.com/akrennmair/newsbeuter) (superseded
+  by [newsboat](https://newsboat.org/), but config continues to work)
 - [pip](https://pip.pypa.io/en/stable/)
 - [pylint](https://github.com/PyCQA/pylint)
 - [R](https://www.r-project.org/)
@@ -18,7 +19,7 @@ This repository contains some of my dotfiles for:
 - [sway](https://swaywm.org/)
 - [tmux](https://github.com/tmux/tmux/wiki)
 - [X.org](https://www.x.org/wiki/)
-- [vim](https://www.vim.org/) (outdated)
+- [vim](https://www.vim.org/) (outdated configuration)
 - [zsh](https://www.zsh.org/)
 
 More files will follow.
