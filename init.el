@@ -589,68 +589,114 @@ The function assumes that the user set the variables
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
 
-(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
+(defvar package-manager 'straight) ; 'el-get or 'straight
 
+(when (eq package-manager 'el-get)
 ;;; el-get setup
-(setq el-get-github-default-url-type 'https) ; for some reason http does not work anymore (as of 07-01-2014)
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+  (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
-(add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
-(defvar el-get-packages (append
-                         '(blank-mode
-                           bnf-mode
-                           browse-kill-ring
-                           cmake-mode
-                           company-mode
-                           diff-hl
-                           dockerfile-mode
-                           doom-modeline
-                           doom-themes
-                           el-get
-                           elfeed
-                           eval-sexp-fu
-                           flycheck
-                           geiser
-                           ghub
-                           glsl-mode
-                           go-mode
-                           groovy-emacs-mode ; for Jenkins pipelines
-                           helm
-                           helm-swoop
-                           indicators
-                           js2-mode
-                           json-mode
-                           lsp-mode
-                           lsp-ui
-                           lua-mode
-                           magit
-                           markdown-mode
-                           meson-mode
-                           modern-cpp-font-lock
-                           monky
-                           org-present
-                           paredit
-                           pretty-lambdada
-                           project-explorer
-                           projectile
-                           rainbow-delimiters
-                           rst-mode
-                           rust-mode
-                           slime
-                           toml-mode
-                           volatile-highlights
-                           which-key
-                           yaml-mode
-                           yasnippet
-                           yasnippet-snippets)
-                         (mapcar 'el-get-source-name el-get-sources)))
-(el-get-cleanup el-get-packages)
-(el-get 'sync el-get-packages)
+  (setq el-get-github-default-url-type 'https) ; for some reason http does not work anymore (as of 07-01-2014)
+  (unless (require 'el-get nil 'noerror)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+
+  (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
+  (defvar el-get-packages (append
+                           '(blank-mode
+                             bnf-mode
+                             browse-kill-ring
+                             cmake-mode
+                             company-mode
+                             diff-hl
+                             dockerfile-mode
+                             doom-modeline
+                             doom-themes
+                             el-get
+                             elfeed
+                             eval-sexp-fu
+                             flycheck
+                             geiser
+                             ghub
+                             glsl-mode
+                             go-mode
+                             groovy-emacs-mode ; for Jenkins pipelines
+                             helm
+                             helm-swoop
+                             indicators
+                             js2-mode
+                             json-mode
+                             lsp-mode
+                             lsp-ui
+                             lua-mode
+                             magit
+                             markdown-mode
+                             meson-mode
+                             modern-cpp-font-lock
+                             monky
+                             org-present
+                             paredit
+                             pretty-lambdada
+                             project-explorer
+                             projectile
+                             rainbow-delimiters
+                             rst-mode
+                             rust-mode
+                             slime
+                             toml-mode
+                             volatile-highlights
+                             which-key
+                             yaml-mode
+                             yasnippet
+                             yasnippet-snippets)
+                           (mapcar 'el-get-source-name el-get-sources)))
+  (el-get-cleanup el-get-packages)
+  (el-get 'sync el-get-packages))
+
+(when (eq package-manager 'straight)
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+
+  (defvar straight-packages '(browse-kill-ring
+                              cmake-mode
+                              diff-hl
+                              doom-modeline
+                              doom-themes
+                              eval-sexp-fu
+                              geiser
+                              helm
+                              helm-swoop
+                              lsp-mode
+                              lsp-ui
+                              magit
+                              markdown-mode
+                              meson-mode
+                              modern-cpp-font-lock
+                              monky
+                              org-present
+                              paredit
+                              projectile
+                              rainbow-delimiters
+                              rust-mode
+                              slime
+                              toml-mode
+                              volatile-highlights
+                              which-key
+                              yaml-mode))
+
+  (mapc #'straight-use-package straight-packages))
 
 ;; navigating in the kill-ring
 ;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
