@@ -591,8 +591,8 @@ The function assumes that the user set the variables
 
 (defvar package-manager 'straight) ; 'el-get or 'straight
 
-(when (eq package-manager 'el-get)
 ;;; el-get setup
+(when (eq package-manager 'el-get)
   (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
   (setq el-get-github-default-url-type 'https) ; for some reason http does not work anymore (as of 07-01-2014)
@@ -655,6 +655,7 @@ The function assumes that the user set the variables
   (el-get-cleanup el-get-packages)
   (el-get 'sync el-get-packages))
 
+;;; straight.el setup
 (when (eq package-manager 'straight)
   (defvar bootstrap-version)
   (let ((bootstrap-file
@@ -676,8 +677,10 @@ The function assumes that the user set the variables
                               doom-themes
                               eval-sexp-fu
                               geiser
+                              glsl-mode
                               helm
                               helm-swoop
+                              json-mode
                               lsp-mode
                               lsp-ui
                               magit
