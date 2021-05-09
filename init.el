@@ -672,6 +672,7 @@ The function assumes that the user set the variables
 
   (defvar straight-packages '(browse-kill-ring
                               cmake-mode
+                              company-mode
                               diff-hl
                               doom-modeline
                               doom-themes
@@ -853,7 +854,8 @@ The function assumes that the user set the variables
 ;; any key map
 (setq lsp-keymap-prefix "C-c l"
       lsp-enable-which-key-integration t
-      lsp-auto-guess-root t)
+      lsp-auto-guess-root t
+      lsp-enable-snippet nil)
 
 (add-hook 'rust-mode-hook #'lsp-deferred)
 
