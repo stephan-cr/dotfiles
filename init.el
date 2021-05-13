@@ -674,6 +674,8 @@ The function assumes that the user set the variables
                               cmake-mode
                               company-mode
                               diff-hl
+                              docker
+                              dockerfile-mode
                               doom-modeline
                               doom-themes
                               eval-sexp-fu
