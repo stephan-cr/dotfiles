@@ -697,6 +697,7 @@ The function assumes that the user set the variables
                               rainbow-delimiters
                               rust-mode
                               slime
+                              sway
                               toml-mode
                               volatile-highlights
                               which-key
@@ -867,3 +868,7 @@ The function assumes that the user set the variables
 
 ;;; diff-hl setup
 (global-diff-hl-mode)
+
+;;; sway
+(when (featurep 'sway)
+  (sway-do "opacity 0.95"))
