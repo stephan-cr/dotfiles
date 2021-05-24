@@ -870,5 +870,7 @@ The function assumes that the user set the variables
 (global-diff-hl-mode)
 
 ;;; sway
-(when (featurep 'sway)
-  (sway-do "opacity 0.95"))
+(when (getenv "SWAYSOCK")
+  (require 'sway)
+  (when (featurep 'sway)
+    (sway-do "opacity 0.95")))
