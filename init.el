@@ -616,6 +616,7 @@ The function assumes that the user set the variables
                              doom-themes
                              el-get
                              elfeed
+                             emms
                              eval-sexp-fu
                              flycheck
                              geiser
@@ -642,9 +643,11 @@ The function assumes that the user set the variables
                              project-explorer
                              projectile
                              rainbow-delimiters
+                             ripgrep
                              rst-mode
                              rust-mode
                              slime
+                             sway
                              toml-mode
                              volatile-highlights
                              which-key
@@ -695,6 +698,7 @@ The function assumes that the user set the variables
                               paredit
                               projectile
                               rainbow-delimiters
+                              ripgrep
                               rust-mode
                               slime
                               sway

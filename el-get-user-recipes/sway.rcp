@@ -1,0 +1,5 @@
+(:name "sway"
+       :description "A partial interface for integrating Sway with Emacs"
+       :type github
+       :pkgname "thblt/sway.el"
+       :depends dash)
