@@ -55,6 +55,9 @@ export CHICKEN_REPOSITORY=~/lib/chicken/8
 if [[ "$HOST" == "earth5" ]] ; then
     export ALSA_CARD=Generic
     export LIBSEAT_BACKEND=logind
-    export MOZ_ENABLE_WAYLAND=1
     export VDPAU_DRIVER=radeonsi
+fi
+
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]] ; then
+    export MOZ_ENABLE_WAYLAND=1
 fi
