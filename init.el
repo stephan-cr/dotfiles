@@ -589,128 +589,59 @@ The function assumes that the user set the variables
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
 
-(defvar package-manager 'straight) ; 'el-get or 'straight
-
-;;; el-get setup
-(when (eq package-manager 'el-get)
-  (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
-
-  (setq el-get-github-default-url-type 'https) ; for some reason http does not work anymore (as of 07-01-2014)
-  (unless (require 'el-get nil 'noerror)
+;;; straight.el setup
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-  (add-to-list 'el-get-recipe-path "~/dotfiles/el-get-user-recipes")
-  (defvar el-get-packages (append
-                           '(blank-mode
-                             bnf-mode
-                             browse-kill-ring
-                             cmake-mode
-                             company-mode
-                             diff-hl
-                             dockerfile-mode
-                             doom-modeline
-                             doom-themes
-                             el-get
-                             elfeed
-                             emms
-                             eval-sexp-fu
-                             flycheck
-                             geiser
-                             ghub
-                             glsl-mode
-                             go-mode
-                             groovy-emacs-mode ; for Jenkins pipelines
-                             helm
-                             helm-swoop
-                             indicators
-                             js2-mode
-                             json-mode
-                             lsp-mode
-                             lsp-ui
-                             lua-mode
-                             magit
-                             markdown-mode
-                             meson-mode
-                             modern-cpp-font-lock
-                             monky
-                             org-present
-                             paredit
-                             pretty-lambdada
-                             project-explorer
-                             projectile
-                             rainbow-delimiters
-                             ripgrep
-                             rst-mode
-                             rust-mode
-                             slime
-                             sway
-                             toml-mode
-                             volatile-highlights
-                             which-key
-                             yaml-mode
-                             yasnippet
-                             yasnippet-snippets)
-                           (mapcar 'el-get-source-name el-get-sources)))
-  (el-get-cleanup el-get-packages)
-  (el-get 'sync el-get-packages))
+(defvar straight-packages '(browse-kill-ring
+                            cmake-mode
+                            company-mode
+                            diff-hl
+                            docker
+                            dockerfile-mode
+                            doom-modeline
+                            doom-themes
+                            eval-sexp-fu
+                            geiser-guile
+                            glsl-mode
+                            helm
+                            helm-swoop
+                            json-mode
+                            lsp-mode
+                            lsp-ui
+                            magit
+                            markdown-mode
+                            meson-mode
+                            modern-cpp-font-lock
+                            monky
+                            org-present
+                            paredit
+                            projectile
+                            rainbow-delimiters
+                            ripgrep
+                            rust-mode
+                            slime
+                            sway
+                            toml-mode
+                            volatile-highlights
+                            which-key
+                            yaml-mode))
 
-;;; straight.el setup
-(when (eq package-manager 'straight)
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 5))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
+(mapc #'straight-use-package straight-packages)
 
-  (defvar straight-packages '(browse-kill-ring
-                              cmake-mode
-                              company-mode
-                              diff-hl
-                              docker
-                              dockerfile-mode
-                              doom-modeline
-                              doom-themes
-                              eval-sexp-fu
-                              geiser-guile
-                              glsl-mode
-                              helm
-                              helm-swoop
-                              json-mode
-                              lsp-mode
-                              lsp-ui
-                              magit
-                              markdown-mode
-                              meson-mode
-                              modern-cpp-font-lock
-                              monky
-                              org-present
-                              paredit
-                              projectile
-                              rainbow-delimiters
-                              ripgrep
-                              rust-mode
-                              slime
-                              sway
-                              toml-mode
-                              volatile-highlights
-                              which-key
-                              yaml-mode))
+  ;; navigating in the kill-ring
+  ;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
 
-  (mapc #'straight-use-package straight-packages))
-
-;; navigating in the kill-ring
-;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
 (when (require 'browse-kill-ring) ;; browse-kill-ring seems to be gone
   (browse-kill-ring-default-keybindings))
 
