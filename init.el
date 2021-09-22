@@ -639,9 +639,12 @@ The function assumes that the user set the variables
 
 (mapc #'straight-use-package straight-packages)
 
-  ;; navigating in the kill-ring
-  ;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
+(dashboard-setup-startup-hook)
+(setq dashboard-projects-backend 'projectile)
+(add-to-list 'dashboard-items '(projects . 5))
 
+;; navigating in the kill-ring
+;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
 (when (require 'browse-kill-ring) ;; browse-kill-ring seems to be gone
   (browse-kill-ring-default-keybindings))
 
