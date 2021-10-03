@@ -606,6 +606,7 @@ The function assumes that the user set the variables
 (defvar straight-packages '(browse-kill-ring
                             cmake-mode
                             company-mode
+                            dashboard
                             diff-hl
                             docker
                             dockerfile-mode
