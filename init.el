@@ -527,7 +527,7 @@ The function assumes that the user set the variables
 ;; http://www.emacswiki.org/emacs/?action=browse;id=PythonProgrammingInEmacs
 (when (load "flymake" t)
   (defun flymake-pylint-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+    (let* ((temp-file (flymake-proc-init-create-temp-buffer-copy
                        'flymake-create-temp-inplace))
            (local-file (file-relative-name
                         temp-file
@@ -538,7 +538,7 @@ The function assumes that the user set the variables
     ;; with org-babel
     (when buffer-file-name (flymake-mode)))
 
-  (add-to-list 'flymake-allowed-file-name-masks
+  (add-to-list 'flymake-proc-allowed-file-name-masks
                '("\\.py\\'" flymake-pylint-init))
   (add-hook 'python-mode-hook #'flymake-mode-wrapper))
 
