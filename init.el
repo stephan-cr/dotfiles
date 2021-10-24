@@ -613,6 +613,7 @@ The function assumes that the user set the variables
                             doom-modeline
                             doom-themes
                             eval-sexp-fu
+                            flycheck
                             geiser-guile
                             glsl-mode
                             helm
