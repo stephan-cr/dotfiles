@@ -35,7 +35,7 @@ def main():
             print(json_exception, file=sys.stderr)
             sys.exit(1)
 
-    for source, link_name in links.iteritems():
+    for source, link_name in links.items():
         source_path = os.path.join(CWD, source)
         link_path = os.path.join(HOME, link_name)
         link(source_path, link_path)
