@@ -4,16 +4,18 @@
 
 ;; functions
 
+;; Workaround for https://debbugs.gnu.org/34341 in GNU Emacs <= 26.3.
+;; - https://github.com/susam/emfy/blob/main/.emacs#L61
+;; - https://emacs.stackexchange.com/questions/51721/failed-to-download-gnu-archive
+(when (and (version< emacs-version "26.3") (>= libgnutls-version 30603))
+  (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3"))
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (when (< emacs-major-version 27)
   (package-initialize))
-
-;; fix https issues
-;; https://emacs.stackexchange.com/questions/51721/failed-to-download-gnu-archive
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (defun on-host (hostname)
   "Get the current HOSTNAME on which this instance is running."
