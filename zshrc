@@ -22,7 +22,7 @@ ZSH_THEME="gallois"
 # DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(colored-man-pages debian git mercurial python cargo rust shrink-path tig)
+plugins=(colored-man-pages debian git mercurial python rust shrink-path tig)
 
 source $ZSH/oh-my-zsh.sh
 
