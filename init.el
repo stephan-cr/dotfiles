@@ -414,33 +414,6 @@ non-whitespace character"
         user-full-name (configuration-lookup user-config :user-full-name)
         user-mail-address (configuration-lookup user-config :user-mail-address)))
 
-;; override `message-expand-name' from message.el to lookup aliases from mutt
-;; when composing messages
-(when (or (on-host "earth3") (on-host "earth7"))
-  (require 'message)
-  (eval-and-compile (require 'mutt-alias))
-  (require 'thingatpt)
-  ;; mutt alias lookup
-  (setq mutt-alias-file-list '("~/.mutt/muttrc"))
-  (defun message-expand-name ()
-    (cond ((and (memq 'eudc message-expand-name-databases)
-                (boundp 'eudc-protocol)
-                eudc-protocol)
-           (eudc-expand-inline))
-          ((and (memq 'bbdb message-expand-name-databases)
-                (fboundp 'bbdb-complete-name))
-           (bbdb-complete-name))
-          ((and (memq 'mutt-alias message-expand-name-databases)
-                (featurep 'mutt-alias))
-           (let ((expansion (mutt-alias-expand (word-at-point))))
-             (when expansion
-               (beginning-of-thing 'word)
-               (kill-word 1)
-               (insert expansion))))
-          (t
-           (expand-abbrev))))
-  (setq message-expand-name-databases '(mutt-alias)))
-
 ;;; bookmark setting
 ;; automatically save bookmarks
 (eval-when-compile (require 'bookmark))
