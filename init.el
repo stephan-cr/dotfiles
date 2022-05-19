@@ -172,6 +172,9 @@
 ;; markdown-mode for "md|markdown" files
 (add-to-list 'auto-mode-alist '("\\.\\(md\\|markdown\\)\\'" . markdown-mode))
 
+;; delete duplicate entries of the history of the minibuffer
+(setq history-delete-duplicates t)
+
 ;; duplicate current line or region in emacs
 ;; http://blog.tuxicity.se/elisp/emacs/2010/03/11/duplicate-current-line-or-region-in-emacs.html
 (defun duplicate-current-line-or-region (arg)
