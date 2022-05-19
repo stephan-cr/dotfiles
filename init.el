@@ -158,6 +158,7 @@
 (require 'ido)
 (ido-mode t)
 (setq ido-case-fold nil)
+(ido-everywhere)
 (define-key ido-file-completion-map "\C-k" nil)
 
 ;; use aspell instead of ispell
