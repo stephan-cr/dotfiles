@@ -780,10 +780,16 @@ The function assumes that the user set the variables
       lsp-enable-snippet nil)
 
 (add-hook 'rust-mode-hook #'lsp-deferred)
+(add-hook 'rust-mode-hook #'flyspell-prog-mode)
+(setq rust-format-on-save t)
 
 ;; clangd setup
 (let ((clangd-major 7))
   (setq lsp-clients-clangd-executable (format "clangd-%d" clangd-major)))
+
+;; company
+(setq company-minimum-prefix-length 1
+      company-idle-delay 0.1) ; default is 0.2
 
 ;;; diff-hl setup
 (global-diff-hl-mode)
