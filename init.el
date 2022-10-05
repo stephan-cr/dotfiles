@@ -228,6 +228,9 @@ non-whitespace character"
   '(progn
      (define-key org-mode-map (kbd "RET") #'org-return-indent)
 
+     (when (version<= "9.4.0" (org-version))
+       (setq org-startup-folded t))
+
      (defvar agenda-files (list "~/orgs/todo.org"))
      (when (or (on-host "earth3") (on-host "earth4") (on-host "earth7"))
        (when agenda-files
