@@ -12,8 +12,8 @@ ZSH_THEME="gallois"
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+zstyle ':omz:update' mode reminder
+zstyle ':omz:update' frequency 13
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
