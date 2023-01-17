@@ -736,6 +736,10 @@ The function assumes that the user set the variables
 (require 'modern-cpp-font-lock)
 (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
 
+;; C - don't indent single curly braces for conditional and loop statements
+;; https://emacs.stackexchange.com/questions/22673/c-brace-indentation
+(add-to-list 'c-offsets-alist '(substatement-open . 0))
+
 ;;; projectile setup
 (projectile-mode 1)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
