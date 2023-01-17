@@ -738,6 +738,7 @@ The function assumes that the user set the variables
 
 ;; C - don't indent single curly braces for conditional and loop statements
 ;; https://emacs.stackexchange.com/questions/22673/c-brace-indentation
+(require 'cc-mode)
 (add-to-list 'c-offsets-alist '(substatement-open . 0))
 
 ;;; projectile setup
