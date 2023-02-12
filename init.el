@@ -731,6 +731,8 @@ The function assumes that the user set the variables
 (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
 (add-hook 'emacs-lisp-mode-hook #'turn-on-eval-sexp-fu-flash-mode)
 (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook
+          #'(lambda () (local-set-key (kbd "C-<return>") #'ielm-return)))
 (add-hook 'ielm-mode-hook #'enable-paredit-mode)
 
 (require 'modern-cpp-font-lock)
