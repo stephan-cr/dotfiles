@@ -29,6 +29,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 
 zstyle ':vcs_info:*' enable git hg svn
+zstyle ':completion:*' completer _complete _approximate
 
 export GOPATH=$HOME/gocode
 export GOROOT=$HOME/go
