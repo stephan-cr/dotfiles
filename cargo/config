@@ -15,3 +15,6 @@ multiplexing = true         # HTTP/2 multiplexing
 
 [build]
 rustc-wrapper = "sccache"
+
+[registries.crates-io]
+protocol = "sparse"
