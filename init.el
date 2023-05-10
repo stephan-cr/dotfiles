@@ -634,7 +634,7 @@ The function assumes that the user set the variables
   (browse-kill-ring-default-keybindings))
 
 ;; themes
-(load-theme 'doom-moonlight t)
+(load-theme 'doom-oceanic-next t)
 (doom-modeline-mode 1)
 
 ;; go path, such that go-mode finds godef
