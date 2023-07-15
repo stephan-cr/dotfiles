@@ -806,3 +806,6 @@ The function assumes that the user set the variables
   (require 'sway)
   (when (featurep 'sway)
     (sway-do "opacity 0.95")))
+
+;;; open URLs like files
+(url-handler-mode 1)
