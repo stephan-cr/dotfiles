@@ -20,7 +20,19 @@ set $term alacritty
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu -b | xargs swaymsg exec --
 # https://github.com/catppuccin/bemenu
-set $menu bemenu-run -b -i -p "▶" --fb "#303446" --ff "#81c8be" --nb "#303446" --nf "#f2d5cf" --tb "#303446" --hb "#303446" --tf "#ca9ee6" --hf "#8caaee" --nf "#f2d5cf" --af "#f2d5cf" --ab "#303446" --no-exec | xargs swaymsg exec --
+set $menu bemenu-run -b -i -p "▶" \
+    --fb "#303446" \
+    --ff "#81c8be" \
+    --nb "#303446" \
+    --nf "#f2d5cf" \
+    --tb "#303446" \
+    --hb "#303446" \
+    --tf "#ca9ee6" \
+    --hf "#8caaee" \
+    --nf "#f2d5cf" \
+    --af "#f2d5cf" \
+    --ab "#303446" \
+    --fn "Roboto Mono 10" --no-exec | xargs swaymsg exec --
 
 ### Output configuration
 #
