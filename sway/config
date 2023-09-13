@@ -238,6 +238,8 @@ bar {
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
+
+    font Roboto Mono 9
 }
 
 include /etc/sway/config.d/*
