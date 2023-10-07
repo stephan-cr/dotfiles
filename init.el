@@ -609,6 +609,7 @@ The function assumes that the user set the variables
                             meson-mode
                             modern-cpp-font-lock
                             monky
+                            move-text
                             org-present
                             paredit
                             projectile
@@ -809,3 +810,17 @@ The function assumes that the user set the variables
 
 ;;; open URLs like files
 (url-handler-mode 1)
+
+;;; configure move-text
+(move-text-default-bindings)
+
+;; https://github.com/emacsfodder/move-text#indent-after-moving
+(defun indent-region-advice (&rest ignored)
+  (let ((deactivate deactivate-mark))
+    (if (region-active-p)
+        (indent-region (region-beginning) (region-end))
+      (indent-region (line-beginning-position) (line-end-position)))
+    (setq deactivate-mark deactivate)))
+
+(advice-add 'move-text-up :after 'indent-region-advice)
+(advice-add 'move-text-down :after 'indent-region-advice)
