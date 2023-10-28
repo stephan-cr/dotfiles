@@ -227,7 +227,9 @@ non-whitespace character"
 
 (eval-after-load 'org
   '(progn
-     (define-key org-mode-map (kbd "RET") #'org-return-indent)
+     (if (version<= "9.4.0" (org-version))
+         (define-key org-mode-map (kbd "RET") #'(lambda () (interactive) (org-return t)))
+       (define-key org-mode-map (kbd "RET") #'org-return-indent))
 
      (when (version<= "9.4.0" (org-version))
        (setq org-startup-folded t))
@@ -272,9 +274,7 @@ non-whitespace character"
                          ob-scheme
                          ,(if (>= emacs-major-version 26) 'ob-shell 'ob-sh)))
        ;; set python coding to utf-8
-       (setq org-babel-python-wrapper-method
-             (concat "# -*- coding: utf-8 -*-\n"
-                     org-babel-python-wrapper-method)
+       (setq org-babel-python-command "python3"
              org-src-fontify-natively t))
 
      ;; http://sachachua.com/blog/2012/12/emacs-strike-through-headlines-for-done-tasks-in-org/
