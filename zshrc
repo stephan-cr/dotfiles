@@ -32,8 +32,18 @@ zstyle ':vcs_info:*' enable git hg svn
 zstyle ':completion:*' completer _complete _approximate
 
 export GOPATH=$HOME/gocode
-export GOROOT=$HOME/go
-export PATH=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin
+
+export PATH=$PATH:$HOME/bin
+
+if [[ -d "$GOPATH/bin" ]] ; then
+    export PATH="$PATH:$GOPATH/bin"
+fi
+
+if [[ -d "$HOME/go" ]] ; then
+    export GOROOT=$HOME/go
+    export PATH="$PATH:$GOROOT/bin"
+fi
+
 export PYTHONPATH=$HOME/lib/python
 
 if [[ -d "$HOME/.cargo" ]] ; then
