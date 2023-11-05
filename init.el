@@ -696,6 +696,12 @@ The function assumes that the user set the variables
 
 (require 'eval-sexp-fu)
 
+;; paredit
+(eval-after-load 'paredit
+  '(progn
+     (define-key paredit-mode-map (kbd "RET") nil)
+     (define-key paredit-mode-map (kbd "C-j") nil)))
+
 ;;; slime setup
 (when (featurep 'slime)
   (require 'slime-highlight-edits)
