@@ -601,6 +601,7 @@ The function assumes that the user set the variables
                             glsl-mode
                             helm
                             helm-swoop
+                            helpful
                             json-mode
                             lsp-mode
                             lsp-ui
@@ -830,3 +831,9 @@ The function assumes that the user set the variables
 
 (advice-add 'move-text-up :after 'indent-region-advice)
 (advice-add 'move-text-down :after 'indent-region-advice)
+
+;;; helpful
+(global-set-key (kbd "C-h f") #'helpful-callable)
+(global-set-key (kbd "C-h v") #'helpful-variable)
+(global-set-key (kbd "C-h k") #'helpful-key)
+(global-set-key (kbd "C-h x") #'helpful-command)
