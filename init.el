@@ -572,6 +572,10 @@ The function assumes that the user set the variables
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
 
+;; needs be be set before loading dashboard
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+
 ;;; straight.el setup
 (defvar bootstrap-version)
 (let ((bootstrap-file
