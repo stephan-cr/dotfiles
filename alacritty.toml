@@ -1,3 +1,6 @@
+# Colors (Argonaut)
+# https://github.com/eendroroy/alacritty-theme/blob/master/themes/argonaut.yaml
+
 [colors.bright]
 black = "0x6D7070"
 blue = "0x1BA6FA"
