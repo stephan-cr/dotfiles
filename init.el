@@ -31,22 +31,23 @@
 (menu-bar-mode -1)
 
 ;; setup window appearance and font depending on graphical system
-(cond ((or (eq window-system 'x) (eq window-system 'pgtk))
-       (progn
-         (tool-bar-mode -1)
-         (scroll-bar-mode -1)
-         (if (member "Roboto Mono" (font-family-list))
-             (progn
-               (set-face-attribute 'default nil :font "Roboto Mono 8")
-               (set-face-attribute 'bold nil :font "Roboto Mono 8" :weight 'bold))
-           (set-face-attribute 'default nil :height 80))
-         (global-hl-line-mode t)))
-      ((or (eq window-system 'mac) (eq window-system 'ns))
-       (progn
-         (tool-bar-mode -1)
-         (global-hl-line-mode t)
-         (set-face-background 'hl-line "gray95")
-         (set-face-attribute 'default nil :height 120))))
+(pcase window-system
+  ((or 'x 'pgtk)
+   (progn
+     (tool-bar-mode -1)
+     (scroll-bar-mode -1)
+     (if (member "Roboto Mono" (font-family-list))
+         (progn
+           (set-face-attribute 'default nil :font "Roboto Mono 8")
+           (set-face-attribute 'bold nil :font "Roboto Mono 8" :weight 'bold))
+       (set-face-attribute 'default nil :height 80))
+     (global-hl-line-mode t)))
+  ((or 'mac 'ns)
+   (progn
+     (tool-bar-mode -1)
+     (global-hl-line-mode t)
+     (set-face-background 'hl-line "gray95")
+     (set-face-attribute 'default nil :height 120))))
 
 (require 'cl-generic)
 (require 'cl-macs)
