@@ -1,4 +1,4 @@
-browser iceweasel
+browser firefox
 max-items 1000
 reload-threads 2
 show-read-feeds no
