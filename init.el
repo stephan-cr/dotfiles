@@ -808,6 +808,7 @@ The function assumes that the user set the variables
       lsp-enable-which-key-integration t
       lsp-auto-guess-root t
       lsp-enable-snippet nil)
+(add-to-list 'lsp-clients-clangd-args "--clang-tidy")
 
 (add-hook 'rust-mode-hook #'lsp-deferred)
 (add-hook 'rust-mode-hook #'flyspell-prog-mode)
