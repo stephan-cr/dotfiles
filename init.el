@@ -597,7 +597,8 @@ The function assumes that the user set the variables
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(defvar straight-packages '(browse-kill-ring
+(defvar straight-packages '(bazel
+                            browse-kill-ring
                             cmake-mode
                             company-mode
                             dashboard
@@ -613,6 +614,7 @@ The function assumes that the user set the variables
                             helm
                             helm-swoop
                             helpful
+                            journalctl-mode
                             json-mode
                             lsp-mode
                             lsp-ui
@@ -633,7 +635,8 @@ The function assumes that the user set the variables
                             toml-mode
                             volatile-highlights
                             which-key
-                            yaml-mode))
+                            yaml-mode
+                            zig-mode))
 
 (mapc #'straight-use-package straight-packages)
 
