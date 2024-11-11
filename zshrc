@@ -65,6 +65,11 @@ export CHICKEN_REPOSITORY=~/lib/chicken/8
 
 if [[ "$HOST" == "earth5" ]] ; then
     export ALSA_CARD=Generic
+    # workaround: not set to "vulkan" (the default) unless amdvlk
+    # 2024.Q4.1 is in Arch
+    #
+    # https://gitlab.gnome.org/GNOME/gtk/-/issues/7056#note_2239402
+    export GSK_RENDERER=ngl
     export LIBSEAT_BACKEND=logind
     export VDPAU_DRIVER=radeonsi
 fi
