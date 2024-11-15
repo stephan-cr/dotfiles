@@ -624,6 +624,7 @@ The function assumes that the user set the variables
                             modern-cpp-font-lock
                             monky
                             move-text
+                            multiple-cursors
                             org-present
                             paredit
                             projectile
@@ -852,3 +853,8 @@ The function assumes that the user set the variables
 (global-set-key (kbd "C-h v") #'helpful-variable)
 (global-set-key (kbd "C-h k") #'helpful-key)
 (global-set-key (kbd "C-h x") #'helpful-command)
+
+;;; multiple cursors
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
