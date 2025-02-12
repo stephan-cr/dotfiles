@@ -858,3 +858,11 @@ The function assumes that the user set the variables
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;;;; colorize output in compile buffer
+;;;; https://www.reddit.com/r/emacs/comments/kbwkca/compile_buffer_show_weird_symbols/
+;;;; https://www.reddit.com/r/emacs/comments/kbwkca/comment/gfl2196/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (ansi-color-apply-on-region compilation-filter-start (point-max)))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
