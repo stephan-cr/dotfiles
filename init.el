@@ -47,7 +47,10 @@
      (tool-bar-mode -1)
      (global-hl-line-mode t)
      (set-face-background 'hl-line "gray95")
-     (set-face-attribute 'default nil :height 120))))
+     (set-face-attribute 'default nil :height 120)))
+  ('nil
+   (when (eq system-type 'berkeley-unix)
+     (normal-erase-is-backspace-mode 1))))
 
 (require 'cl-generic)
 (require 'cl-macs)
