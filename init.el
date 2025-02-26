@@ -530,7 +530,7 @@ The function assumes that the user set the variables
     ;; check if buffer-file-name is nil, such we can use flymake in combination
     ;; with org-babel
     (when buffer-file-name (flymake-mode)))
-
+  (require 'flymake-proc)
   (add-to-list 'flymake-proc-allowed-file-name-masks
                '("\\.py\\'" flymake-pylint-init))
   (add-hook 'python-mode-hook #'flymake-mode-wrapper))
