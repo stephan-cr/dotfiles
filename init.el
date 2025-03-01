@@ -49,7 +49,8 @@
      (set-face-background 'hl-line "gray95")
      (set-face-attribute 'default nil :height 120)))
   ('nil
-   (when (eq system-type 'berkeley-unix)
+   (when (and (eq system-type 'berkeley-unix)
+              (string-search "freebsd" system-configuration))
      (normal-erase-is-backspace-mode 1))))
 
 (require 'cl-generic)
