@@ -303,38 +303,6 @@ non-whitespace character"
   (setq erc-server "irc.freenode.net"
         erc-port 6667))
 
-;; emms
-(eval-after-load 'emms
-  '(progn
-     (require 'emms-setup)
-     (require 'emms-player-mpd)
-     (eval-when-compile (require 'emms-player-simple))
-     (require 'emms-streams)
-     (setq emms-player-mpg321-parameters '("-o" "alsa"))
-     (emms-standard)
-     (emms-default-players)
-
-     ;; for debugging
-     ;; (emms-player-for
-     ;;  '(*track*
-     ;;    (type . url)
-     ;;    (name . "http://streamer-dtc-aa04.somafm.com:80/stream/1073")))
-
-     ;; for help to configure emms see
-     ;; http://www.mail-archive.com/emms-help@gnu.org/msg00482.html
-
-     ;; emms player to play urls
-     (define-emms-simple-player mpg321-list '(file url)
-       (regexp-opt '(".m3u" ".pls")) "mpg321" "-o" "alsa" "--list")
-     (define-emms-simple-player mpg321-url '(url)
-       "http://" "mpg321" "-o" "alsa")
-     (define-emms-simple-player mpg321-file '(file)
-       (regexp-opt '(".mp3")) "mpg321" "-o" "alsa")
-     (setq emms-player-list '(emms-player-mpg321-file
-                              emms-player-mpg321-url
-                              emms-player-mpg321-list
-                              emms-player-mpd))))
-
 ;; use multimedia keys
 (when (eq window-system 'x)
   (global-set-key (kbd "<XF86AudioLowerVolume>") #'emms-volume-lower)
@@ -611,6 +579,7 @@ The function assumes that the user set the variables
                             dockerfile-mode
                             doom-modeline
                             doom-themes
+                            emms
                             eval-sexp-fu
                             flycheck
                             geiser-guile
@@ -870,3 +839,35 @@ The function assumes that the user set the variables
 (defun colorize-compilation-buffer ()
   (ansi-color-apply-on-region compilation-filter-start (point-max)))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+;; emms
+(eval-after-load 'emms
+  '(progn
+     (require 'emms-setup)
+     (require 'emms-player-mpd)
+     (eval-when-compile (require 'emms-player-simple))
+     (require 'emms-streams)
+     (setq emms-player-mpg321-parameters '("-o" "alsa"))
+     (emms-standard)
+     (emms-default-players)
+
+     ;; for debugging
+     ;; (emms-player-for
+     ;;  '(*track*
+     ;;    (type . url)
+     ;;    (name . "http://streamer-dtc-aa04.somafm.com:80/stream/1073")))
+
+     ;; for help to configure emms see
+     ;; http://www.mail-archive.com/emms-help@gnu.org/msg00482.html
+
+     ;; emms player to play urls
+     (define-emms-simple-player mpg321-list '(file url)
+       (regexp-opt '(".m3u" ".pls")) "mpg321" "-o" "alsa" "--list")
+     (define-emms-simple-player mpg321-url '(url)
+       "http://" "mpg321" "-o" "alsa")
+     (define-emms-simple-player mpg321-file '(file)
+       (regexp-opt '(".mp3")) "mpg321" "-o" "alsa")
+     (setq emms-player-list '(emms-player-mpg321-file
+                              emms-player-mpg321-url
+                              emms-player-mpg321-list
+                              emms-player-mpd))))
