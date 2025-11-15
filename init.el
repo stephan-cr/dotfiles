@@ -598,6 +598,7 @@ The function assumes that the user set the variables
                             monky
                             move-text
                             multiple-cursors
+                            nasm-mode
                             org-present
                             paredit
                             projectile
