@@ -599,6 +599,7 @@ The function assumes that the user set the variables
                             move-text
                             multiple-cursors
                             nasm-mode
+                            ocamlformat
                             org-present
                             paredit
                             projectile
