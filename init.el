@@ -608,6 +608,7 @@ The function assumes that the user set the variables
                             rust-mode
                             slime
                             sway
+                            terraform-mode
                             toml-mode
                             tuareg-mode
                             volatile-highlights
@@ -779,6 +780,10 @@ The function assumes that the user set the variables
 ;;; lsp setup
 (require 'lsp)
 (require 'lsp-clangd)
+(require 'lsp-terraform)
+
+(setq lsp-semantic-tokens-enable t)
+(setq lsp-semantic-tokens-honor-refresh-requests t)
 
 (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
 ;; according to https://github.com/emacs-lsp/lsp-mode/issues/1532 the
