@@ -584,6 +584,7 @@ The function assumes that the user set the variables
                             flycheck
                             geiser-guile
                             glsl-mode
+                            go-mode
                             helm
                             helm-swoop
                             helpful
@@ -798,6 +799,9 @@ The function assumes that the user set the variables
 (add-hook 'rust-mode-hook #'lsp-deferred)
 (add-hook 'rust-mode-hook #'flyspell-prog-mode)
 (setq rust-format-on-save t)
+
+(add-hook 'go-mode-hook
+          (lambda () (add-hook 'before-save-hook #'gofmt-before-save nil t)))
 
 ;; company
 (setq company-minimum-prefix-length 1
