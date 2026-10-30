@@ -24,6 +24,7 @@ zstyle ':omz:update' frequency 13
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(colored-man-pages debian git python rust shrink-path tig)
 
+[[ -x "$(command -v docker)" ]] && plugins+=(docker)
 [[ -x "$(command -v go)" ]] && plugins+=(golang)
 [[ -x "$(command -v mercurial)" ]] && plugins+=(mercurial)
 [[ -x "$(command -v terraform)" ]] && plugins+=(terraform)
