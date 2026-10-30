@@ -300,8 +300,8 @@ non-whitespace character"
 ;; erc
 (when (require 'erc nil 'noerror)
   (eval-when-compile (require 'erc))
-  (setq erc-server "irc.freenode.net"
-        erc-port 6667))
+  (setq erc-server "irc.libera.chat"
+        erc-port 6697))
 
 ;; use multimedia keys
 (when (eq window-system 'x)
