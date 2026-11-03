@@ -38,8 +38,13 @@
      (scroll-bar-mode -1)
      (if (member "Roboto Mono" (font-family-list))
          (progn
-           (set-face-attribute 'default nil :font "Roboto Mono 8")
-           (set-face-attribute 'bold nil :font "Roboto Mono 8" :weight 'bold))
+           (let ((font-size 9)
+                 (font-name "Iosevka Nerd Font Mono"))
+             (set-face-attribute 'default nil :family font-name :height (* font-size 10))
+             (set-face-attribute 'bold nil :family font-name :height (* font-size 10) :weight 'bold))
+           (when nil
+             (set-face-attribute 'default nil :font "Roboto Mono 8")
+             (set-face-attribute 'bold nil :font "Roboto Mono 8" :weight 'bold)))
        (set-face-attribute 'default nil :height 80))
      (global-hl-line-mode t)))
   ((or 'mac 'ns)
