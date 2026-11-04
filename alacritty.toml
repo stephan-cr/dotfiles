@@ -30,6 +30,7 @@ background = "0x292C3E"
 foreground = "0xEBEBEB"
 
 [font]
+normal = { family = "Iosevka", style = "Regular" }
 size = 9.0
 
 [window]
