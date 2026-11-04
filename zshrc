@@ -30,6 +30,10 @@ plugins=(colored-man-pages debian git python rust shrink-path tig)
 [[ -x "$(command -v mercurial)" ]] && plugins+=(mercurial)
 [[ -x "$(command -v terraform)" ]] && plugins+=(terraform)
 
+# zsh-completions
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
